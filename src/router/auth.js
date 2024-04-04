@@ -1,7 +1,12 @@
-import { Router } from "express";
-import { signIn, signUp } from "../controllers/auth.js";
-const routerAuth = Router()
+import express from "express";
+import { auth } from "../controllers/auth.js";
+const routerAuth = express.Router()
 
-routerAuth.post("/signUp", signUp)
-routerAuth.post("/signIn", signIn)
+routerAuth.post("/", auth)
+routerAuth.get("/", (req,res) => {
+    res.render("index.html")
+})
+routerAuth.get("/home", (req,res) => {
+    res.render("test.html")
+})
 export default routerAuth
