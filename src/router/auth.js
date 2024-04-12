@@ -7,6 +7,6 @@ routerAuth.get("/", (req,res) => {
     res.render("index.html")
 })
 routerAuth.get("/home", (req,res) => {
-    res.render("test.html")
+    res.render("user.html")
 })
 export default routerAuth

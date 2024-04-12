@@ -5,21 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIYACHI SHOP</title>
-    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/user.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
     <header class="header">
         <nav class="navbar">
             <img class="logo" src="/img/logo.png"></div>
             <input class="search" placeholder="Tìm kiếm sản phẩm tại đây">
             <button class="search__button"><i class='bx bx-search-alt-2'></i></button>
-
+         
             <i class='bx bx-user'></i>
-            <p class="acc login">Đăng nhập</p>
-            <p class="vachngan">|</p>
-            <p class="acc signup">Đăng kí</p>
+            <p class="user"></p>
 
             <div class="cart"><i class='bx bx-cart-alt'></i>
 
@@ -31,57 +28,6 @@
             </div>
 
         </nav>
-
-
-        <div class="signup__display hide">
-            <div class="signup__form">
-                <form method="post">
-                    <div class="signup__form__header">
-                        <h1>Đăng kí</h1>
-                        <i class='bx bx-x'></i>
-                    </div>
-
-                    <label for="username">Tên đăng nhập:</label>
-
-                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
-                    <label for="phonenumber">Số điện thoại:</label>
-                    <input class="phonenumber" name="phoneNumber" type="text" required placeholder="Phone number"> <br>
-                    <label for="password">Mật khẩu:</label>
-                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
-                    <label for="password__confirm">Xác nhận mật khẩu:</label>
-                    <input class="password__confirm" min=8 name="confirmPassword" type="password" required
-                        placeholder="Confirm Password">
-                    <input type="submit" name="submit" value="Sign up" id="submit1">
-                </form>
-
-            </div>
-        </div>
-        <!-- dang nhap -->
-        <div class="login__display hide">
-            <div class="login__form">
-                <form method="post">
-                    <div class="login__form__header">
-                        <h1>Đăng nhập</h1>
-                        <i class='bx bx-x' id="login__close"></i>
-                    </div>
-
-                    <label for="username">Tên đăng nhập:</label>
-
-                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
-                    <label for="password">Mật khẩu:</label>
-                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
-                    <input type="submit" name="submit" value="Login" id="submit2">
-
-                </form>
-                <div class="footer">
-                    <p>Nếu chưa có tài khoản hãy</p>
-                    <p class="signup__option">Đăng ký</p>
-                </div>
-
-            </div>
-        </div>
-
-
 
         <div class="list">
             <div class="product">
@@ -455,7 +401,7 @@
             </div>
         </div>
     </footer>
-    <script src="/js/index.js"></script>
+    <script src="/js/index2.js"></script>
 </body>
 
 </html>

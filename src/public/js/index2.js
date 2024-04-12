@@ -1,15 +1,9 @@
-var signup = document.querySelector('.signup')
-var signup__display= document.querySelector('.signup__display')
-var signup__close = document.querySelector('.bx-x')
-var login = document.querySelector('.login')
-var login__display= document.querySelector('.login__display')
-var login__close =document.querySelector('#login__close')
-var signup__option = document.querySelector('.signup__option')
+
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
-
-
+var user = document.querySelector('.user')
+// user.innerHTML=q;
 document.addEventListener("DOMContentLoaded", function() {
-
+    user.innerHTML = q;
     var  navbar__items= document.querySelectorAll('.item')
     var sections = document.querySelectorAll('main section')
     navbar__items.forEach(element => {
@@ -64,35 +58,8 @@ rightArrow.addEventListener('click', nextImage);
 leftArrow.addEventListener('click', prevImage);
 
 showImage(currentIndex);
-signup.addEventListener('click', function(e){
-     signup__display.classList.toggle('hide');
-})
-signup__close.addEventListener('click', function(e){
-    signup__display.classList.toggle('hide');
-})
-login.addEventListener('click', function(e){
-    login__display.classList.toggle('hide');
-})
-login__close.addEventListener('click', function(e){
-    login__display.classList.toggle('hide');
-})
-signup__option.addEventListener('click', function(e){
-    login__display.classList.toggle('hide');
-    signup__display.classList.toggle('hide');
-})
 // navbar__items.forEach(item => {
 //     console.log(item);
 // })
-// var q="";
-// var submit__button =document.querySelector('#submit2')
-// var username = document.querySelector('.username')
-// submit__button.addEventListener('click',function(){
-//     q= username.value;
-// })
-
-
-
-
-
 
 
