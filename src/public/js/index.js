@@ -1,10 +1,16 @@
 var signup = document.querySelector('.signup')
+var signup2 = document.querySelector('.signup2')
+var signup3 = document.querySelector('.signup3')
 var signup__display= document.querySelector('.signup__display')
 var signup__close = document.querySelector('.bx-x')
 var login = document.querySelector('.login')
 var login__display= document.querySelector('.login__display')
 var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
+var cart = document.querySelector('.cart');
+var cart__alert= document.querySelector('.cart__alert');
+var heart = document.querySelector('.heart');
+var heart__alert= document.querySelector('.heart__alert');
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
 
 
@@ -64,8 +70,34 @@ rightArrow.addEventListener('click', nextImage);
 leftArrow.addEventListener('click', prevImage);
 
 showImage(currentIndex);
+cart.addEventListener('click',function(e){
+    setTimeout(function() {
+        heart__alert.classList.add('hide')
+        cart__alert.classList.remove('hide')
+        setTimeout(function(){
+            cart__alert.classList.add('hide')
+        }, 3000); 
+      }, 0); 
+})
+heart.addEventListener('click',function(e){
+    setTimeout(function() {
+        cart__alert.classList.add('hide')
+        heart__alert.classList.remove('hide')
+        setTimeout(function(){
+            heart__alert.classList.add('hide')
+        }, 3000); 
+      }, 0); 
+})
+
+
 signup.addEventListener('click', function(e){
      signup__display.classList.toggle('hide');
+})
+signup2.addEventListener('click', function(e){
+    login__display.classList.toggle('hide');
+})
+signup3.addEventListener('click', function(e){
+    login__display.classList.toggle('hide');
 })
 signup__close.addEventListener('click', function(e){
     signup__display.classList.toggle('hide');
