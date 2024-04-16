@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import { config } from "dotenv";
 import express, { json } from "express";
 import { connect } from "mongoose";
@@ -12,10 +13,15 @@ config();
 const PORT = process.env.PORT;
 const URI_DB = process.env.URI_DB
 app.use(json())
+app.use(cookieParser())
 
 connect(URI_DB)
 
 app.use(router)
+
+app.use((req,res) => {
+    return res.send("404 not found")
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on post ${PORT}`);

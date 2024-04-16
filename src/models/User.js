@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true
-    }  
+    } ,
+    role: {
+        type: String,
+        default: "member"
+    }
 }, {versionKey: false, timestamps: true})
 
 export default mongoose.model('User',userSchema);

@@ -1,3 +1,4 @@
+
 var signup = document.querySelector('.signup')
 var signup2 = document.querySelector('.signup2')
 var signup3 = document.querySelector('.signup3')
@@ -121,6 +122,9 @@ signup__option.addEventListener('click', function(e){
 // submit__button.addEventListener('click',function(){
 //     q= username.value;
 // })
+
+
+
 
 
 

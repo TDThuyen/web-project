@@ -1,12 +1,12 @@
 import express from "express";
 import { auth } from "../controllers/auth.js";
+import { checkAccessed } from "../middlewares/checkAccessed.js";
+
 const routerAuth = express.Router()
 
 routerAuth.post("/", auth)
-routerAuth.get("/", (req,res) => {
+routerAuth.get("/", checkAccessed, (req,res) => {
     res.render("index.html")
 })
-routerAuth.get("/home", (req,res) => {
-    res.render("user.html")
-})
+
 export default routerAuth

@@ -26,9 +26,24 @@
             <div class="heart"><i class='bx bxs-heart'></i>
                 <div class="heart__circle">0</div>
             </div>
-
+            <div class="logout">
+                <i class='bx bx-log-out bx-flip-vertical' ></i>
+                <p>Đăng xuất</p>
+            </div>
         </nav>
-
+        <form method="post" >
+            <div class="logout__display hide">
+                <div class="logout__form">
+                    <div class="logout__form__head">
+                        <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                        <i class='bx bx-x' id="logout__close"></i>
+                    </div>
+                
+                    <button class="logout__yes" name="submit" value="log_out">Có</button>
+                    <button class="logout__no">Không</button>
+                </div>
+            </div>
+        </form>
         <div class="list">
             <div class="product">
                 <div class="__text">

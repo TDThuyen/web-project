@@ -1,13 +1,13 @@
 import bcryptjs from "bcryptjs";
 import dotenv from "dotenv";
+import { createJWT } from "../middlewares/JWT.js";
 import User from "../models/User.js";
 import { signInValidator, singUpValidator } from "../validation/user.js";
 dotenv.config()
-const {SECRET_CODE} = process.env.SECRET_CODE
+const SECRET_CODE = process.env.SECRET_CODE
 
-export const auth = async(req,res) => { 
-    console.log(req.body)
-    if(req.body.confirmPassword){
+export const auth = async(req,res) => {
+    if(req.body.submit==="Sign up"){
         //dang ki
         try {
             // buoc 1 validate du lieu
@@ -39,12 +39,19 @@ export const auth = async(req,res) => {
                 ...req.body,
                 password: hashedPassword 
             })
+            // connection.query(`Insert into users values("${req.userName}","${hashedPassword}","${req.phoneNumber}")`, (error, results, fields) => {
+            //     if (error) {
+            //             console.error('Lỗi truy vấn: ' + error.stack);
+            //             return;
+            //             }
+                    
+            //         console.log('Dữ liệu từ cơ sở dữ liệu: ', results);
+            // })
             // buoc 5 thong bao dang ki thanh cong
             // xoa mat khau di
             user.password = undefined
             res.redirect('/auth/')
         } catch(error) {
-            res.redirect('/auth/signUp')
             console.log(error.message)
         }
     }
@@ -73,19 +80,23 @@ export const auth = async(req,res) => {
                 })
             }
             //Buoc4: Tao JWT
-            //const accesToken = jwt.sign({_id: user._id, SECRET_CODE})
+            let payload = {
+                _id: user._id,
+            };
+            const token = createJWT(payload);
             //Buoc6: tra ra thong bao cho nguoi dung
-            res.redirect('/auth/home')
+            res.cookie("jwt",token);
+            res.cookie("user_name",user.userName);
+            res.redirect("/home/")
             // return res.status(200).json({
             //     message: "Đăng nhập thành công!",
             //     user,
             //     // accesToken
             // })
         } catch(error) {
-            res.redirect('auth/signUp')
             return res.status(500).json({
                 name: error.name,
-                message: "error.message,"
+                message: error.message
             })
         }
     }

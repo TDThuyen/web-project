@@ -2,8 +2,14 @@
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
 var user = document.querySelector('.user')
 // user.innerHTML=q;
+var logout= document.querySelector('.logout')
+var logout__close = document.querySelector('#logout__close')
+var logout__yes = document.querySelector('.logout__yes')
+var logout__no = document.querySelector('.logout__no')
+var logout__display = document.querySelector('.logout__display')
+
 document.addEventListener("DOMContentLoaded", function() {
-    user.innerHTML = q;
+    user.innerHTML = document.cookie.match(/user_name=([^;]+)/)[1];
     var  navbar__items= document.querySelectorAll('.item')
     var sections = document.querySelectorAll('main section')
     navbar__items.forEach(element => {
@@ -61,5 +67,14 @@ showImage(currentIndex);
 // navbar__items.forEach(item => {
 //     console.log(item);
 // })
+logout.addEventListener('click', function(){
+logout__display.classList.toggle('hide')
+})
+logout__close.addEventListener('click', function(){
+    logout__display.classList.toggle('hide')
+})
+logout__no.addEventListener('click', function(){
+        logout__display.classList.toggle('hide')
+ })
 
-
+    
