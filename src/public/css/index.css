@@ -215,9 +215,10 @@ body {
     border-radius: 15px; */
     margin-top: -12%;
     z-index: 5;
-    position: absolute;
+    position: fixed;
     /* opacity: 0.5; */
     transition: 0.8s ease;
+    overflow: hidden;
 }
 
 .signup__form,
