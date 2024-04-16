@@ -7,6 +7,8 @@ var logout__close = document.querySelector('#logout__close')
 var logout__yes = document.querySelector('.logout__yes')
 var logout__no = document.querySelector('.logout__no')
 var logout__display = document.querySelector('.logout__display')
+var userinfor__close = document.querySelector('#userinfor__close')
+var capnhat = document.querySelector('.capnhat')
 
 document.addEventListener("DOMContentLoaded", function() {
     user.innerHTML = document.cookie.match(/user_name=([^;]+)/)[1];
@@ -76,3 +78,47 @@ logout__close.addEventListener('click', function(){
 logout__no.addEventListener('click', function(){
         logout__display.classList.toggle('hide')
  })
+ function enableForm() {
+    document.querySelector(".fullname").removeAttribute("disabled");
+    document.querySelector(".birthday").removeAttribute("disabled");
+    document.querySelector(".username").removeAttribute("disabled");
+    document.querySelector(".phonenumber").removeAttribute("disabled");
+    document.querySelector(".address").removeAttribute("disabled");
+    document.querySelector(".change").classList.add("hide");
+    document.querySelector(".capnhat").classList.remove("hide");
+        document.querySelector('.fileInput').classList.remove('hide')
+}
+user.addEventListener("click",function(){
+    document.querySelector(".user__display").classList.toggle('hide');
+    document.querySelector(".fullname").setAttribute("disabled", "disabled");
+    document.querySelector(".birthday").setAttribute("disabled", "disabled");
+    document.querySelector(".username").setAttribute("disabled", "disabled");
+    document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
+    document.querySelector(".address").setAttribute("disabled", "disabled");
+    document.querySelector(".capnhat").classList.add("hide");
+    document.querySelector(".change").classList.remove("hide")
+    document.querySelector('.fileInput').classList.add('hide')
+
+})
+userinfor__close.addEventListener("click",function(){
+    document.querySelector(".user__display").classList.toggle('hide');
+    document.querySelector(".fullname").setAttribute("disabled", "disabled");
+    document.querySelector(".birthday").setAttribute("disabled", "disabled");
+    document.querySelector(".username").setAttribute("disabled", "disabled");
+    document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
+    document.querySelector(".address").setAttribute("disabled", "disabled");
+    document.querySelector(".capnhat").classList.add("hide");
+    document.querySelector(".change").classList.remove("hide")
+    document.querySelector('.fileInput').classList.add('hide')
+})
+capnhat.addEventListener("click",function(){
+    document.querySelector(".user__display").classList.toggle('hide');
+    document.querySelector(".fullname").setAttribute("disabled", "disabled");
+    document.querySelector(".birthday").setAttribute("disabled", "disabled");
+    document.querySelector(".username").setAttribute("disabled", "disabled");
+    document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
+    document.querySelector(".address").setAttribute("disabled", "disabled");
+    document.querySelector(".capnhat").classList.add("hide");
+    document.querySelector(".change").classList.remove("hide")
+    document.querySelector('.fileInput').classList.add('hide')
+})

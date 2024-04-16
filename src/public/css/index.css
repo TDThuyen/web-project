@@ -256,7 +256,16 @@ body {
 
 }
 
-.signup__display form input,
+.signup__display form input{
+    width: 60%;
+    height: 35px;
+    margin-top: 5%;
+    border-radius: 5px;
+    padding-left: 4px;
+    outline: none;
+    border: none;
+    margin-right: 10%;
+}
 .login__display form input {
     width: 60%;
     height: 35px;
