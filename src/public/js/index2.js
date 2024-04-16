@@ -9,7 +9,11 @@ var logout__no = document.querySelector('.logout__no')
 var logout__display = document.querySelector('.logout__display')
 
 document.addEventListener("DOMContentLoaded", function() {
+<<<<<<< HEAD
     user.innerHTML = document.cookie.match(/user_name=([^;]+)/)[1];
+=======
+    // user.innerHTML = q;
+>>>>>>> 2fed92e0bfc5edc46d8ec2e202a6d1d3f4f4710d
     var  navbar__items= document.querySelectorAll('.item')
     var sections = document.querySelectorAll('main section')
     navbar__items.forEach(element => {
@@ -77,4 +81,9 @@ logout__no.addEventListener('click', function(){
         logout__display.classList.toggle('hide')
  })
 
+<<<<<<< HEAD
     
+=======
+    
+
+>>>>>>> 2fed92e0bfc5edc46d8ec2e202a6d1d3f4f4710d
