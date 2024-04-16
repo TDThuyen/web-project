@@ -44,6 +44,39 @@
                 </div>
             </div>
         </form>
+        <div class="user__display hide">
+            <div class="user__information">
+                <i class='bx bx-x' id="userinfor__close"></i>
+                <form method="post">
+                    <img id="avt" src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-vector-plus-icon-png-image_3996246.jpg">
+                    <input type="file" class="fileInput hide" accept="image/*"></br>
+                    <script>
+                        document.querySelector('.fileInput').addEventListener('change', function() {
+                            var file = this.files[0];
+                            if (file) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    document.getElementById('avt').setAttribute('src', e.target.result);
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                        </script>
+                    <label for="fullname">Họ và tên:</label>
+                    <input class="fullname" name="fullname" type="text" value="fullname" disabled> <br>
+                    <label for="birthday">Ngày sinh:</label>
+                    <input class="birthday" name="birthday" type="text" value="birthday" disabled> <br>
+                    <label for="username">Tên đăng nhập:</label>
+                    <input class="username" name="userName" type="text" required value="Username" disabled> <br>
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input class="phonenumber" name="phoneNumber" type="text" required value="Phone number" disabled> <br>
+                    <label for="address">Địa chỉ:</label>
+                    <input class="address" min=8 name="address" type="text" required value="dia chi" disabled> <br>
+                    <button type="button" onclick="enableForm()" class="change">Chỉnh sửa</button>
+                    <input type="submit" name="submit" value="Cập nhật" class="capnhat hide">
+                </form>
+            </div>
+        </div>
         <div class="list">
             <div class="product">
                 <div class="__text">

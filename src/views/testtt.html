@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thêm ảnh từ máy tính</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" accept="image/*">
+<img id="previewImage" src="#" alt="Ảnh xem trước">
+
+<script>
+document.getElementById('fileInput').addEventListener('change', function() {
+    var file = this.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('previewImage').setAttribute('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
+</body>
+</html>
