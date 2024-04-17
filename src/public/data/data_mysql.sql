@@ -24,13 +24,14 @@ DROP TABLE IF EXISTS `customers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
+  `phone` varchar(20) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `role` int DEFAULT NULL,
-  `pass_word` varchar(50) DEFAULT NULL,
-  `user_name` varchar(50) DEFAULT NULL,
+  `birthday` DATE NOT NULL,
+  `role` int DEFAULT 1,
+  `pass_word` varchar(500) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
   `user_img` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

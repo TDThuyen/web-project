@@ -11,7 +11,7 @@ var userinfor__close = document.querySelector('#userinfor__close')
 var capnhat = document.querySelector('.capnhat')
 
 document.addEventListener("DOMContentLoaded", function() {
-    user.innerHTML = document.cookie.match(/user_name=([^;]+)/)[1];
+    user.innerHTML = document.cookie.match(/name=([^;]+)/)[1];
     var  navbar__items= document.querySelectorAll('.item')
     var sections = document.querySelectorAll('main section')
     navbar__items.forEach(element => {

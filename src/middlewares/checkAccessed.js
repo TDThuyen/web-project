@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import User from "../models/User.js";
+import connection from "../models/connectSQL.js";
 import { isTokenExpired, verifyToken } from "./JWT.js";
 dotenv.config()
 const SECRET_CODE = process.env.SECRET_CODE
@@ -10,13 +10,15 @@ export const checkAccessed = async (req,res,next) => {
         if(req.headers?.cookie){
             token = req.headers.cookie.match(/jwt=([^;]+)/)[1];
             if(token && !isTokenExpired(token)){
-                // kiem nguoi dung
+                // kiem tra nguoi dung
                 const decoded = verifyToken(token);
-                const user = await User.findById(decoded._id);
-                if (!user) {
-                    next();
-                }
-                res.redirect("/home")
+                connection.query(`SELECT * from customers where id = ${decoded}`, (error, results, fields) => {
+                    if (results) {
+                        return res.status(404).json({
+                            message: "loi user"
+                        })
+                    }
+                })
             }
         }
         next();

@@ -1,10 +1,9 @@
 import dotenv from "dotenv";
-import User from "../models/User.js";
+import connection from "../models/connectSQL.js";
 import { isTokenExpired, verifyToken } from "./JWT.js";
 dotenv.config();
 
 const SECRET_CODE = process.env.SECRET_CODE
-
 
 export const checkPermisson = async (req,res,next) => {
     try {
@@ -20,10 +19,13 @@ export const checkPermisson = async (req,res,next) => {
 
         // buoc 3: kiem tra quyen nguoi dung
         const decoded = verifyToken(token);
-        const user = await User.findById(decoded._id);
-        if (!user) {
-            console.log("loi user")
-        }
+        connection.query(`SELECT * from customers where id = ${decoded}`, (error, results, fields) => {
+            if (results) {
+                return res.status(404).json({
+                    message: "loi user"
+                })
+            }
+        })
 
         // if(user.role !== "admin"){
         //     return res.status(403).json({
