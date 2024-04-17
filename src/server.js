@@ -12,10 +12,19 @@ config();
 
 const PORT = process.env.PORT;
 const URI_DB = process.env.URI_DB
+const MONGO_DB = process.env.MONGO_DB
 app.use(json())
 app.use(cookieParser())
 
-connect(URI_DB)
+// connect(URI_DB)
+
+connect(MONGO_DB)
+    .then(() => {
+        console.log('Connect database sucess')
+    })
+    .catch((er) => {
+        console.log(er)
+    })
 
 app.use(router)
 
