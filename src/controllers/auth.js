@@ -36,7 +36,7 @@ export const auth = async(req,res) => {
     
             const hashedPassword = await bcryptjs.hash(req.body.password, 11)
             
-            connection.query(`Insert into customers(name,phone,birthday,pass_word,user_name) value("${req.body.fullname}","${req.body.phoneNumber}","${req.body.birthday}","${hashedPassword}","${req.body.userName}")`, (error, results, fields) => {
+            connection.query(`Insert into customers(name,phone,email,birthday,pass_word,user_name) value("${req.body.fullname}","${req.body.phoneNumber}","${req.body.email}","${req.body.birthday}","${hashedPassword}","${req.body.userName}")`, (error, results, fields) => {
                 if (error) {
                         console.error('Lỗi truy vấn: ' + error.stack);
                         return;

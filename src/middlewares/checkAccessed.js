@@ -8,6 +8,7 @@ export const checkAccessed = async (req,res,next) => {
     try{
         let token = null;
         if(req.headers?.cookie){
+            console.log(req.headers.cookie)
             token = req.headers.cookie.match(/jwt=([^;]+)/)[1];
             if(token && !isTokenExpired(token)){
                 // kiem tra nguoi dung

@@ -9,6 +9,7 @@ export const singUpValidator = Joi.object({
     confirmPassword: Joi.string().required().min(6).max(255)
         .valid(Joi.ref("password")),
     submit: Joi.string(),
+    email: Joi.string().email(),
     role: Joi.number()
 })
 
