@@ -608,8 +608,7 @@ body {
 /* .aaa{
   margin-top: 100px;
     }  */
-.product{
-    /* margin-top: 5px; */
+.product__area{
     display: flex;
     justify-content: space-around;
 }
@@ -622,7 +621,6 @@ body {
     height: 250px;
     width:250px;
     object-fit: cover;
-
 
 }
 
