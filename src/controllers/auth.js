@@ -97,10 +97,10 @@ export const auth = async(req,res) => {
                 //Buoc6: tra ra thong bao cho nguoi dung
                 res.cookie("jwt",token).cookie("name",user.name);
                 if(user.role === 1){
-                    res.redirect("/home/")
+                    res.redirect("/home")
                 }
                 else {
-                    res.redirect("/admin/")
+                    res.redirect("/admin")
                 }
 
             // return res.status(200).json({
