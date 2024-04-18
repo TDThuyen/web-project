@@ -20,7 +20,7 @@ export const auth = async(req,res) => {
             // kiem tra nguoi dung da ton tai chua
             connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, (error, results, fields) =>{
                 const userExisted = results[0];
-                if(userExisted.userName){
+                if(userExisted){
                     return res.status(404).json({
                         message: "user name da ton tai!"
                     })
@@ -29,7 +29,7 @@ export const auth = async(req,res) => {
 
             connection.query(`SELECT * from customers where phone="${req.body.phoneNumber}"`, (error, results, fields) =>{
                 const userExisted = results[0];
-                if(userExisted.phone){
+                if(userExisted){
                     return res.status(404).json({
                         message: "so dien thoai da ton tai!"
                     })
@@ -38,7 +38,7 @@ export const auth = async(req,res) => {
 
             connection.query(`SELECT * from customers where email="${req.body.email}"`, (error, results, fields) =>{
                 const userExisted = results[0];
-                if(userExisted.email){
+                if(userExisted){
                     return res.status(404).json({
                         message: "email da ton tai!"
                     })
