@@ -76,7 +76,7 @@ export const auth = async(req,res) => {
             let resultPassword = null;
             //Buoc2: kiem tra userName da ton tai hay chua
             connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, async (error, results, fields) =>{
-                if(!results){
+                if(!results[0]){
                     return res.status(404).json({
                         message: "user name khong ton tai!"
                     })
