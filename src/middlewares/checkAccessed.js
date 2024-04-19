@@ -7,9 +7,8 @@ const SECRET_CODE = process.env.SECRET_CODE
 export const checkAccessed = async (req,res,next) => {
     try{
         let token = null;
-        if(req.headers?.cookie){
-            console.log(req.headers.cookie)
-            token = req.headers.cookie.match(/jwt=([^;]+)/)[1];
+        if(req.cookies){
+            token = req.cookies.jwt
             if(token && !isTokenExpired(token)){
                 // kiem tra nguoi dung
                 const decoded = verifyToken(token);

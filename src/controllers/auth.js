@@ -19,7 +19,8 @@ export const auth = async(req,res) => {
             }
             // kiem tra nguoi dung da ton tai chua
             connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, (error, results, fields) =>{
-                if(results){
+                const userExisted = results[0];
+                if(userExisted){
                     return res.status(404).json({
                         message: "user name da ton tai!"
                     })
@@ -27,9 +28,19 @@ export const auth = async(req,res) => {
             }) 
 
             connection.query(`SELECT * from customers where phone="${req.body.phoneNumber}"`, (error, results, fields) =>{
-                if(results){
+                const userExisted = results[0];
+                if(userExisted){
                     return res.status(404).json({
                         message: "so dien thoai da ton tai!"
+                    })
+                }
+            }) 
+
+            connection.query(`SELECT * from customers where email="${req.body.email}"`, (error, results, fields) =>{
+                const userExisted = results[0];
+                if(userExisted){
+                    return res.status(404).json({
+                        message: "email da ton tai!"
                     })
                 }
             }) 
@@ -70,8 +81,9 @@ export const auth = async(req,res) => {
                         message: "user name khong ton tai!"
                     })
                 }
+                const user = results[0];
                 //Buoc3: kiem tra password
-                const isMatch = await bcryptjs.compare(req.body.password, results[0].pass_word)
+                const isMatch = await bcryptjs.compare(req.body.password,user.pass_word)
                 if(!isMatch) {
                     return res.status(400).json({
                         message: "Mật khẩu không đúng!"
@@ -79,13 +91,18 @@ export const auth = async(req,res) => {
                 }
                 //Buoc4: Tao JWT
                 let payload = {
-                    id: results[0].customer_id,
+                    id: user.customer_id,
                 };
                 const token = createJWT(payload);
                 //Buoc6: tra ra thong bao cho nguoi dung
-                res.cookie("jwt",token);
-                res.cookie("name",results[0].name);
-                res.redirect("/home/")
+                res.cookie("jwt",token).cookie("name",user.name);
+                if(user.role === 1){
+                    res.redirect("/home")
+                }
+                else {
+                    res.redirect("/admin")
+                }
+
             // return res.status(200).json({
             //     message: "Đăng nhập thành công!",
             //     user,

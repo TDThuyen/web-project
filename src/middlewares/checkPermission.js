@@ -9,8 +9,8 @@ export const checkPermisson = async (req,res,next) => {
     try {
         // buoc 1: nguoi dung dang nhap hay chua
         let token = null;
-        if(req.headers.cookie){
-            token = req.headers.cookie.match(/jwt=([^;]+)/)[1];
+        if(req.cookies){
+            token = req.cookies.jwt;
         }
         // buoc 2: kiem tra token
         if(!token || isTokenExpired(token)){
