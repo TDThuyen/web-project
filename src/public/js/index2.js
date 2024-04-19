@@ -122,3 +122,14 @@ capnhat.addEventListener("click",function(){
     document.querySelector(".change").classList.remove("hide")
     document.querySelector('.fileInput').classList.add('hide')
 })
+
+var fullname = document.querySelector('.fullname')
+var birthday = document.querySelector('.birthday')
+var username = document.querySelector('.username')
+var phonenumber = document.querySelector('.phonenumber')
+var address = document.querySelector('.address')
+fullname.value="truyen vao day"
+birthday.value="truyen vao day"
+username.value="truyen vao day"
+phonenumber.value="truyen vao day"
+address.value="truyen vao day"
