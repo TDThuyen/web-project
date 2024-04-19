@@ -9,7 +9,14 @@ const client = new Client({
     database: "moho"
 });
 
-client.connect();
+client.connect((err) => {
+    if (err) {
+      console.error('Lỗi kết nối: ' + err.stack);
+      return;
+    }
+  });
+
+  export default client;
 
 //test connect
 //node src/models/connectpg.js
