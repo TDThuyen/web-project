@@ -632,9 +632,126 @@ body {
 }
 
 #aboutus ul li {
-    list-style-type: none;
+    /* list-style-type: none; */
     margin-left: 20px;
 }
+#aboutus iframe{
+    margin-left: 15%;
+}
+#chinhsachbanhang {
+    display: none;
+    margin-left: 50px;
+    margin-right: 20px;
+    font-size: 17px;
+}
+#chinhsachbanhang li{
+    margin-top: 15px;
+}
+#chinhsachbanhang h2{
+    margin-left: 60px;
+    margin-top: 30px;
+}
+#chinhsachgiaohang {
+    display: none;
+    margin-left: 50px;
+    margin-right: 20px;
+    font-size: 17px;
+}
+#chinhsachgiaohang li{
+    margin-top: 15px;
+    margin-left: 60px;
+}
+#chinhsachgiaohang h2{
+    margin-left: 60px;
+    margin-top: 30px;
+}
+#chinhsachgiaohang p{
+    margin-left: 20px;
+    margin-top: 30px;
+    list-style-type:square;
+}
+
+#chinhsachdoitra {
+    display: none;
+    margin-left: 50px;
+    margin-right: 20px;
+    font-size: 17px;
+    
+}
+#chinhsachdoitra li{
+   
+    margin-top: 15px;
+    margin-left: 60px;
+}
+#chinhsachdoitra h2{
+    margin-left: 60px;
+    margin-top: 30px;
+}
+#chinhsachdoitra p{
+    margin-left: 20px;
+    margin-top: 30px;
+    list-style-type:square;
+}
+#chinhsachdoitra h3{
+    font-weight:200;
+    margin-top: 15px;
+}
+
+
+#chinhsachbaohanh {
+    display: none;
+    margin-left: 50px;
+    margin-right: 20px;
+    font-size: 17px;
+    
+}
+#chinhsachbaohanh li{
+   
+    margin-top: 15px;
+    margin-left: 60px;
+}
+#chinhsachbaohanh h2{
+    margin-left: 60px;
+    margin-top: 30px;
+}
+#chinhsachbaohanh p{
+    margin-left: 20px;
+    margin-top: 30px;
+    list-style-type:square;
+}
+#chinhsachbaohanh h3{
+    font-weight:200;
+    margin-top: 15px;
+}
+
+
+#chinhsachdoitacbanhang {
+    display: none;
+    margin-left: 50px;
+    margin-right: 20px;
+    font-size: 17px;
+    
+}
+#chinhsachdoitacbanhang li{
+   
+    margin-top: 15px;
+    margin-left: 60px;
+}
+#chinhsachdoitacbanhang h2{
+    margin-left: 60px;
+    margin-top: 30px;
+}
+#chinhsachdoitacbanhang p{
+    margin-left: 20px;
+    margin-top: 30px;
+    list-style-type:square;
+}
+#chinhsachdoitacbanhang h3{
+    font-weight:200;
+    margin-top: 15px;
+    color: red;
+}
+
 
 /* //ssss//ssssssssssssd */
 #showroom{
