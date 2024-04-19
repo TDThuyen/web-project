@@ -11,7 +11,7 @@ var userinfor__close = document.querySelector('#userinfor__close')
 var capnhat = document.querySelector('.capnhat')
 
 document.addEventListener("DOMContentLoaded", function() {
-    user.innerHTML = document.cookie.match(/name=([^;]+)/)[1];
+    user.innerHTML = decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1]);
     var  navbar__items= document.querySelectorAll('.item')
     var sections = document.querySelectorAll('main section')
     navbar__items.forEach(element => {
@@ -78,10 +78,9 @@ logout__close.addEventListener('click', function(){
 logout__no.addEventListener('click', function(){
         logout__display.classList.toggle('hide')
  })
- function enableForm() {
+function enableForm() {
     document.querySelector(".fullname").removeAttribute("disabled");
     document.querySelector(".birthday").removeAttribute("disabled");
-    document.querySelector(".username").removeAttribute("disabled");
     document.querySelector(".phonenumber").removeAttribute("disabled");
     document.querySelector(".address").removeAttribute("disabled");
     document.querySelector(".change").classList.add("hide");
@@ -92,7 +91,6 @@ user.addEventListener("click",function(){
     document.querySelector(".user__display").classList.toggle('hide');
     document.querySelector(".fullname").setAttribute("disabled", "disabled");
     document.querySelector(".birthday").setAttribute("disabled", "disabled");
-    document.querySelector(".username").setAttribute("disabled", "disabled");
     document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
     document.querySelector(".address").setAttribute("disabled", "disabled");
     document.querySelector(".capnhat").classList.add("hide");
@@ -104,32 +102,34 @@ userinfor__close.addEventListener("click",function(){
     document.querySelector(".user__display").classList.toggle('hide');
     document.querySelector(".fullname").setAttribute("disabled", "disabled");
     document.querySelector(".birthday").setAttribute("disabled", "disabled");
-    document.querySelector(".username").setAttribute("disabled", "disabled");
     document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
     document.querySelector(".address").setAttribute("disabled", "disabled");
     document.querySelector(".capnhat").classList.add("hide");
     document.querySelector(".change").classList.remove("hide")
     document.querySelector('.fileInput').classList.add('hide')
 })
-capnhat.addEventListener("click",function(){
-    document.querySelector(".user__display").classList.toggle('hide');
-    document.querySelector(".fullname").setAttribute("disabled", "disabled");
-    document.querySelector(".birthday").setAttribute("disabled", "disabled");
-    document.querySelector(".username").setAttribute("disabled", "disabled");
-    document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
-    document.querySelector(".address").setAttribute("disabled", "disabled");
-    document.querySelector(".capnhat").classList.add("hide");
-    document.querySelector(".change").classList.remove("hide")
-    document.querySelector('.fileInput').classList.add('hide')
-})
+// capnhat.addEventListener("click",function(){
+//     document.querySelector(".user__display").classList.toggle('hide');
+//     document.querySelector(".fullname").setAttribute("disabled", "disabled");
+//     document.querySelector(".birthday").setAttribute("disabled", "disabled");
+//     document.querySelector(".phonenumber").setAttribute("disabled", "disabled");
+//     document.querySelector(".address").setAttribute("disabled", "disabled");
+//     document.querySelector(".capnhat").classList.add("hide");
+//     document.querySelector(".change").classList.remove("hide")
+//     document.querySelector('.fileInput').classList.add('hide')
+// })
 
 var fullname = document.querySelector('.fullname')
 var birthday = document.querySelector('.birthday')
-var username = document.querySelector('.username')
 var phonenumber = document.querySelector('.phonenumber')
 var address = document.querySelector('.address')
-fullname.value="truyen vao day"
-birthday.value="truyen vao day"
-username.value="truyen vao day"
-phonenumber.value="truyen vao day"
-address.value="truyen vao day"
+fullname.value=decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1]);
+birthday.value=decodeURIComponent(document.cookie.match(/birthday=([^;]+)/)[1]).substring(3, 13);
+phonenumber.value=decodeURIComponent(document.cookie.match(/phoneNumber=([^;]+)/)[1]);
+let customerAddress = decodeURIComponent(document.cookie.match(/address=([^;]+)/)[1]);
+if(customerAddress === "j:null"){
+    address.value= ""
+}
+else {
+    address.value = customerAddress
+}

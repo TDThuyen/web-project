@@ -95,7 +95,9 @@ export const auth = async(req,res) => {
                 };
                 const token = createJWT(payload);
                 //Buoc6: tra ra thong bao cho nguoi dung
-                res.cookie("jwt",token).cookie("name",user.name);
+                res.cookie("jwt",token).cookie("userName",user.user_name, {
+                    httpOnly: true
+                }).cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
                 if(user.role === 1){
                     res.redirect("/home")
                 }
