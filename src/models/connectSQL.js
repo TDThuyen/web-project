@@ -4,16 +4,11 @@ const connection = mysql.createConnection({
     host: 'localhost', // Địa chỉ của máy chủ cơ sở dữ liệu
     port: 3306,
     user: 'root', // Tên người dùng của cơ sở dữ liệu
-<<<<<<< HEAD
     password: '5ang15122003', // Mật khẩu của cơ sở dữ liệu
     database: 'web' // Tên của cơ sở dữ liệu
-=======
-    password: '27102004', // Mật khẩu của cơ sở dữ liệu
-    database: 'mohooo' // Tên của cơ sở dữ liệu
->>>>>>> 77af79eda7147c09584e67b175950c78bcacd8c6
   });
   
-  // Kết nối đến cơ sở dữ liệu
+// Kết nối đến cơ sở dữ liệu
 connection.connect((err) => {
     if (err) {
       console.error('Lỗi kết nối: ' + err.stack);
