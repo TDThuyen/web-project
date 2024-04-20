@@ -5,8 +5,8 @@ const client = new Client({
     host: "localhost",
     user: "postgres",
     port: 5433,
-    password: "27102004",
-    database: "moho"
+    password: "5ang15122003",
+    database: "web"
 });
 
 client.connect((err) => {
