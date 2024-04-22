@@ -14,6 +14,64 @@ var heart = document.querySelector('.heart');
 var heart__alert= document.querySelector('.heart__alert');
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
 
+    const productsContainer = document.querySelector('.product__area');
+    const currentPage = 1;
+
+    async function fetchProducts(page) {
+      try {
+        const response = await fetch(`/getProducts/${page});`);
+        const products = await response.json();
+        // console.log(products)
+        displayProducts(products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+ 
+    function displayProducts(products) {
+        // Xóa bỏ nội dung cũ của productsContainer nếu cần
+        // productsContainer.innerHTML = '';
+      
+        products.forEach(product => {
+          var productElement = document.createElement('div');
+          productElement.className="product__item"
+          var sale__percent = document.createElement('div')
+          sale__percent.className="sale__percent"
+          var sale__count =document.createElement('p')
+          sale__count.innerHTML="-40%"
+          var heartt =  document.createElement('i')
+          heartt.className="bx bx-heart bx-flip-horizontal"
+          var imageElement = document.createElement('img');
+          imageElement.src = product.image;
+          var product__name = document.createElement('p');
+          product__name.className="product__name";
+          product__name.innerHTML = product.name;
+          var product__price = document.createElement('div');
+          var product__price1 = document.createElement('p');
+          var product__price2 = document.createElement('p');
+          var sold = document.createElement('p');
+          sold.className="sold";
+          sold.innerHTML=`Đã bán ${product.price}`;
+          product__price1.innerHTML = product.price;
+          product__price2.innerHTML ="500,000₫";
+          product__price.className="product__price";
+          product__price1.className="sale__price";
+          product__price2.className="unsale__price";
+          product__price.appendChild(product__price1);
+          product__price.appendChild(product__price2);
+          sale__percent.appendChild(sale__count)
+          productElement.appendChild(sale__percent)
+          productElement.appendChild(heartt)
+          productElement.appendChild(imageElement);
+          productElement.appendChild(product__name);
+          productElement.appendChild(product__price);
+          productElement.appendChild(sold);
+          
+          productsContainer.appendChild(productElement);
+        });
+      }
+    // Hiển thị sản phẩm cho trang đầu tiên khi trang web được tải
+    fetchProducts(currentPage);
 
 document.addEventListener("DOMContentLoaded", function() {
 
