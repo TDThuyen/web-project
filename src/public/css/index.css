@@ -611,11 +611,17 @@ body {
 .product__area{
     margin-top: 50px;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 5%;
 }
+
 .product__item{
     width:250px;
     height: 20%;
+    margin-right: 5%;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 .product__item img{
     width: 100%;
@@ -623,7 +629,8 @@ body {
 }
 .product__price{
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
+    margin-left: 7px;
 }
 .sale__price{
     color: red;
@@ -634,7 +641,8 @@ body {
     text-decoration-thickness:2px;
 }
 .product__name{
-    font-size: 17px;
+    font-size: 15px;
+    margin-left: 7px;
 }
 .sale__percent{
     width: 50px;

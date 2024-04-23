@@ -12,6 +12,8 @@ var cart = document.querySelector('.cart');
 var cart__alert= document.querySelector('.cart__alert');
 var heart = document.querySelector('.heart');
 var heart__alert= document.querySelector('.heart__alert');
+var page_left = document.querySelector('.bx-chevron-left')
+var page_right = document.querySelector('.bx-chevron-right')
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
 
     const productsContainer = document.querySelector('.product__area');
@@ -29,12 +31,14 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
     }
  
     function displayProducts(products) {
-        // Xóa bỏ nội dung cũ của productsContainer nếu cần
-        // productsContainer.innerHTML = '';
-      
         products.forEach(product => {
           var productElement = document.createElement('div');
           productElement.className="product__item"
+          productElement.addEventListener('mouseover',function(){
+            productElement.style.backgroundColor="#f7f8fa"
+            productElement.addEventListener('mouseout',function(){
+                productElement.style.backgroundColor="#fff"})
+          })
           var sale__percent = document.createElement('div')
           sale__percent.className="sale__percent"
           var sale__count =document.createElement('p')
@@ -42,10 +46,16 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           var heartt =  document.createElement('i')
           heartt.className="bx bx-heart bx-flip-horizontal"
           var imageElement = document.createElement('img');
-          imageElement.src = product.image;
+          imageElement.src = product.img_top;
+          productElement.addEventListener('mouseover',function(){
+            imageElement.src = product.ing_mid;
+            productElement.addEventListener('mouseout',function(){
+                imageElement.src = product.img_top;
+            })
+          })
           var product__name = document.createElement('p');
           product__name.className="product__name";
-          product__name.innerHTML = product.name;
+          product__name.innerHTML = product.product_name;
           var product__price = document.createElement('div');
           var product__price1 = document.createElement('p');
           var product__price2 = document.createElement('p');
@@ -66,13 +76,16 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           productElement.appendChild(product__name);
           productElement.appendChild(product__price);
           productElement.appendChild(sold);
-          
           productsContainer.appendChild(productElement);
         });
       }
-    // Hiển thị sản phẩm cho trang đầu tiên khi trang web được tải
-    fetchProducts(currentPage);
-
+      fetchProducts(currentPage);
+  
+    page_right.addEventListener('click',function(){
+        console.log('1');
+        currentPage++;
+        fetchProducts(currentPage);
+      })
 document.addEventListener("DOMContentLoaded", function() {
 
     var  navbar__items= document.querySelectorAll('.item')
