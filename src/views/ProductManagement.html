@@ -51,6 +51,7 @@
 
                   <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
                            Management</span></a>
+                  
                   </li>
                </ul>
             </div>
@@ -92,6 +93,39 @@
                      <div class="col-md-12">
                         <div class="page_title">
                            <h2>PRODUCT MANAGEMENT</h2>
+                           <table class="table">
+                              <thead>
+                                  <tr>
+                                      <th>Id</th>
+                                      <th>Name</th>
+                                      <th>Price</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                 <% if (data && data.length > 0) { %>
+                                    <% data.map(function(cat) { %>
+                                      <tr>
+                                        <td scope="row"><%= cat.product_id %></td>
+                                        <td scope="row"><%= cat.product_name %></td>
+                                        <td scope="row"><%= cat.price == null ? 'Tạm ẩn' : 'Hiển thị' %></td>
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-primary">Sửa</a>
+                                            <a href="/xoa-danh-muc/<%= cat.product_id %>" class="btn btn-sm btn-danger">Xóa</a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                  <% } else { %>
+                                    <tr>
+                                      <td colspan="3">Không có dữ liệu</td>
+                                    </tr>
+                                  <% } %>
+                              </tbody>
+                          </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
                         </div>
                      </div>
                   </div>
