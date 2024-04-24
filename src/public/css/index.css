@@ -614,6 +614,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin-left: 5%;
+   
 }
 
 .product__item{
@@ -622,6 +623,7 @@ body {
     margin-right: 5%;
     margin-bottom: 15px;
     cursor: pointer;
+    text-decoration: none;
 }
 .product__item img{
     width: 100%;
@@ -631,18 +633,23 @@ body {
     display: flex;
     font-size: 14px;
     margin-left: 7px;
+    text-decoration: none;
 }
 .sale__price{
     color: red;
+    text-decoration: none;
 }
 .unsale__price{
     margin-left:18%;
     text-decoration: line-through;
     text-decoration-thickness:2px;
+    color: #4b505e;
 }
 .product__name{
     font-size: 15px;
     margin-left: 7px;
+    text-decoration: none;
+    color: #4b505e;
 }
 .sale__percent{
     width: 50px;
@@ -656,7 +663,29 @@ body {
 }
 .sold{
     text-align: end;
+    text-decoration: none;
+    color: #4b505e;
     }
+.page__total{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.page__number__area{
+    display: flex;
+    font-size: 15px;
+
+}
+.page__total i{
+    font-size: 20px;
+    cursor: pointer;
+}
+.page_number{
+    margin-right: 5px;
+    /* margin-top: -2.2px; */
+    margin-left: 5px;
+    cursor: pointer;
+}
  .bx-flip-horizontal{
  position: absolute;
  color: red;

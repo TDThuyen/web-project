@@ -7,7 +7,7 @@ import routerProduct from "./product.js";
 const router = express.Router()
 
 router.use("/auth", routerAuth);
-router.use("/product", routerProduct)
+router.use("/products", routerProduct)
 router.use("/home", routerHome)
 router.use("/admin", routerAdmin)
 router.use(routerAPI)
