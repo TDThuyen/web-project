@@ -17,22 +17,52 @@ var page_right = document.querySelector('.bx-chevron-right')
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
 
     const productsContainer = document.querySelector('.product__area');
-    const currentPage = 1;
+    var currentPage = 1;
 
     async function fetchProducts(page) {
       try {
         const response = await fetch(`/getProducts/${page});`);
+        const count__response = await fetch(`/getNumberOfProducts`)
+        const numberPage = await count__response.json();
+        var NumberOfPage=parseInt(numberPage[0].ProductsNumber);
+        const page_total = Math.ceil(NumberOfPage/16);
         const products = await response.json();
         // console.log(products)
+       
         displayProducts(products);
+        page_right.addEventListener('click',function(){
+            if(currentPage < page_total){
+            currentPage++;
+            document.querySelector('.page__number__area').innerHTML='';
+            fetchProducts(currentPage);
+            scrollToPosition();}       
+          })
+          for( let i =1; i <= page_total;i++){
+            // document.querySelector('.page__number__area').innerHTML='';
+            var page_number = document.createElement('p');
+            if(i === currentPage){
+                page_number.style.color="red";
+            }
+            page_number.className=`page_number`;
+            page_number.innerHTML = i;
+            document.querySelector('.page__number__area').appendChild(page_number)
+            page_number.addEventListener("click", function(){
+                currentPage = i;
+                document.querySelector('.page__number__area').innerHTML='';
+                fetchProducts(currentPage);
+                scrollToPosition();  
+            })
+          }
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     }
- 
+   
     function displayProducts(products) {
+        productsContainer.innerHTML='';
         products.forEach(product => {
-          var productElement = document.createElement('div');
+            
+          var productElement = document.createElement('a');
           productElement.className="product__item"
           productElement.addEventListener('mouseover',function(){
             productElement.style.backgroundColor="#f7f8fa"
@@ -51,6 +81,7 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
             imageElement.src = product.ing_mid;
             productElement.addEventListener('mouseout',function(){
                 imageElement.src = product.img_top;
+                behavior='smooth'; 
             })
           })
           var product__name = document.createElement('p');
@@ -62,7 +93,7 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           var sold = document.createElement('p');
           sold.className="sold";
           sold.innerHTML=`Đã bán ${product.price}`;
-          product__price1.innerHTML = product.price;
+          product__price1.innerHTML = `${parseFloat(product.price).toLocaleString('en-US')}₫`;
           product__price2.innerHTML ="500,000₫";
           product__price.className="product__price";
           product__price1.className="sale__price";
@@ -77,15 +108,32 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           productElement.appendChild(product__price);
           productElement.appendChild(sold);
           productsContainer.appendChild(productElement);
+          productElement.href=`/products/id=${product.product_id}`;
+          
         });
       }
       fetchProducts(currentPage);
-  
-    page_right.addEventListener('click',function(){
-        console.log('1');
-        currentPage++;
+      function scrollToPosition() {
+        const position = 500; // Vị trí muốn cuộn đến (đơn vị: pixel)
+        window.scrollTo({
+          top: position,
+          behavior: 'smooth' // Cuộn mềm mại
+        });
+      }
+     
+        
+     
+     
+      page_left.addEventListener('click',function(){
+        if(currentPage>1){
+        currentPage--;
+        document.querySelector('.page__number__area').innerHTML='';
         fetchProducts(currentPage);
+        scrollToPosition();}
       })
+      
+
+  
 document.addEventListener("DOMContentLoaded", function() {
 
     var  navbar__items= document.querySelectorAll('.item')
