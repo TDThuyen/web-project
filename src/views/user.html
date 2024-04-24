@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHO SHOP</title>
+    <link href="/css/user.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <img class="logo" src="/img/logo.png"></div>
+            <input class="search" placeholder="Tìm kiếm sản phẩm tại đây">
+            <button class="search__button"><i class='bx bx-search-alt-2'></i></button>
+         
+            <i class='bx bx-user'></i>
+            <p class="user"></p>
+
+            <div class="cart"><i class='bx bx-cart-alt'></i>
+
+                <div class="cart__circle">1</div>
+                <p>Giỏ hàng</p>
+            </div>
+            <div class="heart"><i class='bx bxs-heart'></i>
+                <div class="heart__circle">0</div>
+            </div>
+            <div class="logout">
+                <i class='bx bx-log-out bx-flip-vertical' ></i>
+                <p>Đăng xuất</p>
+            </div>
+        </nav>
+        <form method="post" >
+            <div class="logout__display hide">
+                <div class="logout__form">
+                    <div class="logout__form__head">
+                        <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                        <i class='bx bx-x' id="logout__close"></i>
+                    </div>
+                
+                    <button class="logout__yes" name="submit" value="log_out">Có</button>
+                    <button class="logout__no">Không</button>
+                </div>
+            </div>
+        </form>
+        <div class="user__display hide">
+            <div class="user__information">
+                <i class='bx bx-x' id="userinfor__close"></i>
+                <form method="post">
+                    <img id="avt" src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-vector-plus-icon-png-image_3996246.jpg">
+                    <input type="file" class="fileInput hide" accept="image/*"></br>
+                    <script>
+                        document.querySelector('.fileInput').addEventListener('change', function() {
+                            var file = this.files[0];
+                            if (file) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    document.getElementById('avt').setAttribute('src', e.target.result);
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+
+                    </script>
+                    <label for="fullname">Họ và tên:</label>
+                    <input class="fullname" name="fullname" type="text" > <br>
+                    <label for="birthday">Ngày sinh:</label>
+                    <input class="birthday" name="birthday" type="text" disabled value=""> <br>
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input class="phonenumber" name="phoneNumber" type="text" required disabled value=""> <br>
+                    <label for="address">Địa chỉ:</label>
+                    <input class="address" min=8 name="address" type="text" required disabled value=""> <br>
+                    <button type="button" onclick="enableForm()" class="change">Chỉnh sửa</button>
+                    <input type="submit" name="submit" value="Cập nhật" class="capnhat hide">
+                </form>
+            </div>
+        </div>
+        <div class="list">
+            <div class="product">
+                <div class="__text">
+                    <a href="#product" class="item">Sản phẩm</a>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="product__child">
+                    <div><a>Phòng ngủ</a></div>
+                    <div><a>Phòng khách</a></div>
+                    <div><a>Phòng ăn</a></div>
+                    <!-- <div><a>Tủ bếp</a></div> -->
+                    <div><a>Phòng làm việc</a></div>
+                </div>
+            </div>
+            <div class="newcollection">
+                <div class="__text">
+                    <a href="#newcollection" class="item">Bộ sưu tập mới</a>
+                    <i class='bx bx-chevron-down'></i>
+
+                </div>
+                <div class="newcollection__child">
+                    <div><a>NARVIK COLLECTION</a></div>
+                    <div><a>UBEDA COLLECTION</a></div>
+                    <div><a>KOSTER COLLECTION</a></div>
+                    <div><a>GRENAA COLLECTION</a></div>
+                    <div><a>LANGO COLLECTION</a></div>
+                </div>
+            </div>
+            <div class="tubep">
+                <div class="__text">
+                    <a href="#tubep" class="item">Tủ bếp</a>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="tubep__child">
+                    <div><a>MOHO KITCHEN</a></div>
+                </div>
+            </div>
+            <div class="sale">
+                <div class="__text">
+                    <a href="#sale" class="item">Khuyến mãi</a>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="sale__child">
+                    <div><a>[-48%] BRAND DAY</a></div>
+                    <div><a>[-34%] COMBO SIÊU ƯU ĐÃI</a></div>
+                    <div><a>[-500K][-300K] DEAL CHỒNG DEAL</a></div>
+                </div>
+            </div>
+            <div class="service">
+                <div class="__text">
+                    <a>Dịch vụ</a>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="service__child">
+                    <div><a href="#chinhsachbanhang" class="item">Chính sách bán hàng</a></div>
+                    <div><a href="#chinhsachgiaohang" class="item">Chính sách giao hàng & Lắp đặt</a></div>
+                    <div><a href="#chinhsachdoitra" class="item">Chính sách đổi trả</a></div>
+                    <div><a href="#chinhsachbaohanh" class="item">Chính sách bảo hành và bảo trì</a></div>
+                    <div><a href="#chinhsachdoitacbanhang" class="item">Chính sách đối tác bán hàng</a></div>
+                </div>
+            </div>
+            <div class="__text">
+                <a href="#aboutus" class="item">About us</a>
+            </div>
+            <div class="__text">
+                <a href="#showroom" class="item">Showroom</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="product">
+        <div class="slideshow">
+            <i class='bx bxs-left-arrow-circle' ></i>
+        <i class='bx bxs-right-arrow-circle' ></i>
+        <img src="/img/slideshow_1_master.webp" class="slideshow__image"></div>
+        <div class="product__area">
+            
+        </div>
+    </section>
+    <section id="chinhsachbanhang">
+        <h2>Chính Sách Bán Hàng</h2>
+        <ul>
+            <li>Nếu quý khách hàng không thanh toán toàn bộ giá trị đơn hàng trước khi giao hàng thì với các đơn hàng có giá trị trên 10,000,000đ; quý khách hàng vui lòng đặt cọc 1,000,000đ. Phần giá trị còn lại của đơn hàng quý khách hàng vui lòng thanh toán ngay lúc nhận hàng. Nếu quý khách hàng hủy đơn hàng, MOHO sẽ không hoàn lại 1,000,000đ đã đặt cọc.</li>
+            <li>Trong trường hợp quý khách hàng không thanh toán ngay phần giá trị còn lại của đơn hàng khi nhận hàng, MOHO sẽ thu hồi số sản phẩm tương ứng với số tiền chưa thanh toán và quý khách hàng vui lòng thanh toán phí giao hàng cho MOHO là 300,000đ cho các khu vực miễn phí giao hàng.</li>
+            <li>Các loại phí phát sinh theo quy định của ban quản lý tại địa điểm nhận hàng liên quan đến việc giao hàng bằng xe tải, sử dụng thang máy giao hàng,… quý khách hàng vui lòng thanh toán trực tiếp với ban quản lý tại địa điểm nhận hàng của khách hàng.    </li>
+            <li>Nếu quý khách hàng có nhu cầu xuất hóa đơn vui lòng thông báo cho MOHO ngay lúc đặt hàng. Hóa đơn đã xuất không thể chỉnh sửa hoặc hủy và xuất lại. Sau thời điểm đặt hàng 24 tiếng MOHO sẽ không nhận xuất hóa đơn. Hóa đơn xuất theo yêu cầu của quý khách hàng sẽ được gửi đến quý khách hàng trong vòng 7 ngày kể từ ngày giao hàng thành công, không tính thứ 7, chủ nhật và các ngày lễ, tết.</li>
+            <li>Sau 24 tiếng kể từ khi đơn hàng được xác nhận, quý khách hàng không thể thay đổi hoặc hủy đơn hàng sau khi đơn hàng đã được đóng gói và chuyển qua bộ phận vận chuyển.</li>
+            <li>Thời gian lưu kho cho 1 đơn hàng tối đa là 30 ngày kể từ ngày đặt hàng. Qúy khách hàng có nhu cầu lưu kho trên 7 ngày vui lòng thanh toán trước 100% giá trị đơn hàng. Nếu quý khách hàng hủy đơn hàng, quý khách hàng vui lòng thanh toán phí lưu kho cho MOHO là 10% giá trị đơn hàng.</li>
+            <li>Quyết định của Nội Thất MOHO là quyết định cuối cùng và có thể thay đổi mà không cần thông báo trước. </li>
+            <li>Chính sách này không áp dụng cho các sản phẩm trong danh mục Đồ Trang Trí.</li>
+        </ul>
+    </section>
+    <section id="chinhsachgiaohang">
+        <h2>Chính Sách Giao Hàng & Lắp Đặt</h2>
+        <p>MOHO miễn phí giao hàng & lắp đặt tại tất cả quận huyện thuộc TP. HCM, TP. Thủ Đức, Biên Hòa và một số khu vực tại Bình Dương trong vòng 3 ngày từ 9h00 đến 16h00 từ thứ Hai đến Chủ Nhật. Đối với khu vực Hà Nội trong vòng 3 ngày từ 9h00 đến 16h00 từ thứ Hai đến thứ Bảy (không tính các ngày lễ, tết)</p>
+        <ul>
+         <li>Tất cả quận huyện thuộc TP. HCM, TP. Thủ Đức, Hà Nội: miễn phí giao hàng & lắp đặt</li>
+        <li>Khu đô thị Ecopark, Xuân Quan, Văn Giang, Hưng Yên: miễn phí giao hàng & lắp đặt        </li>
+        <li>Biên Hòa: miễn phí giao hàng & lắp đặ</li>
+        <li>Dĩ An: miễn phí giao hàng & lắp đặt</li>
+        <li>Thuận An: miễn phí giao hàng & lắp đặt</li>
+        <li>Thủ Dầu Một: miễn phí giao hàng & lắp đặt</li>
+        <li>Tân Uyên: miễn phí giao hàng & lắp đặt</li>
+        <li>Bắc Tân Uyên: 200,000đ</li>
+        <li>Bàu Bàng: 250,000đ</li>
+        <li>Bến Cát: 250,000đ</li>
+        <li>Phú Giáo: 500,000đ</li>
+        <li>Dầu Tiếng: 600,000đ</li>
+        </ul>
+        <p>Quý khách hàng vui lòng sắp xếp thời gian nhận hàng theo lịch nhận hàng đã xác nhận với MOHO. Nếu quý khách hàng có việc bận đột xuất không thể nhận hàng theo lịch nhận hàng đã xác nhận, quý khách hàng vui lòng thông báo cho MOHO ít nhất 24 tiếng trước khi giao hàng. MOHO sẽ sắp xếp lại lịch nhận hàng tối đa là 1 lần, sau đó nếu quý khách hàng tiếp tục dời lịch nhận hàng MOHO sẽ không thể giao hàng và xin phép được hủy đơn hàng của quý khách hàng.</p>
+        <p>MOHO chỉ lắp đặt các sản phẩm theo đúng tiêu chuẩn sản phẩm của MOHO. MOHO không lắp đặt theo yêu cầu riêng của quý khách hàng như khoan tường, gắn sản phẩm lên tường,… </p>
+        <p>Quyết định của Nội Thất MOHO là quyết định cuối cùng và có thể thay đổi mà không cần thông báo trước. </p>
+        <p>Chính sách này không áp dụng cho các sản phẩm trong danh mục Đồ Trang Trí.</p>
+        <p>Mọi thông tin chi tiết vui lòng liên hệ hotline đội giao hàng MOHO: 0902415359.</p>
+    </section>
+    <section id="chinhsachdoitra">
+       <h2>Chính Sách Đổi Trả</h2>
+       <h3>1. Chính sách đổi hàng: trong vòng 3 ngày tính từ ngày giao hàng thành công, không tính chủ nhật và các ngày lễ, tết; quý khách hàng được đổi sản phẩm miễn phí khi đủ 2 điều kiện:</p>
+       <ul>
+        <li>Sản phẩm bị hư hỏng do lỗi chất liệu (không bao gồm yếu tố màu sắc do mỗi đợt sản xuất màu gỗ, vân gỗ và mắt gỗ có thể chênh lệch đôi chút vì đặc tính tự nhiên của gỗ), lỗi kỹ thuật và lỗi lắp đặt từ phía MOHO.</li>
+        <li>Đổi sang sản phẩm khác bằng giá trị hoặc có giá trị cao hơn sản phẩm đã giao.</li>
+    </ul>
+    <p>Sau 3 ngày tính từ ngày giao hàng thành công, MOHO sẽ áp dụng sang chính sách bảo hành cho các sản phẩm bị hư hỏng do lỗi chất liệu, lỗi kỹ thuật và lỗi lắp đặt từ phía MOHO, không áp dụng đổi sang sản phẩm khác.</p>
+    <h3>2. Chính sách trả hàng: quý khách hàng chỉ được trả hàng tại thời điểm giao hàng nếu sản phẩm không đúng như thông tin đặt hàng do quý khách hàng đặt nhầm hoặc thay đổi ý kiến, nhưng phải thanh toán phí giao hàng cho MOHO là 300,000đ và chi phí lắp đặt tùy theo sản phẩm cho các khu vực miễn phí giao hàng và lắp đặt.</h3>
+    <ul>
+        <li>Quyết định của Nội Thất MOHO là quyết định cuối cùng và có thể thay đổi mà không cần thông báo trước.</li>
+        <li>Chính sách này không áp dụng cho các sản phẩm trong danh mục Đồ Trang Trí.</li>
+    </ul>
+    </section>
+    <section id="chinhsachbaohanh">
+        <h2>1. Chính Sách Bảo Hành & Bảo</h2>
+        <h3>Thời hạn bảo hành: 2 năm tính từ ngày giao hàng thành công.</h3>
+        <h3>2. Phạm vi bảo hành:</h3>
+        <p>MOHO bảo hành miễn phí cho các sản phẩm bị hư hỏng do lỗi chất liệu (không bao gồm yếu tố màu sắc do mỗi đợt sản xuất màu gỗ, vân gỗ và mắt gỗ có thể chênh lệch đôi chút vì đặc tính tự nhiên của gỗ), lỗi kỹ thuật và lỗi lắp đặt từ phía MOHO.</p>
+        <p>MOHO không bảo hành cho các trường hợp:</p>
+        <ul>
+            <li>Thiệt hại do thiên tai, cháy nổ,… các trường hợp bất khả kháng.</li>
+            <li>Qúy khách hàng tự vận chuyển hoặc sử dụng đơn vị vận chuyển ngoài, tự lắp đặt, sửa chữa và thay đổi kết cấu ban đầu của sản phẩm.</li>
+            <li>Quý khách hàng sử dụng sản phẩm không đúng cách theo hướng dẫn sử dụng: để vật nặng vượt quá khả năng chịu lực của sản phẩm, sử dụng sản phẩm không đúng công năng như nhảy mạnh lên sản phẩm,..., để vật nóng trực tiếp lên sản phẩm, vệ sinh dùng hóa chất,… </li>
+            <li>Sản phẩm bị gãy, vỡ, trầy xước, biến dạng cơ học do lỗi của người sử dụng hoặc do các tác động ngoại lực, ngoại cảnh; hoặc sản phẩm bị ngập nước gây nở, cong vênh; sản phẩm bị tác động của hơi nước, độ ẩm cao hoặc nhiệt độ cao,...</li>
+            <li>Những hao mòn trong quá trình sử dụng của quý khách hàng theo thời gian như phai màu tự nhiên, oxy hóa của bề mặt sản phẩm, xù lông vải, xẹp lún,...</li>
+            <li>Các sản phẩm thuộc chương trình giảm giá không còn được bán trên website moho.com.vn.</li>
+        </ul>
+        <h3>Chính sách bảo trì: đối với các sản phẩm không nằm trong phạm vi bảo hành hoặc hết thời hạn bảo hành 2 năm, MOHO vẫn nhận bảo trì trọn đời sản phẩm với chi phí hợp lý tùy theo tình trạng sản phẩm.</h3>
+        <p>Quyết định của Nội Thất MOHO là quyết định cuối cùng và có thể thay đổi mà không cần thông báo trước.         </p>  
+    </section>
+    <section id="chinhsachdoitacbanhang">
+        <h2>Chính Sách Đối Tác Bán Hàng</h2>
+        <h3>ĐỐI TƯỢNG</h3>
+        <p>Áp dụng cho tất cả các loại hình doanh nghiệp trong mọi lĩnh vực, bao gồm nhưng không giới hạn các công ty thiết kế nội thất, thi công xây dựng, chủ cửa hàng, chủ các cơ sở dịch vụ như quán café, quán ăn,...</p>
+        <h3>PHẠM VI</h3>
+        <ul>
+            <li>Áp dụng cho tất cả sản phẩm mang thương hiệu MOHO; không bao gồm các sản phẩm đồ trang trí của thương hiệu khác đang được MOHO phân phối            </li>
+            <li>Áp dụng cho tất cả các khu vực thuộc khu vực bán hàng và giao hàng của MOHO</li>
+        </ul>
+        <h3>QUYỀN LỢI</h3>
+        <ul>
+            <li>Hưởng mức hoa hồng bán hàng: 15%</li>
+            <li>Được nhận giấy chứng nhận là đối tác bán hàng của MOHO</li>
+            <li>Được hỗ trợ toàn bộ chính sách giao hàng, lắp đặt, bảo hành và bảo trì theo chính sách của MOHO</li>
+            <li>Được hỗ trợ các ấn phẩm truyền thông từ MOHO</li>
+            <li>Được hỗ trợ kiến thức sản phẩm và cung cấp các sản phẩm trưng bày tại cửa hàng của đối tác</li>
+        </ul>
+        <h3>TRÁCH NHIỆM</h3>
+        <ul>
+            <li>Đối tác phải đảm bảo tuân thủ chặt chẽ chính sách giá bán của MOHO, bán đúng giá niêm yết theo website của MOHO, không được bán phá giá sản phẩm</li>
+            <li>Không sử dụng các sản phẩm trưng bày và các thông tin của sản phẩm được MOHO cung cấp sai mục đích</li>
+            <li>Đối tác có trách nhiệm giữ gìn và đảm bảo chất lượng của sản phẩm trưng bày và ấn phẩm truyền thông do MOHO cung cấp            </li>
+        </ul>
+        <h3>LƯU Ý </h3>
+        <ul>
+            <li>Mức hoa hồng bán hàng 15% không được áp dụng đồng thời với các chương trình khuyến mại khác</li>
+            <li>Mức hoa hồng bán hàng 15% được tính dựa trên giá trị đơn hàng đã giao thành công và khách hàng đã thanh toán đầy đủ giá trị đơn hàng            </li>
+            <li>Mức hoa hồng bán hàng 15% được tính dựa vào giá trị đơn hàng không bao gồm thuế VAT</li>
+        </ul>
+    </section>
+        <section id="aboutus">
+            <h1>Brand Story</h1>
+            <br>
+            <p>Mỗi một chi tiết, mỗi một sản phẩm và hình ảnh đều là những dấu ấn, là câu chuyện mà MOHO muốn gửi gắm
+                đến mỗi khách hàng. MOHO hi vọng trong từng bộ sưu tập, từng sản phẩm và dịch vụ của mình sẽ trở
+                thành một phần trong tổ ấm của mỗi gia đình Việt, như một thông điệp "mang yêu thương gửi trọn trong
+                từng không gian sống". Hướng đến sự tiện ích, hiện đại tối giản và thân thiện môi trường là khát khao mà
+                MOHO không ngừng theo đuổi.</p><br>
+            <p>Chính những khát khao lan toả biến nhà thực sự là "tổ ấm", tháng 03/2020, thương hiệu nội thất MOHO
+                được định hình và ra đời. Là một phần của Savimex với 35 kinh nghiệm trong sản xuất và xuất khẩu nội
+                thất sang các thị trường khó tính như: Mỹ, Nhật, Hàn,... MOHO tiếp tục kế thừa và phát huy nhằm mang
+                đến cho người Việt những sản phẩm nội thất 100% made in Vietnam theo tiêu chuẩn quốc tế, đảm bảo an toàn
+                sức khoẻ với chi phí hợp lý.</p><br>
+            <h2>HƯỚNG ĐẾN GIÁ TRỊ BỀN VỮNG</h2><br>
+            <p>“Tính bền vững” là một khái niệm định nghĩa sự phát triển về mọi mặt nhưng vẫn đảm bảo sự tồn tại phát
+                triển ở trạng thái cân bằng. Mang khái niệm “bền vững” vào trong sản phẩm - dịch vụ nội thất là bước đi
+                tiên phong và đầy thách thức mà MOHO luôn không ngừng nỗ lực nhằm lan toả, truyền cảm hứng về một lối
+                sống tích cực, tiêu dùng bền vững hơn vì một tương lai của hành tinh xanh. </p>
+            <ul>
+                <p>Mục tiêu phát triển bền vững:</p>
+                <li>Truyền cảm hứng về tiêu dùng bền vững đến mọi người tại Việt Nam.</li>
+                <li>Sử dụng 100% nguồn nguyên liệu gỗ đạt chứng nhận chứng nhận FSC® - Forest Stewardship Council®.
+                </li>
+                <li>Bảo trì trọn đời sản phẩm nhằm kéo dài tuổi thọ và tính hữu dụng của sản phẩm trong thời gian dài.
+                </li>
+            </ul>
+            <br>
+            <h2>THÂN THIỆN MÔI TRƯỜNG </h2><br>
+            <p>MOHO với xuất phát điểm muốn lan toả thông điệp "Sống xanh", mỗi một sản phẩm nội thất mà MOHO mang
+                đến cho khách hàng đều là bắt nguồn từ nguyên liệu gỗ đạt chuẩn FSC - khai thác từ nguồn rừng có trồng
+                lại. MOHO hiểu rằng, là một doanh nghiệp nói chung, và là doanh nghiệp trong lĩnh vực nội thất nói
+                riêng, cần có trách nhiệm hơn với cộng đồng và môi trường xanh của chúng ta. Giá trị tốt đẹp này không
+                chỉ riêng MOHO mà mỗi một khách hàng sử dụng sản phẩm MOHO đều đóng góp và nhân rộng lên giá trị
+                bền vững này. </p>
+            <img src="https://file.hstatic.net/200000065946/file/noi-that-moho-ben-vung-fsc_9f0b5_d1f6c79c916c41179ced29c23c4e70e6.jpg"
+                alt="friendly">
+            <br>
+            <h2>AN TOÀN SỨC KHOẺ</h2><br>
+            <ul>
+                <p>Đặt yếu tố sức khoẻ và an toàn khách hàng lên hàng đầu, các sản phẩm nội thất gỗ công nghiệp tại
+                    MOHO: </p><br>
+                <li>Đạt chứng nhận chứng nhận giảm phát thải Formaldehyde – CARB P2, đảm bảo gỗ không độc hại.</li>
+                <li>Ưu tiên sử dụng sơn gốc nước thay cho sơn gốc dầu. </li>
+                <li>Trang bị bộ anti tip kit tránh tình trạng tủ bị lật, gây nguy hiểm, đặc biệt là những gia đình có
+                    trẻ nhỏ.</li>
+            </ul><br>
+            <img
+                src="https://file.hstatic.net/200000065946/file/noi-that-moho_cab083b219614a7c82944ad720caccbb_1024x1024.png">
+            <br>
+            <h2>CHẤT LƯỢNG QUỐC TẾ </h2>
+            <br>
+            <img src="https://file.hstatic.net/200000065946/file/noi-that-moho-chat-luong-quoc-te_b4ea42c8ff834f2a9be8c7176a95b6f0.jpg"
+                alt="">
+            <br>
+            <h2>TINH TẾ TRONG TỪNG ĐƯỜNG NÉT</h2></br>
+            <p>"Điều tôi muốn xây dựng ở đây là mang đến những thiết kế cao cấp dành riêng cho người Việt. Tôi muốn giúp khách hàng cá nhân hoá không gian sống thật sự phù hợp và lý tưởng. MOHO, chúng tôi làm tất cả vì khách hàng." Mr. Nicolai Lehn - Giám đốc thiết kế của MOHO.</p></br>
+        </br>
+        <iframe src="https://www.youtube.com/embed/DCa20zZvBto" width="70%" height="600px" frameborder="0" allowfullscreen></iframe>
+
+            
+            <h2>TRẢI NGHIỆM TỐT NHẤT</h2></br>
+            <p>Chúng tôi tạo ra không gian sống tuyệt vời nhất, nơi chúng tôi gọi là “Nhà”.</p></br>
+            <p>Tham quan và trải nghiệm cửa hàng nội thất của MOHO với lối kiến trúc không gian mở hiện đại, các sản phẩm nội thất được bố trí theo từng không gian và phong cách nội thất, mang đến trải nghiệm mua sắm tuyệt vời cho khách hàng.</p><br>
+        </br>
+            <iframe src="https://www.youtube.com/embed/KlOlBrQ6k9w" width="70%" height="600px" frameborder="0" allowfullscreen></iframe>
+            
+            
+            <h2>CÁC CHỨNG NHẬN CỦA MOHO</h2><br>
+            <img
+                src="https://file.hstatic.net/200000065946/file/noi-that-moho-chung-nhan-quoc-te_eada03a5c58448ea8b33cdd20fd73986.jpg">
+
+
+        </section>
+        <section id="showroom">
+            <main class="mainContent-theme">
+                <div class="layout-pageContact">
+                    <div class="paralax-container text-center">
+                        <div class="breadcrumb-shop">
+                            <h1 style="font-size: 55px;">Showroom Nội Thất MOHO</h1>
+                        </div>
+                    </div>
+                    <div class="contact-address">
+                        <div class="container">
+                            <div class="contact-us flexMargin" style="display: flex;">
+                                <div class="fade-box">
+                                    <img class=" ls-is-cached lazyloaded"
+                                        data-src="//theme.hstatic.net/200000065946/1001187274/14/show_image_footers.jpg?v=303"
+                                        src="//theme.hstatic.net/200000065946/1001187274/14/show_image_footers.jpg?v=303"
+                                        alt="Liên hệ ngay">
+                                </div>
+                                <div class="pd_contact">
+                                    <h1>Experience Stores</h1>
+                                    <h1>Địa chỉ chúng tôi</h1>
+                                    <h1>[Ho Chi Minh City]</h1>
+                                    <h3>162 HT17, P. Hiệp Thành, Quận 12, TP. Hồ Chí Minh
+                                    </h3>
+                                    <h3>Hotline: 0971 141 140</h3>
+                                    <br>
+                                    <h3>Vinhomes Grand Park, TP. Thủ Đức</h3>
+                                    <h3>Hotline: 0931 880 424</h3>
+
+                                    <br>
+                                    <br>
+                                    <h1>[Ha Noi City]</h1>
+                                    <h3>Vinhomes Smart City, Hà Nội .</h3>
+                                    <h3>Hotline: 0909 665 728</h3>
+                                    <br>
+                                    <h3>Vinhomes Ocean Park, Hà Nội.</h3>
+                                    <h3>Hotline: 0938 108 772</h3>
+                                    <br>
+                                    <br>
+
+                                    <h3>Email:cskh@moho.com.vn</h3>
+                                    <h3>Điện thoại 097 114 1140 (Hotline/Zalo)</h3>
+                                    <img src="/img/Icon_of_Zalo.svg.png" alt="Zalo">
+                                    <img src="/img/gmail.png" alt="gmail">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-google-map">
+                        <div class="container-fluid">
+                            <div class="box-heading-contact">
+
+                                <div class="box-map">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15672.51375846868!2d106.6417146!3d10.8778344!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x569afdd3c76bcbbc!2zTU9ITyBGdXJuaXR1cmUgfCBO4buZaSBUaOG6pXQgTU9ITw!5e0!3m2!1svi!2s!4v1612150037621!5m2!1svi!2s"
+                                        width="100%" height="400" frameborder="0" style="border:0;"
+                                        allowfullscreen=""></iframe>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <div class="wrapper-home-banner-servce">
+                <div class="container">
+                    <div class="flex_content services-pd site-animation">
+
+
+
+
+                        <div class="services">
+                            <div class="img-outer">
+                                <div class="service-img fade-box">
+                                    <img width="50" height="50"
+                                        src="//theme.hstatic.net/200000065946/1001187274/14/vice_item_1_thumb.png?v=312"
+                                        alt="Giao Hàng &amp; Lắp Đặt">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <div class="title">Giao Hàng &amp; Lắp Đặt</div>
+                                <div class="desc">Miễn Phí</div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="services">
+                            <div class="img-outer">
+                                <div class="service-img fade-box">
+                                    <img width="50" height="50"
+                                        src="//theme.hstatic.net/200000065946/1001187274/14/vice_item_2_thumb.png?v=312"
+                                        alt="Đổi Trả 1 - 1">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <div class="title">Đổi Trả 1 - 1</div>
+                                <div class="desc">Miễn Phí</div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="services">
+                            <div class="img-outer">
+                                <div class="service-img fade-box">
+                                    <img width="50" height="50"
+                                        src="//theme.hstatic.net/200000065946/1001187274/14/vice_item_3_thumb.png?v=312"
+                                        alt="Bảo Hành 2 Năm">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <div class="title">Bảo Hành 2 Năm</div>
+                                <div class="desc">Miễn Phí</div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="services">
+                            <div class="img-outer">
+                                <div class="service-img fade-box">
+                                    <img width="50" height="50"
+                                        src="//theme.hstatic.net/200000065946/1001187274/14/vice_item_4_thumb.png?v=312"
+                                        alt="Tư Vấn Thiết Kế">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <div class="title">Tư Vấn Thiết Kế</div>
+                                <div class="desc">Miễn Phí</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Site footer -->
+            
+        </section>
+        <section></section>
+
+    </main>
+    <footer class="new_footer_area bg_color" style="margin-top: 15px;">
+        <div class="new_footer_top">
+            <div class="container">
+                <div class="row" style="display: flex;">
+                    <div class="col-md-4">
+                        <h3>NỘI THẤT MOHO</h3>
+                        <p>Nội Thất MOHO là thương hiệu đến từ</p>
+                        <p>Savimex với gần 40 năm kinh nghiệm </p>
+                        <p> trong việc sản xuất và xuất khẩu nội thất</p>
+                        <p> đạt chuẩn quốc tế.
+                        </p>
+                        <div class="fBlock-logo-bct"
+                            style="margin-bottom: 10px; width: 90%; height: 30%; margin-left: -25px;margin-top: 15px;">
+                            <a href="http://online.gov.vn/(X(1)S(x0oiui2u3epcjwy4z2xlko03))/Home/WebDetails/60567?AspxAutoDetectCookieSupport=1"
+                                class="fade-box" aria-label="Bộ Công Thương">
+                                <img class="ls-is-cached lazyloaded"
+                                    data-src="//theme.hstatic.net/200000065946/1001187274/14/logo_bct.png?v=312"
+                                    src="//theme.hstatic.net/200000065946/1001187274/14/logo_bct.png?v=312"
+                                    alt="Bộ Công Thương" style="width: 50%; height: 50%;"> </a>
+                        </div>
+                        <div class="logoaovai" style="margin-top: -40px;">
+                            <a href="https://www.dmca.com/Protection/Status.aspx?ID=c870a589-fd82-4c14-9e41-c3891ec42fb5&amp;refurl=https://moho.com.vn/pages/showroom"
+                                title="DMCA.com Protection Status" class="dmca-badge"> <img
+                                    src="https://images.dmca.com/Badges/dmca_protected_18_120.png?ID=c870a589-fd82-4c14-9e41-c3891ec42fb5"
+                                    alt="DMCA.com Protection Status"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Dịch vụ</h3>
+                        <ul class="footer-links">
+                            <p>Chính Sách Bán
+                                Hàng</p>
+                            <p>Chính Sách Giao Hàng &amp; Lắp
+                                Đặt</p>
+                            <p>Chính Sách Đổi Trả</p>
+                            <p>Chính Sách Bảo Hành & Bảo Trì
+                            </p>
+                            <p>Khách Hàng Thân Thiết – MOHOmie</p>
+                            <p>Chính Sách Đối Tác Bán Hàng</p>
+                        </ul>
+                    </div>
+                    <div class="col-md-4" style="margin-left: 100px; ">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <h3 style="margin-left: -130px;">Thông tin liên hệ </h3>
+                            <ul class="footer-links">
+                                <li style="max-width: 250px;">Showroom: 162 HT17, P. Hiệp Thành, Q. 12, TP. HCM
+                                    (Nằm trong
+                                    khuôn viên công ty SAVIMEX phía sau bến xe buýt Hiệp Thành) | Hotline: 0971
+                                    141
+                                    140.</li>
+                                <li style="max-width: 250px;">Experience Store 2: S3.03-Sh15 phân khu Sapphire |
+                                    Vinhomes Smart City, Hà
+                                    Nội |
+                                    Hotline: 0909 665 728</li>
+                                <li style="max-width: 250px;">Experience Store 3: S2.09-Sh19 phân khu Sapphire |
+                                    Vinhomes Ocean Park, Hà
+                                    Nội | Hotline:
+                                </li>
+                                <p style="max-width: 250px;">097 114 1140 (Hotline/Zalo) </p>
+                                <p style="max-width: 250px;"> 0902 415 359 (Đội Giao
+                                    Hàng)</p>
+                                <li style="max-width: 250px;">cskh@moho.com.vn
+                                    Công Ty Cổ Phần Hợp Tác Kinh Tế Và
+                                    Xuất Nhập Khẩu Savimex</li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bg">
+                <div class="footer_bg_one"></div>
+                <div class="footer_bg_two"></div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-7">
+                        <p class="mb-0 f_400">© MOHO 2024</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/index2.js"></script>
+</body>
+
+</html>
