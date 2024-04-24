@@ -1,7 +1,7 @@
 import connection from "../models/connectSQL.js";
 
 // Route để lấy các sản phẩm cho một trang cụ thể
-export const getProducts = (req, res) => {
+export default (req, res) => {
   try {
     // sửa dữ liệu trong database
     connection.query(`select * from products`, async (error, results, fields) =>{
@@ -10,10 +10,11 @@ export const getProducts = (req, res) => {
         const perPage = 16; // Số sản phẩm mỗi trang
         const start = (page - 1) * perPage;
         const end = start + perPage;
-        const paginatedProducts = products.slice(start, end);
+        const paginatedProducts = products?.slice(start, end);
         res.json(paginatedProducts);
     })
   } catch(error){
     console.log(error);
 } 
+
 };
