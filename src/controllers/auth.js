@@ -64,6 +64,7 @@ export const auth = async(req,res) => {
         }
     }
     else {
+        // dang nhap
         try {
             //Buoc1: validate data tu phia client
             const {error} = signInValidator.validate(req.body, {abortEarly:false})
@@ -78,7 +79,7 @@ export const auth = async(req,res) => {
             connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, async (error, results, fields) =>{
                 if(!results){
                     return res.status(404).json({
-                        message: "user name khong ton tai!"
+                        message: "username khong ton tai"
                     })
                 }
                 const user = results[0];
@@ -95,9 +96,11 @@ export const auth = async(req,res) => {
                 };
                 const token = createJWT(payload);
                 //Buoc6: tra ra thong bao cho nguoi dung
-                res.cookie("jwt",token).cookie("userName",user.user_name, {
-                    httpOnly: true
-                }).cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
+                req.session.user = { 
+                    id: user.customer_id, 
+                    username: user.name 
+                };
+                res.cookie("jwt",token).cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
                 if(user.role === 1){
                     res.redirect("/home")
                 }
@@ -105,15 +108,7 @@ export const auth = async(req,res) => {
                     res.redirect("/admin")
                 }
 
-            // return res.status(200).json({
-            //     message: "Đăng nhập thành công!",
-            //     user,
-            //     // accesToken
-            // })
             }) 
-            
-            
-            
         } catch(error) {
             return res.status(500).json({
                 name: error.name,
@@ -122,3 +117,4 @@ export const auth = async(req,res) => {
         }
     }
 }
+

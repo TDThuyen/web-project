@@ -9,6 +9,7 @@ export const home = async(req,res) => {
             res.clearCookie("phoneNumber");
             res.clearCookie("address");
             res.clearCookie("birthday");
+            req.session.destroy();
             res.redirect("/auth");
         } catch(error){
             console.log(error);
