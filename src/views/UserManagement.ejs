@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <title>MOHO ADMIN</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <link rel="icon" href="/img/fevicon.png" type="image/png" />
+   <link rel="stylesheet" href="/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="/css/style.css" />
+   <link rel="stylesheet" href="/css/responsive.css" />
+   <link rel="stylesheet" href="/css/custom.css" />
+</head>
+<style>
+   table {
+      border-collapse: collapse;
+      width: 100%;
+   }
+
+   th,
+   td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+   }
+
+   tr:hover {
+      background-color: coral;
+   }
+</style>
+
+<body class="inner_page tables_page">
+   <div class="full_container">
+      <div class="inner_container">
+         <nav id="sidebar">
+            <div class="sidebar_blog_1">
+               <div class="sidebar-header">
+                  <div class="logo_section">
+                     <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                           alt="#" /></a>
+                  </div>
+               </div>
+               <div class="sidebar_user_info">
+                  <div class="icon_setting"></div>
+                  <div class="user_profle_side">
+                     <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" />
+                     </div>
+                     <div class="user_info">
+                        <h6>Thuyen depzai</h6>
+                        <p><span class="online_animation"></span> Online</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sidebar_blog_2">
+               <h4>General</h4>
+               <ul class="list-unstyled components">
+                  <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                  </li>
+                  <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
+                           Management</span></a>
+                  </li>
+
+                  <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
+                           Management</span></a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <div id="content">
+            <div class="topbar">
+               <nav class="navbar navbar-expand-lg navbar-light">
+                  <div class="full">
+                     <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                           class="fa fa-bars"></i></button>
+
+                     <div class="right_topbar">
+                        <div class="icon_info">
+                           <ul>
+                              <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
+                              <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                              <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+                           </ul>
+                           <ul class="user_profile_dd">
+                              <li>
+                                 <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                       class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg"
+                                       alt="#" /><span class="name_user">ADMIN</span></a>
+                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="help.html">Help</a>
+                                    <a class="dropdown-item" href="#"><span>Log Out</span> <i
+                                          class="fa fa-sign-out"></i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+            <div class="midde_cont">
+               <div class="container-fluid">
+                  <div class="row column_title">
+                     <div class="col-md-12">
+                        <div class="page_title">
+                           <h2>USER MANAGEMENT</h2>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container">
+               <form action="/admin/USER" method="post" class="form-horizontal">
+                  <fieldset>
+                     <legend class="text-center">Thêm người dùng mới</legend>
+
+                     <div class="form-group row">
+                        <div class="col-sm-3">
+                           <label>Tên</label>
+                           <input type="text" class="form-control" name="name">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Email</label>
+                           <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Số điện thoại</label>
+                           <input type="tel" class="form-control" name="phone">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Địa chỉ</label>
+                           <input type="text" class="form-control" name="address">
+                        </div>
+                     </div>
+
+                     <div class="form-group row">
+
+                        <div class="col-sm-3">
+                           <label>Ngày sinh</label>
+                           <input type="date" class="form-control" name="birthday">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Vai trò</label>
+                           <input type="text" class="form-control" name="role">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Mật khẩu</label>
+                           <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Tên người dùng</label>
+                           <input type="text" class="form-control" name="username">
+                        </div>
+                     </div>
+
+                     <div class="form-group row">
+                        <div class="col-sm-5">
+                           <label>Hình ảnh người dùng</label>
+                           <div style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                              <img id="userimage" src="#" alt="your image"
+                                 style="width: 100%; height: 100%; object-fit: cover;" />
+                           </div>
+                           <input type="text" class="form-control" name="userimage"
+                              onchange="document.getElementById('userimage').src = this.value">
+                        </div>
+                     </div>
+
+
+                     <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                     </div>
+                  </fieldset>
+               </form>
+            </div>
+
+
+            <div class="table-container">
+
+               <table>
+                  <tr>
+                     <th>Numerical Order</th>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Address</th>
+                     <th>Birthday</th>
+                     <th>Role</th>
+                     <th>User Name</th>
+                     <th>User Image</th>
+                  </tr>
+                  <% let cnt=1; %>
+                     <% for (const user of listUser) { %>
+                        <tr>
+                           <td>
+                              <%= cnt%>
+                           </td>
+                           <td>
+                              <%= user.name %>
+                           </td>
+                           <td>
+                              <%= user.email %>
+                           </td>
+                           <td>
+                              <%= user.phone %>
+                           </td>
+                           <td>
+                              <%= user.address %>
+                           </td>
+                           <td>
+                              <%= user.birthday %>
+                           </td>
+                           <td>
+                              <%= user.role %>
+                           </td>
+                           <td>
+                              <%= user.user_name %>
+                           </td>
+                           <td>
+                              <%= user.user_img %>
+                           </td>
+                           <td>
+                              <a href="/admin/update/<%=user.customer_id%>">Edit</a>
+                              <form action="/admin/delete-user/<%=user.customer_id%>" method="POST">
+                                 <button>Delete</button>
+                              </form>
+                           </td>
+                        </tr>
+                        <!-- <%=cnt ++ %> -->
+                        <% } %>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/custom.js"></script>
+
+</body>
+
+</html>
