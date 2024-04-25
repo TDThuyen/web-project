@@ -12,7 +12,7 @@ export default async (req, res) => {
     const end = start + perPage;
     const data = await redisClient.get(`getProducts/${page}`);
     if(!data){
-      connection.query(`select product_id, product_name, quantity_stock,img_top,img_mid,img_bot from products`, async (error, results, fields) =>{
+      connection.query(`select * from products`, async (error, results, fields) =>{
           const products = results
           const paginatedProducts = products.slice(start, end);
           redisClient.setEx(`getProducts/${page}`,process.env.REDIS_END_TIME,JSON.stringify(paginatedProducts));

@@ -97,8 +97,8 @@ export const auth = async(req,res) => {
                 const token = createJWT(payload);
                 //Buoc6: tra ra thong bao cho nguoi dung
                 req.session.user = { 
-                    id: user.customer_id, 
-                    username: user.name 
+                    customer_id: user.customer_id, 
+                    userName: user.name 
                 };
                 res.cookie("jwt",token).cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
                 if(user.role === 1){

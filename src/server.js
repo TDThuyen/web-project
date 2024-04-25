@@ -28,6 +28,7 @@ app.options('*',corMw);
 
 await redisClient.connect()
 
+
 // do stuff
 // await redisClient.disconnect()
 
