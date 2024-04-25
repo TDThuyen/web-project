@@ -1,5 +1,7 @@
+import dotenv from "dotenv";
 import redisClient from "../models/connectRedis.js";
 import connection from "../models/connectSQL.js";
+dotenv.config();
 
 // Route để lấy các sản phẩm cho một trang cụ thể
 export default async (req, res) => {
@@ -13,7 +15,7 @@ export default async (req, res) => {
       connection.query(`select product_id, product_name, quantity_stock,img_top,img_mid,img_bot from products`, async (error, results, fields) =>{
           const products = results
           const paginatedProducts = products.slice(start, end);
-          redisClient.set(`getProducts/${page}`,JSON.stringify(paginatedProducts));
+          redisClient.setEx(`getProducts/${page}`,process.env.REDIS_END_TIME,JSON.stringify(paginatedProducts));
           res.json(paginatedProducts);
       })
     }

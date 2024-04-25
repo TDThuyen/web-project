@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
 import redisClient from "../models/connectRedis.js";
 import connection from "../models/connectSQL.js";
+
+dotenv.config();
 
 // Route để lấy các sản phẩm cho một trang cụ thể
 export default async (req, res) => {
@@ -8,7 +11,7 @@ export default async (req, res) => {
     const data = await redisClient.get("getNumberOfProducts");
     if(!data){
       connection.query(`select count(*) as "ProductsNumber"  from products`, async (error, results, fields) =>{
-          redisClient.set("getNumberOfProducts",JSON.stringify(results));
+          redisClient.setEx("getNumberOfProducts",process.env.REDIS_END_TIME,JSON.stringify(results));
           res.json(results);
       })
     }
