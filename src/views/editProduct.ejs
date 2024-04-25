@@ -48,7 +48,8 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
+                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
+                                    alt="#" />
                             </div>
                             <div class="user_info">
                                 <h6>Thuyen depzai</h6>
@@ -60,7 +61,7 @@
                 <div class="sidebar_blog_2">
                     <h4>General</h4>
                     <ul class="list-unstyled components">
-                        <li><a href=><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
                         </li>
                         <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
                                     Management</span></a>
@@ -111,56 +112,67 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>EDIT USER</h2>
+                                    <h2>EDIT PRODUCT</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%= JSON.stringify(user) %>
+                <%= JSON.stringify(product) %>
                     <div class='form'>
-                        <form action="/admin/updateUser" method="post">
+                        <form action="/admin/updateProduct" method="post">
                             <fieldset>
-                                <legend>Update New User</legend>
+                                <legend>Update New Product</legend>
                                 <div class='input gruop d-none'>
                                     <label> Id: </label>
-                                    <input type="text" name="userId" value="<%= user.customer_id %>">
+                                    <input type="text" name="productId" value="<%= product.product_id %>">
                                 </div>
-                                <div class='input gruop'>
-                                    <label> Name</label>
-                                    <input type="text" name="name" value="<%= user.name %>">
+                                <div class="form-group row">
+                                    <div class='col-sm-3'>
+                                        <label> Product_Name</label>
+                                        <input type="text" class="form-control" name="product_name"
+                                            value="<%= product.product_name%>">
+                                    </div>
+                                    <div class='col-sm-3'>
+                                        <label>Quantity stock </label>
+                                        <input type="text" name="quantity_stock" class="form-control"
+                                            value="<%= product.quantity_stock %>" />
+                                    </div>
+                                    <div class='col-sm-3'>
+                                        <label> Id port</label>
+                                        <input type="text" name='id_port' class="form-control"
+                                            value="<%= product.id_port%>" />
+                                    </div>
+                                    <div class='col-sm-3'>
+                                        <label> Price</label>
+                                        <input type="text" name="price" class="form-control"
+                                            value="<%= product.price %>" />
+                                    </div>
                                 </div>
-                                <div class='input gruop'>
-                                    <label> Email</label>
-                                    <input type="text" name="email" value="<%= user.email %>" />
+                                <div class="form-group row">
+                                    <div class='col-sm-4'>
+                                        <label> Img top</label>
+                                        <input type="text" name="img_top" class="form-control"
+                                            value="<%= product.img_top %>" />
+                                    </div>
+                                    <div class='col-sm-4'>
+                                        <label> Img Mid </label>
+                                        <input type="text" name="ing_mid" class="form-control"
+                                            value="<%= product.ing_mid%>" />
+                                    </div>
+                                    <div class='col-sm-4'>
+                                        <label> Img Bot</label>
+                                        <input type="text" name="img_bot" class="form-control"
+                                            value="<%= product.img_bot %>" />
+                                    </div>
                                 </div>
-                                <div class='input gruop'>
-                                    <label>phone </label>
-                                    <input type="text" name="phone" value="<%= user.phone %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> address</label>
-                                    <input type="text" name='address' value="<%= user.address %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> birthday</label>
-                                    <input type="text" name="birthday" value="<%= user.birthday %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> role</label>
-                                    <input type="text" name="role" value="<%= user.role %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> Pass word</label>
-                                    <input type="text" name="password" value="<%= user.pass_word %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> User Name</label>
-                                    <input type="text" name="username" value="<%= user.user_name %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> User Image</label>
-                                    <input type="text" name="userimage" value="<%= user.user_img %>" />
+                                <div class="form-group row">
+                                    <div class='col-sm-10'>
+                                        <label> Description</label>
+                                        <textarea id="motasp" name="description">
+                                            <%= product.description%>
+                                        </textarea>
+                                    </div>
                                 </div>
                                 <div>
                                     <button>SAVE</button>
@@ -174,6 +186,12 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('motasp');
+    </script>
+
 
 </body>
 

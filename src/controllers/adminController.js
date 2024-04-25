@@ -53,7 +53,7 @@ export const getUpdateUser = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy khách hàng');
             }
-            console.log(">>> results", results);
+            // console.log(">>> results", results);
             // Truyền vào đối tượng đầu tiên trong mảng kết quả
             res.render("edit.ejs", { user: results[0] });
             // console.log(user)
@@ -168,3 +168,84 @@ export const getProduct = (req, res) => {
         }
     );
 };
+
+// do thong tin san pham vao trong edit : 
+export const getProductUpdate = (req, res) => {
+    const productId = req.params.id
+    connection.query(
+        'SELECT * from products where product_id = ?',
+        [productId],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy khách hàng');
+            }
+            // console.log(">>> results", results);
+            // Truyền vào đối tượng đầu tiên trong mảng kết quả
+            res.render("editProduct.ejs", { product: results[0] });
+            // console.log(user)
+        }
+    );
+}
+
+export const postUpdateProduct = (req, res) => {
+    let product_name = req.body.product_name;
+    let description = req.body.description;
+    let quantity_stock = req.body.quantity_stock;
+    let id_port = req.body.id_port;
+    let price = req.body.price;
+    let img_top = req.body.img_top;
+    let ing_mid = req.body.ing_mid;
+    let img_bot = req.body.img_bot;
+    let productId = req.body.productId;
+
+    connection.query(
+        `update products 
+        set product_name = ?, description = ?, quantity_stock = ? , id_port = ? , price = ? , img_top = ?, ing_mid = ? , img_bot = ?
+        where product_id = ?`,
+        [product_name, description, quantity_stock, id_port, price, img_top, ing_mid, img_bot, productId],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            console.log("Người dùng đã được tạo thành công");
+        }
+    );
+    res.redirect('/admin/ProductManagement')
+}
+
+// confirm delete product : 
+export const postDeleteProduct = (req, res) => {
+    const productId = req.params.id
+    connection.query(
+        'SELECT * from products where product_id = ?',
+        [productId],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy khách hàng');
+            }
+            console.log(">>> results", results);
+            // Truyền vào đối tượng đầu tiên trong mảng kết quả
+            res.render("deleteProduct.ejs", { product: results[0] });
+            // console.log(user)
+        }
+    );
+}
+
+// delete product
+export const deleteProduct = (req, res) => {
+    const id = req.body.productId // lay id trong form id cua nguoi can xoa 
+    connection.query(
+        `delete from products where product_id = ?`,
+        [id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy khách hàng');
+            }
+        }
+    )
+    res.redirect('/admin/ProductManagement')
+}

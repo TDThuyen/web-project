@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>MOHO ADMIN</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/img/fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: coral;
+    }
+</style>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                                    alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
+                                    alt="#" />
+                            </div>
+                            <div class="user_info">
+                                <h6>Thuyen depzai</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
+                                    Management</span></a>
+                        </li>
+
+                        <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
+                                    Management</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="content">
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">ADMIN</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>USER MANAGEMENT</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <form action="/admin/addProduct" method="post" class="form-horizontal">
+                        <fieldset>
+                            <legend class="text-center">Thêm sản phẩm</legend>
+
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" class="form-control" name="product_name">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Lượng sản phẩm</label>
+                                    <input type="tel" class="form-control" name="quantity_stock">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Id_port</label>
+                                    <input type="text" class="form-control" name="id_port" pattern="\d*"
+                                        title="Ở đây chỉ được nhập số">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Giá sản phẩm</label>
+                                    <input type="text" class="form-control" name="price">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label>Ảnh sản phẩm</label>
+                                    <input type="text" class="form-control" name="img_top">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>ING MID</label>
+                                    <input type="password" class="form-control" name="ing_mid">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Img Bot</label>
+                                    <input type="text" class="form-control" name="img_bot">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Mô tả sản phẩm</label>
+                                        <textarea id="motasp" class="form-control" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Numerical </th>
+                            <th>Products Name</th>
+                            <th>Description</th>
+                            <th>Quantity Stock</th>
+                            <th>Id Port</th>
+                            <th>Price</th>
+                            <th>Img Top</th>
+                        </tr>
+                        <% let cnt=1; %>
+                            <% for (const product of listProducts) { %>
+                                <tr>
+                                    <td>
+                                        <%= cnt ++%>
+                                    </td>
+                                    <td>
+                                        <%= product.product_name %>
+                                    </td>
+                                    <td>
+                                        <%= product.description %>
+                                    </td>
+                                    <td>
+                                        <%= product.quantity_stock %>
+                                    </td>
+                                    <td>
+                                        <%= product.id_port %>
+                                    </td>
+                                    <td>
+                                        <%= product.price %>
+                                    </td>
+                                    <td>
+                                        <img src="<%= product.img_top %>" alt="Product Image"
+                                            style="width:100px;height:100px;">
+                                    </td>
+                                    <td>
+                                        <a href="/admin/editProduct/<%=product.product_id%>">Edit</a>
+                                        <form action="/admin/delete-product/<%=product.product_id%>" method="POST">
+                                            <button>Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src=" js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('motasp');
+    </script>
+
+
+</body>
+
+</html>
