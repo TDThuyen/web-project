@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 
 const rateavgSchema = new mongoose.Schema({
+    product_id: {
+        type: Number,
+    },
     rate_sum: {
-        type: double,
+        type: Number,
     },
     user_sum: {
         type: Number,

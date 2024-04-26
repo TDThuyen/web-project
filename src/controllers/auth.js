@@ -18,7 +18,7 @@ export const auth = async(req,res) => {
                 })
             }
             // kiem tra nguoi dung da ton tai chua
-            connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, (error, results, fields) =>{
+            connection.query(`SELECT user_name from customers where user_name="${req.body.userName}"`, (error, results, fields) =>{
                 const userExisted = results[0];
                 if(userExisted){
                     return res.status(404).json({
@@ -27,7 +27,7 @@ export const auth = async(req,res) => {
                 }
             }) 
 
-            connection.query(`SELECT * from customers where phone="${req.body.phoneNumber}"`, (error, results, fields) =>{
+            connection.query(`SELECT phone from customers where phone="${req.body.phoneNumber}"`, (error, results, fields) =>{
                 const userExisted = results[0];
                 if(userExisted){
                     return res.status(404).json({
@@ -36,7 +36,7 @@ export const auth = async(req,res) => {
                 }
             }) 
 
-            connection.query(`SELECT * from customers where email="${req.body.email}"`, (error, results, fields) =>{
+            connection.query(`SELECT email from customers where email="${req.body.email}"`, (error, results, fields) =>{
                 const userExisted = results[0];
                 if(userExisted){
                     return res.status(404).json({
@@ -52,8 +52,6 @@ export const auth = async(req,res) => {
                         console.error('Lỗi truy vấn: ' + error.stack);
                         return;
                         }
-                    
-                    console.log('Dữ liệu từ cơ sở dữ liệu: ', results);
             })
             // buoc 5 thong bao dang ki thanh cong
             // xoa mat khau di
@@ -74,7 +72,6 @@ export const auth = async(req,res) => {
                     message: "nhập không đúng!"
                 })
             }
-            let resultPassword = null;
             //Buoc2: kiem tra userName da ton tai hay chua
             connection.query(`SELECT * from customers where user_name="${req.body.userName}"`, async (error, results, fields) =>{
                 if(!results[0]){

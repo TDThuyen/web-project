@@ -1,4 +1,4 @@
-import { date, number } from "joi";
+
 import mongoose from "mongoose";
 
 const evaluateSchema = new mongoose.Schema({
@@ -9,14 +9,16 @@ const evaluateSchema = new mongoose.Schema({
         type: Number,
     },
     rate: {
-        type: double,
+        type: Number,
     },
     comment:{
         type: String,
     },
     date_posted:{
-        type: date,    
+        type: Date,  // Sử dụng kiểu dữ liệu Date của Mongoose
+        default: new Date()
     }
 }, {versionKey: false, timestamps: true})
+
 
 export default mongoose.model('Evaluate',evaluateSchema);

@@ -28,12 +28,6 @@ app.options('*',corMw);
 
 await redisClient.connect()
 
-
-// do stuff
-// await redisClient.disconnect()
-
-// connect(URI_DB)
-
 connect(MONGO_DB)
     .then(() => {
         console.log('Connect database sucess')
