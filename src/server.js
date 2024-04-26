@@ -38,7 +38,6 @@ connect(MONGO_DB)
 
 app.use(router)
 
-
 app.use((req,res) => {
     return res.send("404 not found")
 })
