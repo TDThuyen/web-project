@@ -137,24 +137,86 @@ export const addProduct = (req, res) => {
     let price = req.body.price;
     let img_top = req.body.img_top;
     let ing_mid = req.body.ing_mid;
-    let img_bot = req.body.img_bot;
-    // let userimage = req.body.userimage;
+    let color = req.body.color;
+    let quantity_of_color = req.body.quantity_of_color;
+
+    // Kiểm tra xem sản phẩm đã tồn tại hay chưa
     connection.query(
-        `insert into products(product_name ,description , quantity_stock , id_port, price, img_top , ing_mid , img_bot)
-               VALUES(? ,? , ? , ?, ?, ? , ? , ?)`,
-        [product_name, description, quantity_stock, id_port, price, img_top, ing_mid, img_bot],
+        `SELECT * FROM products WHERE product_name = ?`,
+        [product_name],
         function (err, results) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi tạo người dùng');
+                return res.status(500).send('Lỗi khi kiểm tra sản phẩm');
             }
-            console.log("Người dùng đã được tạo thành công");
-            // Tùy chọn bạn có thể gửi phản hồi thành công tại đây
+
+            if (results.length > 0) {
+                // Sản phẩm đã tồn tại, kiểm tra xem chi tiết sản phẩm đã tồn tại hay chưa
+                let product_id = results[0].product_id;
+                connection.query(
+                    `SELECT * FROM product_detail WHERE product_id = ? AND color = ?`,
+                    [product_id, color],
+                    function (err, results) {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Lỗi khi kiểm tra chi tiết sản phẩm');
+                        }
+
+                        if (results.length == 0) {
+                            // Chi tiết sản phẩm chưa tồn tại, thêm chi tiết sản phẩm
+                            connection.query(
+                                `INSERT INTO product_detail(product_id, color, quantity_of_color)
+                                   VALUES(?, ?, ?)`,
+                                [product_id, color, quantity_of_color],
+                                function (err, results) {
+                                    if (err) {
+                                        console.error(err);
+                                        return res.status(500).send('Lỗi khi thêm chi tiết sản phẩm');
+                                    }
+                                    console.log("Chi tiết sản phẩm đã được thêm thành công");
+                                }
+                            );
+                        }
+                    }
+                );
+            } else {
+                quantity_stock = 0
+                // Sản phẩm chưa tồn tại, thêm sản phẩm và chi tiết sản phẩm
+                connection.query(
+                    `INSERT INTO products(product_name ,description , quantity_stock , id_port, price, img_top , ing_mid)
+                       VALUES(? ,? , ? , ?, ?, ? , ?)`,
+                    [product_name, description, quantity_stock, id_port, price, img_top, ing_mid],
+                    function (err, results) {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Lỗi khi tạo sản phẩm');
+                        }
+                        console.log("Sản phẩm đã được tạo thành công");
+                        let product_id = results.insertId; // Lấy product_id vừa được tạo
+
+                        // Thêm vào bảng product_detail
+                        connection.query(
+                            `INSERT INTO product_detail(product_id, color, quantity_of_color)
+                               VALUES(?, ?, ?)`,
+                            [product_id, color, quantity_of_color],
+                            function (err, results) {
+                                if (err) {
+                                    console.error(err);
+                                    return res.status(500).send('Lỗi khi thêm chi tiết sản phẩm');
+                                }
+                                console.log("Chi tiết sản phẩm đã được thêm thành công");
+                            }
+                        );
+                    }
+                );
+            }
         }
     );
+
     res.redirect("/admin/ProductManagement")
 }
 
+// lay thong tin toan bo san pham 
 export const getProduct = (req, res) => {
     connection.query(
         `SELECT * FROM products`,
@@ -168,6 +230,27 @@ export const getProduct = (req, res) => {
         }
     );
 };
+
+
+// lay thong tin trong product_detail : 
+export const getProductDetails = (req, res) => {
+    let product_id = req.params.id;
+
+    connection.query(
+        `SELECT * FROM product_detail WHERE product_id = ?`,
+        [product_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy chi tiết sản phẩm');
+            }
+            console.log(results)
+            res.render("getProductDetails.ejs", { productDetails: results });
+        }
+    );
+    // res.send("yes")
+};
+
 
 // do thong tin san pham vao trong edit : 
 export const getProductUpdate = (req, res) => {
