@@ -47,7 +47,7 @@ app.listen(PORT, () => {
 })
 
 
-
+redisClient.flushAll();
 
 
 
