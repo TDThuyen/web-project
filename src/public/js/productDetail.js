@@ -13,12 +13,12 @@ async function fetchProducts(id) {
   try {
     const response1 = await fetch(`/getProductDetail/id=${id}`);
     const productDetail1 = await response1.json();
-    const response2 = await fetch(`/getProductByID/id=${id}`);
+    const response2 = await fetch(`/getProduct/id=${id}`);
     const productDetail2 = await response2.json();
     displayProducts(productDetail1);
     displayProducts(productDetail2);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.log(error)
   }
 }
 
