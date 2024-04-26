@@ -62,6 +62,9 @@ function displayProducts(productDetail) {
      var sold = document.querySelector('.sold')
      var sale__price = document.querySelector('.sale__price')
      var unsale__price=document.querySelector('.unsale__price')
+     var rate__text = document.querySelector('.rate__text')
+     var ratenumber = 3.4;
+     var rage__star = document.querySelector('.rate__star')
 
      product__name1.innerHTML = productDetail[0].product_name;
      product__name2.innerHTML = productDetail[0].product_name;
@@ -69,9 +72,24 @@ function displayProducts(productDetail) {
      product_image1.classList.add('click')
      product_image2.src = productDetail[0].ing_mid
      main__img.src =  productDetail[0].img_top;
-     sold.innerHTML =`Đã bán: `;
-     sale__price.innerHTML = 
+     sale.innerHTML = `-${productDetail[0].discount}%`
+     sale.style.backgroundColor="#EDEDED"
+     sold.innerHTML =`Số lượng: ${productDetail[0].quantity_sold}`;
+     sale__price.innerHTML = `${(parseFloat(productDetail[0].price)*(1-parseFloat(productDetail[0].discount)/100)).toLocaleString('en-US')}₫`
      unsale__price.innerHTML = `${parseFloat(productDetail[0].price).toLocaleString('en-US')}₫`
+     rate__text.innerHTML=  `Đánh giá: ${ratenumber} / 5`;
+     if(ratenumber == 0){rage__star.src="/img/0sao.png"}
+     if(ratenumber == 1){rage__star.src="/img/1sao.png"}
+     if(ratenumber == 2){rage__star.src="/img/2sao.png"}
+     if(ratenumber == 3){rage__star.src="/img/3sao.png"}
+     if(ratenumber == 4){rage__star.src="/img/4sao.png"}
+     if(ratenumber == 5){rage__star.src="/img/5sao.png"}
+     if(ratenumber < 5 && ratenumber > 4){rage__star.src="/img/4,5sao.png"}
+     if(ratenumber <4 && ratenumber>3){rage__star.src="/img/3,5sao.png"}
+     if(ratenumber <3 && ratenumber>2){rage__star.src="/img/2,5sao.png"}
+     if(ratenumber <2 && ratenumber>1){rage__star.src="/img/1,5sao.png"}
+     if(ratenumber <1 && ratenumber>0){rage__star.src="/img/0,5sao.png"}
+
      product_image2.addEventListener('click',function(){
       main__img.src=productDetail[0].ing_mid;
       product_image2.classList.add('click');
@@ -88,3 +106,22 @@ console.log(unsale__price)
 };
 
 fetchProducts(id);
+var diep =1
+var plus =document.querySelector('.plus')
+var mainasu = document.querySelector('.mainasu')
+var quantity__number = document.querySelector('.quantity__number')
+quantity__number.innerHTML =diep;
+plus.addEventListener('click',function(){
+  diep++;
+  quantity__number.innerHTML =diep;
+})
+mainasu.addEventListener('click',function(){
+  if(diep>=2){
+    diep--;
+  quantity__number.innerHTML =diep;
+  }
+  
+})
+
+
+
