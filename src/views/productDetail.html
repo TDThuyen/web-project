@@ -9,7 +9,7 @@
 </head>
 <body>
     <img class="logo"src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
-    <header>
+    <header> 
         
       <a href="/auth" class="Home">Trang chủ</a>
       <p>>></p>
@@ -41,9 +41,6 @@
             <div class="product__color">
                 <p>Màu sắc: </p>
             </div>
-            <div class="product__description">
-            </div>
-            <img class="tuvan" src="/img/tuvan.png">
             <div class="quantity">
                 <div class="mainasu">-</div>
                 <div class="quantity__number"></div>
@@ -51,6 +48,10 @@
             </div>
             <button class="addCart">THÊM VÀO GIỎ</button>
             <button class="buy">MUA NGAY</button>     
+            <div class="product__description">
+            </div>
+            <img class="tuvan" src="/img/tuvan.png">
+            
         </div>
         <form class="form hide" method="post">
            <input class="picked__product__name" type="text" name="picked__product__name">
@@ -59,7 +60,65 @@
            <input class="total__amount" name="total__amount" type="number">
            <input class="quantity" name="quantity" type="number">
         </form>
-        
+        <div class="alert__login hide">
+            <div class="alert__login__box">
+                <i class='bx bx-x-circle'></i>
+                <p> Bạn cần đăng nhập để thao tác thêm!</p>
+                <h5 class="alert__login__box__text">Đăng nhập</h5>
+               </div>
+        </div>
+
+        <div class="signup__display hide">
+            <div class="signup__form">
+                <form method="post">
+                    <div class="signup__form__header">
+                        <h1>Đăng kí</h1>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    <label for="fullname">Họ và tên:</label>
+                    <input class="fullname" name="fullname" type="text" placeholder="Họ và tên" required> <br>
+                    <label for="birthday">Ngày sinh:</label>
+                    <input class="birthday" name="birthday" type="date" placeholder="birthday" required> <br>
+                    <label for="username">Tên đăng nhập:</label>
+                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input class="phonenumber" name="phoneNumber" type="text" required placeholder="Phone number"> <br>
+                    <label for="email">Email</label>
+                    <input class="email" name="email" type="text" placeholder="Email" required> <br>
+                    <label for="password">Mật khẩu:</label>
+                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
+                    <label for="password__confirm">Xác nhận mật khẩu:</label>
+                    <input class="password__confirm" min=8 name="confirmPassword" type="password" required
+                        placeholder="Confirm Password">
+                    <input type="submit" name="submit" value="Sign up" id="submit1">
+                </form>
+
+            </div>
+        </div>
+        <!-- dang nhap -->
+        <div class="login__display hide">
+            <div class="login__form">
+                <form method="post">
+                    <div class="login__form__header">
+                        <h1>Đăng nhập</h1>
+                        <i class='bx bx-x' id="login__close"></i>
+                    </div>
+
+                    <label for="username">Tên đăng nhập:</label>
+
+                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
+                    <label for="password">Mật khẩu:</label>
+                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
+                    <input type="submit" name="submit" value="Login" id="submit2">
+
+                </form>
+                <div class="footer">
+                    <p>Nếu chưa có tài khoản hãy</p>
+                    <p class="signup__option">Đăng ký</p>
+                </div>
+
+            </div>
+        </div>
     </main>
 </body>
 <script src="/js/productDetail.js"></script>

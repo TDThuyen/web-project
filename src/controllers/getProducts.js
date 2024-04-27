@@ -13,7 +13,7 @@ export default async (req, res) => {
     if (!req.params.q && !req.params.collection) {
       const data = await redisClient.get(`getProducts/${page}`);
       if (!data) {
-        connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.ing_mid,sales.quantity_sold,sales.discount 
+        connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.ing_mid,products.quantity_sold,sales.discount 
         from products left join sales
         on products.product_id = sales.product_id`, async (error, results, fields) => {
           const products = JSON.stringify(results);

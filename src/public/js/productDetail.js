@@ -1,5 +1,4 @@
 var url = window.location.href;
-
 // Tìm vị trí của chuỗi "id=" trong URL
 var idIndex = url.indexOf("id=");
 var diep =1
@@ -13,8 +12,43 @@ var pricee ;
 var discountt;
 var img__top;
 var namee;
+var signup__display= document.querySelector('.signup__display')
+var signup__close = document.querySelector('.bx-x')
+var login__display= document.querySelector('.login__display')
+var login__close =document.querySelector('#login__close')
+var signup__option = document.querySelector('.signup__option')
+var addCard = document.querySelector('.addCart');
+      var buy = document.querySelector('.buy')
 quantity__number.innerHTML =diep;
 if( document.cookie.match(/name=([^;]+)/) === null){
+  var alert__login = document.querySelector('.alert__login')
+  var close__button = document.querySelector('.bx-x-circle')
+  var alert__login__box__text = document.querySelector('.alert__login__box__text')
+  addCard.addEventListener('click', function(){
+    alert__login.classList.toggle('hide')
+  })
+ buy.addEventListener('click', function(){
+    alert__login.classList.toggle('hide')
+  })
+  close__button.addEventListener('click', function(){
+    alert__login.classList.toggle('hide')
+  })
+  alert__login__box__text.addEventListener('click', function(){
+    login__display.classList.toggle('hide')
+    alert__login.classList.toggle('hide')
+  })
+  signup__option.addEventListener('click', function(e){
+    login__display.classList.toggle('hide');
+    signup__display.classList.toggle('hide');
+})
+signup__close.addEventListener('click',function(){
+  signup__display.classList.toggle('hide')
+})
+login__close.addEventListener('click',function(){
+  login__display.classList.toggle('hide')
+})
+
+
   mainasu.addEventListener('click',function(){
     if(diep>=2){
       diep--;
@@ -23,9 +57,14 @@ if( document.cookie.match(/name=([^;]+)/) === null){
       diep++;
       quantity__number.innerHTML =diep;
     })
+    // addCard.addEventListener('click', function(){
 
+    // })
+    // buy.addEventListener('click', function(){
 
-}
+    // })
+
+} 
 
 // Nếu "id=" được tìm thấy trong URL
 if (idIndex !== -1) {
@@ -41,6 +80,7 @@ async function fetchProducts(id) {
     const productDetail1 = await response1.json();
     const response2 = await fetch(`/getProduct/id=${id}`);
     const productDetail2 = await response2.json();
+         console.log(productDetail2[0])
     if( document.cookie.match(/name=([^;]+)/) === null){
       productDetail1.forEach(element => {
         var color = document.createElement('div');
@@ -56,7 +96,7 @@ async function fetchProducts(id) {
         } else if (element.color == "5") {
           color.style.backgroundColor = "#000";
         }
-  
+         
         color.addEventListener('click', function() {
           const otherColors = document.querySelectorAll('.productDetail__color');
           otherColors.forEach(otherColor => {
@@ -138,9 +178,9 @@ async function fetchProducts(id) {
   
         product__color.appendChild(color);
       });
-      
+       
     //console.log((parseFloat(pricee)*(1-parseFloat(productDetail[0].discount)/100))*diep)
-      var addCard = document.querySelector('.addCart');
+      
       var form = document.querySelector('.form');  
       var picked__product__name = form.querySelector('.picked__product__name');
       picked__product__name.value = namee
@@ -152,6 +192,13 @@ async function fetchProducts(id) {
       total__amount.value = (parseFloat(pricee)*(1-parseFloat(discountt)/100))*diep
       var quantity = form.querySelector('.quantity')
       quantity.value = diep;
+      // buy.action="/cart"
+      buy.addEventListener('click', function() {
+        if(typeof picked__color === 'undefined'){
+          alert("Vui long chon mau")
+        }
+        else{form.submit(); }//  Gửi form khi nút được nhấn
+      });
       addCard.addEventListener('click', function() {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
@@ -180,7 +227,8 @@ function displayProducts(productDetail) {
      var rate__text = document.querySelector('.rate__text')
      var ratenumber = 3.4;
      var rage__star = document.querySelector('.rate__star')
-
+     var product__description =document.querySelector('.product__description')
+     product__description.innerHTML= productDetail[0].description
      product__name1.innerHTML = productDetail[0].product_name;
      product__name2.innerHTML = productDetail[0].product_name;
      product_image1.src = productDetail[0].img_top
