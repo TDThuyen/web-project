@@ -27,20 +27,23 @@ body {
     width: 10%;
 
 }
-
+.search__form{
+    width: 500px;
+    display: flex;
+}
 .search {
     height: 35px;
-    margin-top: 4%;
+    margin-top: 10%;
     margin-left: 3%;
-    width: 30%;
+    width: 80%;
     padding-left: 1%;
     font-size: 20px;
 }
 
 .search__button {
     height: 35px;
-    margin-top: 4%;
-    width: 5%;
+    margin-top: 10%;
+    width: 15%;
     background-color: transparent;
     outline: none;
     border: 1.5px solid rgb(118, 118, 118);
@@ -616,6 +619,14 @@ body {
     margin-left: 5%;
    
 }
+.phongngu__product{
+
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: 5%;   
+ }
 
 .product__item{
     width:250px;
@@ -642,7 +653,7 @@ body {
 .unsale__price{
     margin-left:18%;
     text-decoration: line-through;
-    text-decoration-thickness:2px;
+    text-decoration-thickness:1px;
     color: #4b505e;
 }
 .product__name{
@@ -700,7 +711,9 @@ body {
     font-weight: none;
 
 }
-
+#phongngu{
+    display: none;
+}
 #aboutus h2 {
     margin-left: 30px;
     margin-top: 18px;

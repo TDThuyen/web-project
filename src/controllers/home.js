@@ -1,3 +1,4 @@
+import redisClient from "../models/connectRedis.js";
 import connection from "../models/connectSQL.js";
 
 export const home = async(req,res) => {
@@ -17,29 +18,29 @@ export const home = async(req,res) => {
     }
     if(req.body.submit === "Cập nhật"){
         try {
-            
+            console.log(req.file)
             // sửa dữ liệu trong database
             connection.query(`UPDATE customers set name = "${req.body.fullname}", birthday = "${req.body.birthday}", phone = "${req.body.phoneNumber}", address = "${req.body.address}"
-              where user_name="${req.cookies.userName}"`, async (error, results, fields) =>{
+              where user_name="${await getUserName(req)}"`, async (error, results, fields) =>{
                 res.clearCookie("name");
                 res.clearCookie("phoneNumber");
                 res.clearCookie("address");
                 res.clearCookie("birthday");
-            }) 
-
-            connection.query(`SELECT * from customers where user_name="${req.cookies.userName}"`, async (error, results, fields) =>{
-                if(!results){
-                    return res.status(404).json({
-                        message: "user name khong ton tai!"
-                    })
-                }
-                const user = results[0];
-                res.cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
+                res.cookie("name",req.body.fullname).cookie("birthday",req.body.birthday).cookie("phoneNumber",req.body.phoneNumber).cookie("address",req.body.address);
                 res.redirect("/home")
-            })
-
+            }) 
         } catch(error){
             console.log(error);
         }
+    }
+}
+
+async function getUserName(req){
+    if(req.sessionID&&req.session.user){
+        const user = JSON.parse(await redisClient.get("sess:"+req.sessionID))
+        return user?.user.userName
+    }
+    else {
+        return "-1";
     }
 }
