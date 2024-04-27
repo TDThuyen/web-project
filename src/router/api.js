@@ -13,6 +13,8 @@ routerAPI.get("/getProducts/:page",getProducts)
 routerAPI.get("/getNumberOfProducts",getNumberOfProducts)
 routerAPI.get("/getProductDetail/id=:id",getProductDetail)
 routerAPI.get("/getProduct/id=:id",getProductByID)
+routerAPI.get("/getProducts/q=:q/:page",getProducts)
+routerAPI.get("/getProducts/collection=:collection/:page",getProducts)
 
 routerAPI.get("/getMyComment/id=:id", async(req,res) => {
     try{

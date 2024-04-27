@@ -27,7 +27,6 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
         var NumberOfPage=parseInt(numberPage[0].ProductsNumber);
         const page_total = Math.ceil(NumberOfPage/16);
         const products = await response.json();
-        // console.log(products)
        
         displayProducts(products);
         page_right.addEventListener('click',function(){
@@ -72,7 +71,7 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           var sale__percent = document.createElement('div')
           sale__percent.className="sale__percent"
           var sale__count =document.createElement('p')
-          sale__count.innerHTML=`-${product.discount}%`
+          sale__count.innerHTML="-40%"
           var heartt =  document.createElement('i')
           heartt.className="bx bx-heart bx-flip-horizontal"
           var imageElement = document.createElement('img');
@@ -92,9 +91,9 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
           var product__price2 = document.createElement('p');
           var sold = document.createElement('p');
           sold.className="sold";
-          sold.innerHTML=`Số lượng: ${product.quantity_sold}`;
-          product__price1.innerHTML = `${(parseFloat(product.price)*(1-parseFloat(product.discount)/100)).toLocaleString('en-US')}₫`;
-          product__price2.innerHTML =`${parseFloat(product.price).toLocaleString('en-US')}₫`;
+          sold.innerHTML=`Đã bán ${product.price}`;
+          product__price1.innerHTML = `${parseFloat(product.price).toLocaleString('en-US')}₫`;
+          product__price2.innerHTML ="500,000₫";
           product__price.className="product__price";
           product__price1.className="sale__price";
           product__price2.className="unsale__price";

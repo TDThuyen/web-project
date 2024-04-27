@@ -7,6 +7,7 @@ dotenv.config()
 const SECRET_CODE = process.env.SECRET_CODE
 
 export const auth = async(req,res) => {
+    console.log(req.body)
     if(req.body.submit==="Sign up"){
         //dang ki
         try {
@@ -95,9 +96,9 @@ export const auth = async(req,res) => {
                 //Buoc6: tra ra thong bao cho nguoi dung
                 req.session.user = { 
                     customer_id: user.customer_id, 
-                    userName: user.name 
+                    userName: user.user_name 
                 };
-                res.cookie("jwt",token).cookie("name",user.name).cookie("birthday",user.birthday).cookie("phoneNumber",user.phone).cookie("address",user.address);
+                res.cookie("jwt",token,{maxAge: 1000*60*30}).cookie("name",user.name,{maxAge: 1000*60*30}).cookie("birthday",user.birthday,{maxAge: 1000*60*30}).cookie("phoneNumber",user.phone,{maxAge: 1000*60*30}).cookie("address",user.address,{maxAge: 1000*60*30});
                 if(user.role === 1){
                     res.redirect("/home")
                 }

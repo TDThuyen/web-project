@@ -1,7 +1,9 @@
 import Evaluate from "../models/Evaluate.js";
+import connection from "../models/connectSQL.js";
 
 export default async(req,res) =>{
     try{
+        console.log(req.body)
         // comment
         if(req.body.submit === "comment"){
             const commented = await Evaluate.findOne({
@@ -33,6 +35,12 @@ export default async(req,res) =>{
                     console.log('update success: ' + res.result.nModified + ' record');
                 });
             }
+        }
+        if(req.body.submit === "them-gio-hang"){
+            console.log(req.body)
+            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity) value("${await getUserID(req)}","${req.body.id_prod}","${req.body.price}","${req.body.quantity}"))`, async (error, results, fields) =>{
+                
+            })
         }
     } catch(error){
         console.log(error)
