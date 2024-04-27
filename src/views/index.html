@@ -13,9 +13,10 @@
     <header class="header">
         <nav class="navbar">
             <img class="logo" src="/img/logo.png"></div>
+            <form class="search__form" method='post' action="">
             <input class="search" placeholder="Tìm kiếm sản phẩm tại đây">
-            <button class="search__button"><i class='bx bx-search-alt-2'></i></button>
-
+            <button class="search__button" type="submit"><i class='bx bx-search-alt-2'></i></button>
+            </form>
             <i class='bx bx-user'></i>
             <p class="acc login">Đăng nhập</p>
             <p class="vachngan">|</p>
@@ -104,11 +105,11 @@
                     <i class='bx bx-chevron-down'></i>
                 </div>
                 <div class="product__child">
-                    <div><a>Phòng ngủ</a></div>
-                    <div><a>Phòng khách</a></div>
-                    <div><a>Phòng ăn</a></div>
-                    <!-- <div><a>Tủ bếp</a></div> -->
-                    <div><a>Phòng làm việc</a></div>
+                    <div><a href="/products/collection=phong__ngu" class="phong__ngu">Phòng ngủ</a></div>
+                    <div><a href="/products/collection=phong__khach" class="phong__khach">Phòng khách</a></div>
+                    <div><a href="/products/collection=phong__an" class="phong__an"></a>Phòng ăn</div>
+                    <div><a href="/products/collection=tu__bep" class="tu__bep">Tủ bếp</a></div>
+                    <div><a href="/products/collection=phong__lamviec" class="phong__lamviec">Phòng làm việc</a></div>
                 </div>
             </div>
             <div class="newcollection">
