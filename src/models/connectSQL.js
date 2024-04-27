@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     database: 'web' // Tên của cơ sở dữ liệu
   });
   
-// Kết nối đến cơ sở dữ liệu
+  // Kết nối đến cơ sở dữ liệu
 connection.connect((err) => {
     if (err) {
       console.error('Lỗi kết nối: ' + err.stack);

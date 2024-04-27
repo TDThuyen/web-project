@@ -41,7 +41,7 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                            <a href="/admin/"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
                                     alt="#" /></a>
                         </div>
                     </div>
@@ -112,114 +112,72 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>USER MANAGEMENT</h2>
+                                    <h2>EDIT PRODUCT</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <form action="/admin/addProduct" method="post" class="form-horizontal">
+                <div class='form'>
+                    <form action="/admin/updateProduct" method="post">
                         <fieldset>
-                            <legend class="text-center">Thêm sản phẩm</legend>
-
+                            <legend>Update New Product</legend>
+                            <div class='input gruop d-none'>
+                                <label> Id: </label>
+                                <input type="text" name="productId" value="<%= x.product_id %>">
+                            </div>
                             <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label>Tên sản phẩm</label>
-                                    <input type="text" class="form-control" name="product_name">
+                                <div class='col-sm-4'>
+                                    <label> Product_Name</label>
+                                    <input type="text" class="form-control" name="product_name"
+                                        value="<%= x.product_name%>">
                                 </div>
-                                <div class="col-sm-4">
-                                    <label>Id_port</label>
-                                    <input type="text" class="form-control" name="id_port" pattern="\d*"
-                                        title="Ở đây chỉ được nhập số">
+                                <div class='col-sm-4'>
+                                    <label> Id port</label>
+                                    <input type="text" name='id_port' class="form-control" value="<%= x.id_port%>" />
                                 </div>
-                                <div class="col-sm-4">
-                                    <label>Giá sản phẩm</label>
-                                    <input type="text" class="form-control" name="price">
+                                <div class='col-sm-4'>
+                                    <label> Price</label>
+                                    <input type="text" name="price" class="form-control" value="<%= x.price %>" />
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label>Ảnh sản phẩm</label>
-                                    <input type="text" class="form-control" name="img_top">
+                                <div class='col-sm-3'>
+                                    <label> Img top</label>
+                                    <input type="text" name="img_top" class="form-control" value="<%= x.img_top %>" />
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>ING MID</label>
-                                    <input type="password" class="form-control" name="ing_mid">
+                                <div class='col-sm-3'>
+                                    <label> Img Mid </label>
+                                    <input type="text" name="ing_mid" class="form-control" value="<%= x.ing_mid%>" />
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>COLOR</label>
-                                    <input type="text" class="form-control" name="color" required pattern="\d+">
+                                <div class='col-sm-3'>
+                                    <label>Color</label>
+                                    <input type="text" name="color" class="form-control" value="<%= details.color%>" />
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>QUANTITY</label>
-                                    <input type="text" class="form-control" name="quantity_of_color" required
-                                        pattern="\d+">
+                                <div class='col-sm-3'>
+                                    <label>Quantity of color</label>
+                                    <input type="text" name="quantity_of_color" class="form-control"
+                                        value="<%= details.quantity_of_color%>" />
                                 </div>
-
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label>Mô tả sản phẩm</label>
-                                    <textarea id="motasp" class="form-control" name="description"></textarea>
+                                <div class='col-sm-12'>
+                                    <label> Description</label>
+                                    <textarea id="motasp" name="description">
+                                            <%= x.description%>
+                                        </textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Lưu</button>
-                                </div>
+                            <div>
+                                <button>SAVE</button>
                             </div>
                         </fieldset>
                     </form>
                 </div>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Numerical </th>
-                            <th>Products Name</th>
-                            <th>Description</th>
-                            <th>Quantity Stock</th>
-                            <th>Id Port</th>
-                            <th>Price</th>
-                            <th>Img Top</th>
-                        </tr>
-                        <% let cnt=1; %>
-                            <% for (const product of listProducts) { %>
-                                <tr>
-                                    <td>
-                                        <%= cnt ++%>
-                                    </td>
-                                    <td>
-                                        <%= product.product_name %>
-                                    </td>
-                                    <td>
-                                        <%= product.description %>
-                                    </td>
-                                    <td>
-                                        <%= product.quantity_stock %>
-                                    </td>
-                                    <td>
-                                        <%= product.id_port %>
-                                    </td>
-                                    <td>
-                                        <%= product.price %>
-                                    </td>
-                                    <td>
-                                        <img src="<%= product.img_top %>" alt="Product Image"
-                                            style="width:100px;height:100px;">
-                                    </td>
-                                    <td>
-                                        <a href="/admin/getProductDetails/<%=product.product_id%>">Chi tiết</a>
-                                    </td>
-                                </tr>
-                                <% } %>
-
-                    </table>
-                </div>
             </div>
         </div>
     </div>
-    <script src=" js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

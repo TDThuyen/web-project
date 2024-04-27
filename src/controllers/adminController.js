@@ -244,7 +244,7 @@ export const getProductDetails = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy chi tiết sản phẩm');
             }
-            console.log(results)
+            // console.log(results)
             res.render("getProductDetails.ejs", { productDetails: results });
         }
     );
@@ -254,81 +254,157 @@ export const getProductDetails = (req, res) => {
 
 // do thong tin san pham vao trong edit : 
 export const getProductUpdate = (req, res) => {
-    const productId = req.params.id
+    const productId = req.params.id;
+    const colorId = req.params.color_id;
+    console.log(productId, colorId)
     connection.query(
         'SELECT * from products where product_id = ?',
         [productId],
-        function (err, results) {
+        function (err, productResults) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi lấy khách hàng');
+                return res.status(500).send('Lỗi khi lấy sản phẩm');
             }
-            // console.log(">>> results", results);
-            // Truyền vào đối tượng đầu tiên trong mảng kết quả
-            res.render("editProduct.ejs", { product: results[0] });
-            // console.log(user)
+
+            connection.query(
+                `SELECT * from product_detail where product_id = ? and color = ?`,
+                [productId, colorId],
+                function (err, detailResults) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('Lỗi khi lấy chi tiết sản phẩm');
+                    }
+
+                    // Gửi cả thông tin sản phẩm và chi tiết sản phẩm tới view
+                    if (productResults.length > 0) {
+                        // Gửi cả thông tin sản phẩm và chi tiết sản phẩm tới view
+                        res.render("addEditProduct.ejs", { x: productResults[0], details: detailResults[0] });
+                    }
+                }
+            );
         }
     );
-}
+    // res.render('addEditProduct.ejs')
+};
 
+
+// update san pham 
 export const postUpdateProduct = (req, res) => {
     let product_name = req.body.product_name;
     let description = req.body.description;
-    let quantity_stock = req.body.quantity_stock;
     let id_port = req.body.id_port;
     let price = req.body.price;
     let img_top = req.body.img_top;
     let ing_mid = req.body.ing_mid;
-    let img_bot = req.body.img_bot;
+    let color = req.body.color;
+    let quantity_of_color = req.body.quantity_of_color;
     let productId = req.body.productId;
 
     connection.query(
         `update products 
-        set product_name = ?, description = ?, quantity_stock = ? , id_port = ? , price = ? , img_top = ?, ing_mid = ? , img_bot = ?
+        set product_name = ?, description = ?, id_port = ? , price = ? , img_top = ?, ing_mid = ?
         where product_id = ?`,
-        [product_name, description, quantity_stock, id_port, price, img_top, ing_mid, img_bot, productId],
+        [product_name, description, id_port, price, img_top, ing_mid, productId],
         function (err, results) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi tạo người dùng');
+                return res.status(500).send('Lỗi khi update products');
             }
-            console.log("Người dùng đã được tạo thành công");
+            connection.query(
+                `update product_detail
+                set color = ?, quantity_of_color = ?
+                where product_id = ? and color = ?`,
+                [color, quantity_of_color, productId, color],
+                function (err, results1) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(500).send('Lỗi khi update products');
+                    }
+                }
+            )
         }
     );
     res.redirect('/admin/ProductManagement')
 }
 
-// confirm delete product : 
+// confirm delete product (do thong tin san pham vao trong confirm de xoa)
 export const postDeleteProduct = (req, res) => {
-    const productId = req.params.id
+    const productId = req.params.id;
+    const colorId = req.params.color_id;
+    console.log(productId, colorId)
     connection.query(
         'SELECT * from products where product_id = ?',
         [productId],
-        function (err, results) {
+        function (err, productResults) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi lấy khách hàng');
+                return res.status(500).send('Lỗi khi lấy sản phẩm');
             }
-            console.log(">>> results", results);
-            // Truyền vào đối tượng đầu tiên trong mảng kết quả
-            res.render("deleteProduct.ejs", { product: results[0] });
-            // console.log(user)
+
+            connection.query(
+                `SELECT * from product_detail where product_id = ? and color = ?`,
+                [productId, colorId],
+                function (err, detailResults) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('Lỗi khi lấy chi tiết sản phẩm');
+                    }
+
+                    // Gửi cả thông tin sản phẩm và chi tiết sản phẩm tới view
+                    if (productResults.length > 0) {
+                        // Gửi cả thông tin sản phẩm và chi tiết sản phẩm tới view
+                        res.render("deleteProduct.ejs", { x: productResults[0], details: detailResults[0] });
+                    }
+                }
+            );
         }
     );
 }
 
 // delete product
 export const deleteProduct = (req, res) => {
-    const id = req.body.productId // lay id trong form id cua nguoi can xoa 
+    const productId = req.body.productId; // lay id trong form id cua nguoi can xoa 
+    const color = req.body.color; // lay color tu form
+
+    // Dem so luong mau sac khac nhau cho san pham
     connection.query(
-        `delete from products where product_id = ?`,
-        [id],
+        `SELECT COUNT(DISTINCT color) as colorCount FROM product_detail WHERE product_id = ?`,
+        [productId],
         function (err, results) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi lấy khách hàng');
+                return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
+            }
+
+            const colorCount = results[0].colorCount;
+
+            if (colorCount <= 1) {
+                // Neu chi con mot mau sac, xoa san pham khoi ca hai bang
+                connection.query(
+                    `DELETE FROM products WHERE product_id = ?; DELETE FROM product_detail WHERE product_id = ?`,
+                    [productId, productId],
+                    function (err, results) {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Lỗi khi xóa sản phẩm');
+                        }
+                        res.redirect('/admin/ProductManagement');
+                    }
+                );
+            } else {
+                // Neu con nhieu mau sac, chi xoa mau sac cu the tu bang product_detail
+                connection.query(
+                    `DELETE FROM product_detail WHERE product_id = ? AND color = ?`,
+                    [productId, color],
+                    function (err, results) {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Lỗi khi xóa chi tiết sản phẩm');
+                        }
+                        res.redirect('/admin/ProductManagement');
+                    }
+                );
             }
         }
-    )
-    res.redirect('/admin/ProductManagement')
-}
+    );
+};

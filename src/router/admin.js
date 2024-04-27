@@ -1,15 +1,62 @@
 import express from "express";
 import { checkPermisson } from "../middlewares/checkPermission.js";
+import { postCreateUser } from "../controllers/adminController.js"
+import { getUser } from "../controllers/adminController.js"
+import { getUpdateUser } from "../controllers/adminController.js"
+import { postUpdateUser } from "../controllers/adminController.js"
+import { postDeleteUser } from "../controllers/adminController.js"
+import { postDestroyMessage } from "../controllers/adminController.js"
+import { addProduct } from "../controllers/adminController.js"
+import { getProduct } from "../controllers/adminController.js"
+import { getProductUpdate } from "../controllers/adminController.js"
+import { postUpdateProduct } from "../controllers/adminController.js"
+import { postDeleteProduct } from "../controllers/adminController.js"
+import { deleteProduct } from "../controllers/adminController.js"
+import { getProductDetails } from "../controllers/adminController.js"
 
 const routerAdmin = express.Router()
-routerAdmin.get("/", checkPermisson, (req,res) => {
+routerAdmin.get("/", checkPermisson, (req, res) => {
     res.render("indexAdmin.html")
 })
-routerAdmin.get("/UserManagement", checkPermisson, (req,res) => {
-    res.render("UserManagement.html")
-})
-routerAdmin.get("/ProductManagement", checkPermisson, (req,res) => {
-    res.render("ProductManagement.html")
-})
+
+// hien thi user 
+routerAdmin.get("/UserManagement", getUser)
+
+// update user , dau hai cham de truyen dong, lay thong tin nguoi dung
+routerAdmin.get("/update/:id", getUpdateUser)
+
+// update user sua thong tin nguoi dung 
+routerAdmin.post("/updateUser", checkPermisson, postUpdateUser)
+
+// delete user 
+//confirm user
+routerAdmin.post("/delete-user/:id", postDeleteUser);
+//delete
+routerAdmin.post("/delete-user", postDestroyMessage);
+
+routerAdmin.post("/USER", checkPermisson, postCreateUser)
+
+// them san pham
+routerAdmin.post("/addProduct", checkPermisson, addProduct)
+
+// hien thi san pham
+routerAdmin.get("/ProductManagement", getProduct)
+
+// chi tiet san pham 
+routerAdmin.get("/getProductDetails/:id", getProductDetails)
+
+// do du lieu vao trong sua san pham khi bam edit
+routerAdmin.get("/getProductDetails/:id/:color_id", getProductUpdate)
+
+// update san pham 
+routerAdmin.post("/updateProduct", postUpdateProduct)
+
+//delete product 
+//confirm product
+routerAdmin.post("/delete-product/:id/:color_id", postDeleteProduct)
+// delete product 
+routerAdmin.post("/delete-product", deleteProduct)
+
+
 
 export default routerAdmin;
