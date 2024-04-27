@@ -87,11 +87,14 @@ CREATE TABLE `orderdetail` (
   `quantity` int DEFAULT NULL,
   `total_amout` decimal(10,2) DEFAULT NULL,
   `id_prod` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_fk_2` (`order_id`),
   KEY `orderdetail_fk3_id_prod` (`id_prod`),
+  KEY `products_fk_1` (`product_id`),
   CONSTRAINT `orderdetail_fk3_id_prod` FOREIGN KEY (`id_prod`) REFERENCES `product_detail` (`id_prod`),
-  CONSTRAINT `orders_fk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+  CONSTRAINT `orders_fk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  CONSTRAINT `products_fk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -384,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-27 23:51:27
+-- Dump completed on 2024-04-28  0:37:10
