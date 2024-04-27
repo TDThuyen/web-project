@@ -18,23 +18,87 @@ var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img
 var search__form = document.querySelector('.search__form');
 var search = document.querySelector('.search');
 var search__button = document.querySelector('.search__button');
-
+var search__text = document.querySelector('.search__text')
+var cookieMatch = document.cookie.match(/name=([^;]+)/)
 search__button.addEventListener('click', function(event) {
-  // Ngăn chặn hành vi mặc định của nút submit trong form
   event.preventDefault();
-  
-  // Lấy giá trị tìm kiếm từ ô input
   var searchValue = search.value.trim();
-  
-  // Kiểm tra nếu giá trị tìm kiếm không rỗng
   if (searchValue !== "") {
-    // Tạo URL tìm kiếm
     var searchURL = `/products/q=${encodeURIComponent(searchValue)}`;
-    
-    // Chuyển hướng đến trang tìm kiếm
     window.location.href = searchURL;
   }
 });
+console.log(document.cookie.session)
+console.log(cookieMatch)
+if(cookieMatch !== null){
+    var logout= document.querySelector('.logout')
+var logout__close = document.querySelector('#logout__close')
+var logout__yes  = document.querySelector('.logout__yes')
+var logout__no = document.querySelector('.logout__no')
+var logout__display = document.querySelector('.logout__display')
+var userinfor__close = document.querySelector('#userinfor__close')
+var capnhat = document.querySelector('.capnhat')
+       document.querySelector('.navbar').removeChild(signup)
+       document.querySelector('.navbar').removeChild(login)
+       document.querySelector('.navbar').removeChild(document.querySelector('.vachngan'))
+       var user = document.querySelector('.user')
+       user.innerHTML = cookieMatch[0].name;      
+       logout.classList.remove('hide')
+       logout.addEventListener('click', function(){
+        logout__display.classList.toggle('hide')
+        })
+        logout__close.addEventListener('click', function(){
+            logout__display.classList.toggle('hide')
+        })
+        logout__no.addEventListener('click', function(){
+                logout__display.classList.toggle('hide')
+         })
+        function enableForm() {
+            document.querySelector(".login__fullname").removeAttribute("disabled");
+            document.querySelector(".login__birthday").removeAttribute("disabled");
+            document.querySelector(".login__phonenumber").removeAttribute("disabled");
+            document.querySelector(".login__address").removeAttribute("disabled");
+            document.querySelector(".change").classList.add("hide");
+            document.querySelector(".capnhat").classList.remove("hide");
+            document.querySelector('.fileInput').classList.remove('hide')
+        }
+        user.addEventListener("click",function(){
+            document.querySelector(".user__display").classList.toggle('hide');
+            document.querySelector(".login__fullname").setAttribute("disabled", "disabled");
+            document.querySelector(".login__birthday").setAttribute("disabled", "disabled");
+            document.querySelector(".login__phonenumber").setAttribute("disabled", "disabled");
+            document.querySelector(".login__address").setAttribute("disabled", "disabled");
+            document.querySelector(".capnhat").classList.add("hide");
+            document.querySelector(".change").classList.remove("hide")
+            document.querySelector('.fileInput').classList.add('hide')
+        
+        })
+        userinfor__close.addEventListener("click",function(){
+            document.querySelector(".user__display").classList.toggle('hide');
+            document.querySelector(".login__fullname").setAttribute("disabled", "disabled");
+            document.querySelector(".login__birthday").setAttribute("disabled", "disabled");
+            document.querySelector(".login__phonenumber").setAttribute("disabled", "disabled");
+            document.querySelector(".login__address").setAttribute("disabled", "disabled");
+            document.querySelector(".login__capnhat").classList.add("hide");
+            document.querySelector(".login__change").classList.remove("hide")
+            document.querySelector('.login__fileInput').classList.add('hide')
+        })
+var fullname = document.querySelector('.login__fullname')
+var birthday = document.querySelector('.login__birthday')
+var phonenumber = document.querySelector('.login__phonenumber')
+var address = document.querySelector('.login__address')
+// fullname.value=decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1]);
+// birthday.value=decodeURIComponent(document.cookie.match(/birthday=([^;]+)/)[1]).substring(3, 13);
+// phonenumber.value=decodeURIComponent(document.cookie.match(/phoneNumber=([^;]+)/)[1]);
+// let customerAddress = decodeURIComponent(document.cookie.match(/address=([^;]+)/)[1]);
+// if(customerAddress === "j:null"){
+//     address.value= ""
+// }
+// else {
+//     address.value = customerAddress
+// }
+
+}
   
     const productsContainer = document.querySelector('.product__area');
     var currentPage = 1;
@@ -48,8 +112,20 @@ search__button.addEventListener('click', function(event) {
     if (collectionIndex !== -1) {
         // Lấy ID từ URL
         var collection = url.substring(collectionIndex + 11);
+       
     }
-    console.log(q);
+    var search__text__1=  document.createElement('p');
+       
+        search__text__1.className="search__text__1"
+        search__text.appendChild(search__text__1)
+    if(typeof q !== 'undefined'){
+        search__text__1.innerHTML = `DANH MỤC TÌM KIẾM: ${q}`
+        
+    }
+    else{
+        search__text__1.innerHTML = `DANH MỤC SẢN PHẨM`
+    }
+    
     async function fetchProducts(page) {
       try {
         let response = null;
@@ -141,7 +217,7 @@ search__button.addEventListener('click', function(event) {
           var product__price2 = document.createElement('p');
           var sold = document.createElement('p');
           sold.className="sold";
-          sold.innerHTML=`Số lượng: ${product.quantity_sold}`;
+          sold.innerHTML=`Đã bán: ${product.quantity_sold}`;
           product__price1.innerHTML = `${(parseFloat(product.price)*(1-parseFloat(product.discount)/100)).toLocaleString('en-US')}₫`;
           product__price2.innerHTML =`${parseFloat(product.price).toLocaleString('en-US')}₫`;
           product__price.className="product__price";
@@ -243,26 +319,14 @@ leftArrows.forEach(function(leftArrow) {
 slideshows.forEach(function(slideshow) {
     showImage(currentIndex, slideshow);
 });
-cart.addEventListener('click',function(e){
-    setTimeout(function() {
-        heart__alert.classList.add('hide')
-        cart__alert.classList.remove('hide')
-        setTimeout(function(){
-            cart__alert.classList.add('hide')
-        }, 3000); 
-      }, 0); 
-})
-heart.addEventListener('click',function(e){
-    setTimeout(function() {
-        cart__alert.classList.add('hide')
-        heart__alert.classList.remove('hide')
-        setTimeout(function(){
-            heart__alert.classList.add('hide')
-        }, 3000); 
-      }, 0); 
-})
 
 
+
+
+
+// chua dangnhap
+
+if(cookieMatch === null){
 signup.addEventListener('click', function(e){
      signup__display.classList.toggle('hide');
 })
@@ -285,6 +349,24 @@ signup__option.addEventListener('click', function(e){
     login__display.classList.toggle('hide');
     signup__display.classList.toggle('hide');
 })
+cart.addEventListener('click',function(e){
+    setTimeout(function() {
+        heart__alert.classList.add('hide')
+        cart__alert.classList.remove('hide')
+        setTimeout(function(){
+            cart__alert.classList.add('hide')
+        }, 3000); 
+      }, 0); 
+})
+heart.addEventListener('click',function(e){
+    setTimeout(function() {
+        cart__alert.classList.add('hide')
+        heart__alert.classList.remove('hide')
+        setTimeout(function(){
+            heart__alert.classList.add('hide')
+        }, 3000); 
+      }, 0); 
+})}
 
 // navbar__items.forEach(item => {
 //     console.log(item);

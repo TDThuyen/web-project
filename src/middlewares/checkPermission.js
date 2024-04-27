@@ -18,6 +18,8 @@ export const checkPermisson = (req,res,next) => {
             res.redirect("/auth/")
         }
         else{
+            
+            
         // // buoc 3: kiem tra quyen nguoi dung
         //     const token = req.cookies.jwt
         //     if(!token || isTokenExpired(token)){

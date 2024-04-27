@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/productDetail.css" rel="stylesheet">
     <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <img class="logo"src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
@@ -13,6 +14,9 @@
       <a href="/auth" class="Home">Trang chủ</a>
       <p>>></p>
       <p class="product__name1"></p>
+      <a class="cart" href="/cart">
+        <!-- <i class='bx bx-cart-alt hide'></i> -->
+      </a>
     </header>
     <main>
         <div class="img__small">
@@ -48,6 +52,13 @@
             <button class="addCart">THÊM VÀO GIỎ</button>
             <button class="buy">MUA NGAY</button>     
         </div>
+        <form class="form hide" method="post">
+           <input class="picked__product__name" type="text" name="picked__product__name">
+           <input class="picked__product__img" type="text" name="picked__product__img">
+           <input class="picked__product__color" type="text" name="picked__product__color">
+           <input class="total__amount" name="total__amount" type="number">
+           <input class="quantity" name="quantity" type="number">
+        </form>
         
     </main>
 </body>
