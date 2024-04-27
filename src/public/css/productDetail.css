@@ -58,7 +58,8 @@ header{
     margin-left: 850px;
     margin-top: -605px;
     width: 450px;
-    height: auto;
+    height: 600px;
+    overflow: auto;
 }
 .product__name2{
     text-align: center;
@@ -203,6 +204,12 @@ header{
     border: none;
     transition: 0.45s;
 }
+.product__description{
+    margin-top: 10px;
+}
+.product__description p{
+    margin-top: 6px;
+}
 .addCart:hover{
     background-color: white;
     color: black;
@@ -223,5 +230,166 @@ header{
 .hide{
     display: none;
 }
+.alert__login{
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    transition: 0.8s ease;
+    overflow: hidden;
+}
+.alert__login__box{
+    background-color: #52bde1;
+    height: 120px;
+    width: 350px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 10;
+    margin-left: 40%;
+    margin-top: 20%;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.bx-x-circle{
+  margin-left: 88%;
+  font-size: 25px;
+  margin-top: -10%;
+  cursor: pointer;
+}
+.alert__login__box h5{
+    text-align: center;
+    margin-left: -10px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #f3f8fb;
+}
+.alert__login__box p{
+    margin-left: 25px;
+}
+.signup__display,
+.login__display {
+    top:0;
+    width: 100%;
+    height: 210%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* margin-left: 30%;
+    height: 70%;
+    padding: 20px;
+    border-radius: 15px; */
+    margin-top: -12%;
+    z-index: 5;
+    position: fixed;
+    /* opacity: 0.5; */
+    transition: 0.8s ease;
+    overflow: hidden;
+}
 
+.signup__form,
+.login__form {
+    width: 50%;
+    margin-left: 25%;
+    height: 40%;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(to right, #6ebce6, #bbc7f0);
+    text-align: end;
+    margin-top: 15%;
+    position: absolute;
+    /* z-index: 10; */
+}
+
+.signup__form__header,
+.login__form__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.signup__form__header h1,
+.login__form__header h1 {
+    margin-left: 40%;
+    color: aliceblue;
+}
+
+.signup__form__header i,
+.login__form__header i {
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.signup__display form input{
+    width: 60%;
+    height: 35px;
+    margin-top: 3%;
+    border-radius: 5px;
+    padding-left: 4px;
+    outline: none;
+    border: none;
+    margin-right: 10%;
+}
+.login__display form input {
+    width: 60%;
+    height: 35px;
+    margin-top: 8%;
+    border-radius: 5px;
+    padding-left: 4px;
+    outline: none;
+    border: none;
+    margin-right: 10%;
+    /* margin-left: 20%; */
+}
+
+.signup__display form label,
+.login__display form label {
+    margin-right: 20px;
+    color: aliceblue;
+}
+
+#submit1, #submit2 {
+    width: 70px;
+    cursor: pointer;
+    margin-right: 45%;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid black;
+    transition: 0.4s ease;
+}
+
+#submit:hover {
+    background-color: rgb(196, 230, 230);
+}
+
+.signup__option {
+    margin-left: 6px;
+    cursor: pointer;
+    color: #491546;
+}
+
+.signup__option:hover {
+    color: #dae4d0;
+}
+
+
+.footer {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+
+
+}
+
+.signup__option {
+    margin-left: 6px;
+    cursor: pointer;
+    color: #491546;
+}
+
+.signup__option:hover {
+    color: #dae4d0;
+}
 

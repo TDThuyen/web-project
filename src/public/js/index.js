@@ -38,6 +38,7 @@ var logout__no = document.querySelector('.logout__no')
 var logout__display = document.querySelector('.logout__display')
 var userinfor__close = document.querySelector('#userinfor__close')
 var capnhat = document.querySelector('.capnhat')
+cart.href="/cart";
        document.querySelector('.navbar').removeChild(signup)
        document.querySelector('.navbar').removeChild(login)
        document.querySelector('.navbar').removeChild(document.querySelector('.vachngan'))
@@ -54,19 +55,19 @@ var capnhat = document.querySelector('.capnhat')
                 logout__display.classList.toggle('hide')
          })
         function enableForm() {
-            document.querySelector(".login__fullname").removeAttribute("disabled");
-            document.querySelector(".login__birthday").removeAttribute("disabled");
-            document.querySelector(".login__phonenumber").removeAttribute("disabled");
+            document.querySelector('.login__fullname').removeAttribute("disabled");
+            document.querySelector('.login__birthday').removeAttribute("disabled");
+            document.querySelector('.login__phonenumber').removeAttribute("disabled");
             document.querySelector(".login__address").removeAttribute("disabled");
             document.querySelector(".change").classList.add("hide");
             document.querySelector(".capnhat").classList.remove("hide");
             document.querySelector('.fileInput').classList.remove('hide')
         }
         user.addEventListener("click",function(){
-            document.querySelector(".user__display").classList.toggle('hide');
-            document.querySelector(".login__fullname").setAttribute("disabled", "disabled");
-            document.querySelector(".login__birthday").setAttribute("disabled", "disabled");
-            document.querySelector(".login__phonenumber").setAttribute("disabled", "disabled");
+            document.querySelector('.user__display').classList.toggle('hide');
+            document.querySelector('.login__fullname').setAttribute("disabled", "disabled");
+            document.querySelector('.login__birthday').setAttribute("disabled", "disabled");
+            document.querySelector('.login__phonenumber').setAttribute("disabled", "disabled");
             document.querySelector(".login__address").setAttribute("disabled", "disabled");
             document.querySelector(".capnhat").classList.add("hide");
             document.querySelector(".change").classList.remove("hide")
@@ -74,14 +75,14 @@ var capnhat = document.querySelector('.capnhat')
         
         })
         userinfor__close.addEventListener("click",function(){
-            document.querySelector(".user__display").classList.toggle('hide');
-            document.querySelector(".login__fullname").setAttribute("disabled", "disabled");
-            document.querySelector(".login__birthday").setAttribute("disabled", "disabled");
-            document.querySelector(".login__phonenumber").setAttribute("disabled", "disabled");
-            document.querySelector(".login__address").setAttribute("disabled", "disabled");
-            document.querySelector(".login__capnhat").classList.add("hide");
-            document.querySelector(".login__change").classList.remove("hide")
-            document.querySelector('.login__fileInput').classList.add('hide')
+            document.querySelector('.user__display').classList.toggle('hide');
+            document.querySelector('.login__fullname').setAttribute("disabled", "disabled");
+            document.querySelector('.login__birthday').setAttribute("disabled", "disabled");
+            document.querySelector('.login__phonenumber').setAttribute("disabled", "disabled");
+            document.querySelector('.login__address').setAttribute("disabled", "disabled");
+            document.querySelector('.capnhat').classList.add('hide');
+            document.querySelector('.change').classList.remove('hide')
+            document.querySelector('.fileInput').classList.add('hide')
         })
 var fullname = document.querySelector('.login__fullname')
 var birthday = document.querySelector('.login__birthday')
@@ -339,12 +340,13 @@ signup3.addEventListener('click', function(e){
 signup__close.addEventListener('click', function(e){
     signup__display.classList.toggle('hide');
 })
-login.addEventListener('click', function(e){
-    login__display.classList.toggle('hide');
-})
 login__close.addEventListener('click', function(e){
     login__display.classList.toggle('hide');
 })
+login.addEventListener('click', function(e){
+    login__display.classList.toggle('hide');
+})
+
 signup__option.addEventListener('click', function(e){
     login__display.classList.toggle('hide');
     signup__display.classList.toggle('hide');

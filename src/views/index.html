@@ -23,14 +23,12 @@
             <p class="acc signup">Đăng kí</p>
             <p class="user"></p>
 
-            <div class="cart"><i class='bx bx-cart-alt'></i>
-
+            <a class="cart"><i class='bx bx-cart-alt'></i>
                 <div class="cart__circle">1</div>
                 <p>Giỏ hàng</p>
-               
-            </div>
+            </a>
             <div class="heart"><i class='bx bxs-heart'></i>
-                <div class="heart__circle">0</div>
+                <div  class="heart__circle">0</div>
             </div>
             <div class="cart__alert hide">
                 <div class="narrow"></div>
@@ -135,13 +133,13 @@
 
                     </script>
                     <label for="fullname">Họ và tên:</label>
-                    <input class="fullname" name="fullname" type="text" disable> <br>
+                    <input class="login__fullname" name="fullname" type="text" disable calue=""> <br>
                     <label for="birthday">Ngày sinh:</label>
-                    <input class="birthday" name="birthday" type="text" disabled value=""> <br>
+                    <input class="login__birthday" name="birthday" type="text" disabled value=""> <br>
                     <label for="phonenumber">Số điện thoại:</label>
-                    <input class="phonenumber" name="phoneNumber" type="text" required disabled value=""> <br>
+                    <input class="login__phonenumber" name="phoneNumber" type="text" required disabled value=""> <br>
                     <label for="address">Địa chỉ:</label>
-                    <input class="address" min=8 name="address" type="text" required disabled value=""> <br>
+                    <input class="login__address" min=8 name="address" type="text" required disabled value=""> <br>
                     <button type="button" onclick="enableForm()" class="change">Chỉnh sửa</button>
                     <input type="submit" name="submit" value="Cập nhật" class="capnhat hide">
                 </form>
