@@ -4,28 +4,11 @@ import connection from "../models/connectSQL.js";
 export default (req, res) => {
   try {
     // sửa dữ liệu trong database
-    connection.query(`select * from products inner join product_detail on products.product_id = product_detail.product_id
-    where products.product_id = ${req.params.id}`, async (error, results, fields) =>{
-        const productDetail = JSON.stringify(results);
-        const response = JSON.parse(productDetail)
-        if (isValidJson(response)) {
-          console.log('Chuỗi JSON hợp lệ.');
-      } else {
-          console.log('Chuỗi JSON không hợp lệ.');
-      }
-        res.json(response);
+    connection.query(`select * from product_detail where product_id = ${req.params.id}`, async (error, results, fields) =>{
+        const product_detail = JSON.stringify(results).replace(/\s/g, "");
+        res.json(JSON.parse(product_detail));
     })
   } catch(error){
     console.log(error);
 } 
 };
-
-function isValidJson(jsonString) {
-  try {
-      JSON.parse(jsonString);
-      return true;
-  } catch (error) {
-      return false;
-  }
-}
-

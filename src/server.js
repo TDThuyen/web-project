@@ -27,10 +27,6 @@ app.use(Session)
 app.options('*',corMw);
 
 await redisClient.connect()
-// do stuff
-// await redisClient.disconnect()
-
-// connect(URI_DB)
 
 connect(MONGO_DB)
     .then(() => {
@@ -42,7 +38,6 @@ connect(MONGO_DB)
 
 app.use(router)
 
-
 app.use((req,res) => {
     return res.send("404 not found")
 })
@@ -52,7 +47,7 @@ app.listen(PORT, () => {
 })
 
 
-
+redisClient.flushAll();
 
 
 
