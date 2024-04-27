@@ -21,6 +21,7 @@
             <p class="acc login">Đăng nhập</p>
             <p class="vachngan">|</p>
             <p class="acc signup">Đăng kí</p>
+            <p class="user"></p>
 
             <div class="cart"><i class='bx bx-cart-alt'></i>
 
@@ -38,6 +39,10 @@
             <div class="heart__alert hide">
                 <div class="heart__narrow"></div>
                 <div class="heart__alert__text"><p>Vui lòng</p><p class="signup3">đăng nhập</p></div>
+            </div>
+            <div class="logout hide">
+                <i class='bx bx-log-out bx-flip-vertical' ></i>
+                <p>Đăng xuất</p>
             </div>
 
 
@@ -97,7 +102,85 @@
         </div>
 
 
+        <form method="post" >
+            <div class="logout__display hide">
+                <div class="logout__form">
+                    <div class="logout__form__head">
+                        <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                        <i class='bx bx-x' id="logout__close"></i>
+                    </div>
+                
+                    <button class="logout__yes" name="submit" value="log_out">Có</button>
+                    <button class="logout__no">Không</button>
+                </div>
+            </div>
+        </form>
+        <div class="user__display hide">
+            <div class="user__information">
+                <i class='bx bx-x' id="userinfor__close"></i>
+                <form method="post">
+                    <img id="avt" src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-vector-plus-icon-png-image_3996246.jpg">
+                    <input type="file" class="fileInput hide" accept="image/*"></br>
+                    <script>
+                        document.querySelector('.fileInput').addEventListener('change', function() {
+                            var file = this.files[0];
+                            if (file) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    document.getElementById('avt').setAttribute('src', e.target.result);
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
 
+                    </script>
+                    <label for="fullname">Họ và tên:</label>
+                    <input class="fullname" name="fullname" type="text" disable> <br>
+                    <label for="birthday">Ngày sinh:</label>
+                    <input class="birthday" name="birthday" type="text" disabled value=""> <br>
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input class="phonenumber" name="phoneNumber" type="text" required disabled value=""> <br>
+                    <label for="address">Địa chỉ:</label>
+                    <input class="address" min=8 name="address" type="text" required disabled value=""> <br>
+                    <button type="button" onclick="enableForm()" class="change">Chỉnh sửa</button>
+                    <input type="submit" name="submit" value="Cập nhật" class="capnhat hide">
+                </form>
+            </div>
+        </div>
+        <!-- <script>
+            function checkLoginStatus() {
+                var cookieMatch = document.cookie.match(/name=([^;]+)/);
+                return cookieMatch && cookieMatch[1];
+              }
+             
+              function setUserLoggedIn(username) {
+                document.cookie = `name=${username}`;
+              }
+
+              document.querySelector('.login__form__1').addEventListener("submit", function(event) {
+               event.preventDefault(); 
+               var username = document.querySelector('.username').value;
+               var password = document.querySelector('.password').value;
+              
+               if (username === "adminnn" && password === "123123123") {
+               setUserLoggedIn(username); 
+               alert("Đăng nhập thành công!");
+              
+              window.location.reload();
+              } else {
+             alert("Đăng nhập thất bại! Vui lòng thử lại.");
+      }
+    });
+
+              window.onload = function() {
+      var isLoggedIn = checkLoginStatus();
+      if (isLoggedIn) {
+        alert("Xin chào " + isLoggedIn + "! Bạn đã đăng nhập.");
+      } else {
+        alert("Bạn chưa đăng nhập.");
+      }
+    };
+</script> -->
         <div class="list">
             <div class="product">
                 <div class="__text">
@@ -168,11 +251,13 @@
         </div>
     </header>
     <main>
+        
         <section id="product">
         <div class="slideshow">
             <i class='bx bxs-left-arrow-circle' ></i>
         <i class='bx bxs-right-arrow-circle' ></i>
         <img src="/img/slideshow_1_master.webp" class="slideshow__image"></div>
+        <div class="search__text"></div>
         <div class="product__area">  
            
         </div>
@@ -184,7 +269,7 @@
         
     </section>
     <section id="chinhsachbanhang">
-        
+            <h2>CHÍNH SÁCH BÁN HÀNG</h2>
         <ul>
             <li>Nếu quý khách hàng không thanh toán toàn bộ giá trị đơn hàng trước khi giao hàng thì với các đơn hàng có giá trị trên 10,000,000đ; quý khách hàng vui lòng đặt cọc 1,000,000đ. Phần giá trị còn lại của đơn hàng quý khách hàng vui lòng thanh toán ngay lúc nhận hàng. Nếu quý khách hàng hủy đơn hàng, MOHO sẽ không hoàn lại 1,000,000đ đã đặt cọc.</li>
             <li>Trong trường hợp quý khách hàng không thanh toán ngay phần giá trị còn lại của đơn hàng khi nhận hàng, MOHO sẽ thu hồi số sản phẩm tương ứng với số tiền chưa thanh toán và quý khách hàng vui lòng thanh toán phí giao hàng cho MOHO là 300,000đ cho các khu vực miễn phí giao hàng.</li>

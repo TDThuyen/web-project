@@ -1,9 +1,10 @@
 import Evaluate from "../models/Evaluate.js";
+import redisClient from "../models/connectRedis.js";
 import connection from "../models/connectSQL.js";
+
 
 export default async(req,res) =>{
     try{
-        console.log(req.body)
         // comment
         if(req.body.submit === "comment"){
             const commented = await Evaluate.findOne({
@@ -36,23 +37,28 @@ export default async(req,res) =>{
                 });
             }
         }
-        if(req.body.submit === "them-gio-hang"){
-            console.log(req.body)
-            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity) value("${await getUserID(req)}","${req.body.id_prod}","${req.body.price}","${req.body.quantity}"))`, async (error, results, fields) =>{
-                
+        else {;
+            connection.query(`select id_prod from product_detail inner join products
+            on product_detail.product_id = products.product_id
+            where products.product_name = "${req.body.picked__product__name}" and product_detail.color=${req.body.picked__product__color}`, async (error, results, fields) =>{
+                if(results) {
+                    const id_prod = results[0].id_prod;
+                    connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}")`, async (error, results, fields) =>{
+                        if (error) {
+                            console.error("Error :", error);
+                            return;
+                        } 
+                    })
+                }
+                if (error) {
+                    console.error("Error :", error);
+                    return;
+                } 
             })
+            res.redirect(`id=${req.params.id}`);
         }
     } catch(error){
         console.log(error)
     }
 }
 
-async function getUserID(req){
-    if(req.sessionID&&req.session.user){
-        const user = JSON.parse(await redisClient.get("sess:"+req.sessionID))
-        return user?.user_id
-    }
-    else {
-        return -1;
-    }
-}

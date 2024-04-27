@@ -1,4 +1,5 @@
 import express from "express";
+import getCart from "../controllers/getCart.js";
 import getNumberOfProducts from "../controllers/getNumberOfProducts.js";
 import getProductByID from "../controllers/getProductByID.js";
 import getProductDetail from "../controllers/getProductDetail.js";
@@ -17,6 +18,7 @@ routerAPI.get("/getProducts/collection=:collection/:page",getProducts)
 routerAPI.get("/getNumberOfProducts",getNumberOfProducts)
 routerAPI.get("/getNumberOfProducts/q=:q",getNumberOfProducts)
 routerAPI.get("/getNumberOfProducts/collection=:collection",getNumberOfProducts)
+routerAPI.get("/getMyCart",getCart)
 
 routerAPI.get("/getMyComment/id=:id", async(req,res) => {
     try{
