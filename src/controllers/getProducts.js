@@ -17,10 +17,15 @@ export default async (req, res) => {
         from products left join sales
         on products.product_id = sales.product_id`, async (error, results, fields) => {
           const products = JSON.stringify(results);
-          products.replace(/\s/g, "");
-          const paginatedProducts = JSON.parse(products).slice(start, end);
-          redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
-          res.json(paginatedProducts);
+          if(products){
+            products.replace(/\s/g, "");
+            const paginatedProducts = JSON.parse(products).slice(start, end);
+            redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
+            res.json(paginatedProducts);
+          }
+          else{
+            res.json("")
+          }
         })
       }
       else {
@@ -32,15 +37,21 @@ export default async (req, res) => {
       connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.ing_mid,sales.quantity_sold,sales.discount 
           from products left join sales
           on products.product_id = sales.product_id
-          where products.name like %${q}%`, async (error, results, fields) => {
+          where products.product_name like "%${q}%"`, async (error, results, fields) => {
         const products = JSON.stringify(results);
-        products.replace(/\s/g, "");
-        const paginatedProducts = JSON.parse(products).slice(start, end);
-        res.json(paginatedProducts);
+        if(products){
+          products.replace(/\s/g, "");
+          const paginatedProducts = JSON.parse(products).slice(start, end);
+          redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
+          res.json(paginatedProducts);
+        }
+        else{
+          res.json("")
+        }
       })
     }
     if (req.params.collection) {
-      const collection = req.params.collection;
+      let collection = req.params.collection;
       if(collection === "phong__ngu") collection = 1;
       else if(collection === "phong__an") collection = 2;
       else if(collection === "phong__khach") collection = 3;
@@ -54,10 +65,15 @@ export default async (req, res) => {
         on products.product_id = sales.product_id
         where products.id_port = ${collection}`, async (error, results, fields) => {
           const products = JSON.stringify(results);
-          products.replace(/\s/g, "");
-          const paginatedProducts = JSON.parse(products).slice(start, end);
-          redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
-          res.json(paginatedProducts);
+          if(products){
+            products.replace(/\s/g, "");
+            const paginatedProducts = JSON.parse(products).slice(start, end);
+            redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
+            res.json(paginatedProducts);
+          }
+          else{
+            res.json("")
+          }
         })
       }
       else {

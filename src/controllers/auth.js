@@ -7,7 +7,6 @@ dotenv.config()
 const SECRET_CODE = process.env.SECRET_CODE
 
 export const auth = async(req,res) => {
-    console.log(req.body)
     if(req.body.submit==="Sign up"){
         //dang ki
         try {

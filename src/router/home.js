@@ -7,7 +7,7 @@ const routerHome = express.Router()
 routerHome.use("/",checkPermisson)
 routerHome.get("/", (req,res) => {
     if(req.session.user) {
-        res.render("user.html")
+        res.render("index.html")
     }
 })
 routerHome.post("/",uploadCloud.single("image"), home)
