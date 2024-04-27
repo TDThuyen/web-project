@@ -112,42 +112,80 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>DELETE USER</h2>
+                                    <h2>DELETE PRODUCT</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%= JSON.stringify(product) %>
-                    <div class='form'>
-                        <form action="/admin/delete-product" method="POST">
-                            <fieldset>
-                                <legend>ARE YOU SURE DELETE THIS PRODUCT</legend>
-                                <div class='input gruop d-none'>
-                                    <label> Product Id </label>
-                                    <input type="text" name="productId" value="<%= product.product_id %>">
+                <div class='form'>
+                    <form action="/admin/delete-product" method="POST">
+                        <fieldset>
+                            <legend>DELETE PRODUCT</legend>
+                            <div class='input gruop d-none'>
+                                <label> Id: </label>
+                                <input type="text" name="productId" value="<%= x.product_id %>">
+                            </div>
+                            <div class="form-group row">
+                                <div class='col-sm-4'>
+                                    <label> Product_Name</label>
+                                    <input type="text" class="form-control" name="product_name"
+                                        value="<%= x.product_name%>">
                                 </div>
-                                <div class='input gruop'>
-                                    <label> Product Name</label>
-                                    <input type="text" name="product_name" value="<%= product.product_name %>">
+                                <div class='col-sm-4'>
+                                    <label> Id port</label>
+                                    <input type="text" name='id_port' class="form-control" value="<%= x.id_port%>" />
                                 </div>
-                                <div class='input gruop'>
+                                <div class='col-sm-4'>
+                                    <label> Price</label>
+                                    <input type="text" name="price" class="form-control" value="<%= x.price %>" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class='col-sm-3'>
+                                    <label> Img top</label>
+                                    <input type="text" name="img_top" class="form-control" value="<%= x.img_top %>" />
+                                </div>
+                                <div class='col-sm-3'>
+                                    <label> Img Mid </label>
+                                    <input type="text" name="ing_mid" class="form-control" value="<%= x.ing_mid%>" />
+                                </div>
+                                <div class='col-sm-3'>
+                                    <label>Color</label>
+                                    <input type="text" name="color" class="form-control" value="<%= details.color%>" />
+                                </div>
+                                <div class='col-sm-3'>
+                                    <label>Quantity of color</label>
+                                    <input type="text" name="quantity_of_color" class="form-control"
+                                        value="<%= details.quantity_of_color%>" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class='col-sm-12'>
                                     <label> Description</label>
-                                    <input type="text" name="description" value="<%= product.description %>" />
+                                    <textarea id="motasp" name="description">
+                                                <%= x.description%>
+                                            </textarea>
                                 </div>
-                                <div>
-                                    <button>Confirm</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                            </div>
+                            <div>
+                                <button>Confirm</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-
+    <script src="js/custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('motasp');
+    </script>
 </body>
 
 </html>
