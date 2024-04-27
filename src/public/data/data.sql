@@ -28,9 +28,12 @@ CREATE TABLE `cart` (
   `id_prod` int DEFAULT NULL,
   `total_amout` decimal(10,2) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `cart_fk_1` (`id_prod`),
-  CONSTRAINT `cart_fk_1` FOREIGN KEY (`id_prod`) REFERENCES `product_detail` (`id_prod`)
+  KEY `products_fk_4` (`product_id`),
+  CONSTRAINT `cart_fk_1` FOREIGN KEY (`id_prod`) REFERENCES `product_detail` (`id_prod`),
+  CONSTRAINT `products_fk_4` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,82 +109,6 @@ LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_quantity_trigger_for_product_detail` AFTER INSERT ON `orderdetail` FOR EACH ROW BEGIN
-    UPDATE product_detail
-    SET quantity_of_color = quantity_of_color - NEW.quantity
-    WHERE id_prod = new.id_prod;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_sold_trigger_for_products` AFTER INSERT ON `orderdetail` FOR EACH ROW BEGIN
-    UPDATE products
-    SET quantity_sold = quantity_sold + new.quantity
-    WHERE product_id = new.product_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `restore_quantity_trigger_for_product_detail` AFTER DELETE ON `orderdetail` FOR EACH ROW BEGIN
-    UPDATE product_detail
-    SET quantity_of_color = quantity_of_color + old.quantity
-    WHERE id_prod = old.id_prod;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `restore_sold_trigger_for_products` AFTER DELETE ON `orderdetail` FOR EACH ROW BEGIN
-    UPDATE products
-    SET quantity_sold = quantity_sold - old.quantity
-    WHERE product_id = old.product_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `orders`
@@ -210,23 +137,6 @@ LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `delete_order_detail` AFTER DELETE ON `orders` FOR EACH ROW BEGIN
-    DELETE FROM order_detail WHERE order_id = OLD.order_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `portfolio`
@@ -279,44 +189,6 @@ LOCK TABLES `product_detail` WRITE;
 INSERT INTO `product_detail` VALUES (3,3,4,73),(4,4,3,224),(5,5,2,92),(6,6,5,118),(7,7,1,152),(8,8,4,267),(9,9,3,245),(10,10,5,55),(11,11,2,150),(12,12,1,213),(13,13,3,143),(14,14,4,215),(15,15,1,39),(16,16,2,120),(17,17,2,276),(18,18,5,63),(19,19,3,256),(20,20,4,57),(21,21,1,158),(22,22,2,221),(23,23,4,184),(24,24,1,29),(25,25,1,217),(26,26,5,67),(27,27,3,84),(28,28,2,99),(29,29,1,226),(30,30,4,95),(31,31,3,185),(32,32,4,71),(33,33,2,167),(34,34,3,167),(35,35,5,156),(36,36,1,235),(37,37,4,52),(38,38,3,82),(39,39,5,43),(40,40,4,226),(41,41,5,202),(42,42,3,104),(43,43,2,56),(44,44,1,262),(45,45,4,114),(46,46,2,124),(47,47,1,284),(48,48,2,134),(49,49,4,110),(50,50,5,231),(51,51,3,252),(52,52,1,262),(53,53,3,44),(54,54,4,142),(55,55,5,109),(56,56,5,42),(57,57,1,98),(58,58,2,204),(59,59,1,216),(60,60,4,187),(61,61,1,213),(62,62,3,22),(63,63,5,60),(64,64,5,170),(65,65,4,133),(66,66,2,57),(67,67,1,144),(68,68,3,56),(69,69,4,138),(70,70,1,251),(71,71,2,221),(72,72,3,28),(73,73,4,170),(74,74,4,128),(75,75,4,267),(76,76,3,114),(77,77,1,20),(78,78,2,210),(79,79,5,128),(80,80,4,93),(81,81,3,135),(82,82,2,164),(83,83,5,94),(84,84,4,238),(85,85,3,56),(86,86,1,106),(87,87,2,129),(88,88,4,105),(89,89,5,195),(90,90,2,35),(91,91,3,151),(92,92,1,250),(93,93,2,287),(94,94,5,219),(95,95,1,243),(96,96,1,255),(97,97,3,204),(98,98,5,175),(99,99,4,106),(100,100,5,231),(101,101,1,166),(102,102,3,228),(103,103,5,230),(104,104,3,55),(105,105,2,141),(106,106,1,54),(107,107,1,50),(108,108,4,30),(109,109,5,164),(110,110,5,269),(111,111,2,148),(112,112,3,180),(113,113,2,195),(114,114,1,28),(115,115,4,46),(116,116,1,111),(117,117,2,49),(118,118,3,264),(119,119,1,146),(120,120,5,101),(121,121,3,171),(122,122,1,25),(123,123,4,177),(124,124,5,54),(125,125,4,135),(126,126,1,180),(127,127,3,209),(128,128,4,174),(129,129,5,250),(130,130,5,103),(131,131,1,264),(132,132,3,51),(133,133,5,182),(134,134,3,106),(135,135,4,96),(136,136,5,213),(137,137,4,27),(138,138,2,112),(139,139,4,185),(140,140,1,201),(141,141,5,115),(142,142,2,223),(143,143,3,56),(144,144,1,42),(145,145,5,194),(146,146,1,175),(147,147,2,182),(148,148,5,268),(149,149,5,275),(150,150,4,236),(151,151,3,141),(152,152,2,144),(153,153,3,187),(154,154,5,253),(155,155,5,136),(156,156,2,59),(157,157,4,50),(158,158,2,132),(159,159,4,97),(160,160,5,23),(161,161,1,42),(162,162,2,210),(163,163,5,47),(164,164,1,184),(165,165,4,38),(166,166,2,99),(167,167,4,259),(168,168,3,147),(169,169,1,142),(170,170,2,251),(171,171,2,115),(172,172,1,184),(173,173,2,189),(174,174,4,98),(175,175,5,167),(176,176,1,295),(177,177,4,191),(178,178,2,57),(179,179,1,243),(180,180,4,149),(181,181,3,143),(182,182,1,26),(183,183,2,97),(184,184,5,178),(185,185,4,40),(186,3,1,32),(187,4,2,47),(188,5,3,21),(189,6,4,15),(190,7,5,40),(191,8,1,26),(192,9,2,18),(193,10,3,38),(194,11,4,12),(195,12,5,35),(196,13,1,49),(197,14,2,17),(198,15,3,29),(199,16,4,42),(200,17,5,23),(201,18,1,13),(202,19,2,30),(203,20,3,45),(204,21,4,11),(205,22,5,20),(206,23,1,48),(207,24,2,31),(208,25,3,16),(209,26,4,39),(210,27,5,25),(211,28,1,37),(212,29,2,14),(213,30,3,22),(214,31,4,36),(215,32,5,19),(216,33,1,44),(217,34,2,10),(218,35,3,28),(219,36,4,46),(220,37,5,24),(221,38,1,33),(222,39,2,12),(223,40,3,41),(224,41,4,17),(225,42,5,27),(226,43,1,14),(227,44,2,29),(228,45,3,34),(229,46,4,20),(230,47,5,37),(231,48,1,45),(232,49,2,11),(233,50,3,18),(234,51,4,26),(235,52,5,43),(236,53,1,16),(237,54,2,38),(238,55,3,30),(239,56,4,21),(240,57,5,32),(241,58,1,47),(242,59,2,13),(243,60,3,25),(244,61,4,35),(245,62,5,22),(246,63,1,39),(247,64,2,19),(248,65,3,12),(249,66,4,42),(250,67,5,31),(251,68,1,15),(252,69,2,29),(253,70,3,24),(254,71,4,38),(255,72,5,16),(256,73,1,37),(257,74,2,11),(258,75,3,23),(259,76,4,31),(260,77,5,28),(261,78,1,41),(262,79,2,20),(263,80,3,34),(264,81,4,19),(265,82,5,36),(266,83,1,26),(267,84,2,43),(268,85,3,17),(269,86,4,32),(270,87,5,10),(271,88,1,47),(272,89,2,22),(273,90,3,35),(274,91,4,15),(275,92,5,39),(276,93,1,21),(277,94,2,28),(278,95,3,37),(279,96,4,14),(280,97,5,29),(281,98,1,16),(282,99,2,26),(283,100,3,48),(284,101,4,11),(285,102,5,40),(286,103,1,25),(287,104,2,34),(288,105,3,18),(289,106,4,31),(290,107,5,12),(291,108,1,42),(292,109,2,19),(293,110,3,30),(294,111,4,46),(295,112,5,27),(296,113,1,33),(297,114,2,24),(298,115,3,14),(299,116,4,29),(300,117,5,37),(301,118,1,23),(302,119,2,45),(303,120,3,16),(304,121,4,39),(305,122,5,11),(306,123,1,28),(307,124,2,31),(308,125,3,40),(309,126,4,22),(310,127,5,35),(311,128,1,13),(312,129,2,38),(313,130,3,21),(314,131,4,32),(315,132,5,46),(316,133,1,25),(317,134,2,34),(318,135,3,12),(319,136,4,43),(320,137,5,17),(321,138,1,30),(322,139,2,19),(323,140,3,26),(324,141,4,44),(325,142,5,15),(326,143,1,36),(327,144,2,11),(328,145,3,47),(329,146,4,20),(330,147,5,38),(331,148,1,29),(332,149,2,22),(333,150,3,33),(334,151,4,10),(335,152,5,43),(336,153,1,18),(337,154,2,30),(338,155,3,41),(339,156,4,23),(340,157,5,36),(341,158,1,14),(342,159,2,45),(343,160,3,27),(344,161,4,37),(345,162,5,19),(346,163,1,31),(347,164,2,16),(348,165,3,42),(349,166,4,28),(350,167,5,39),(351,168,1,12),(352,169,2,24),(353,170,3,38),(354,171,4,11),(355,172,5,20),(356,173,1,34),(357,174,2,48),(358,175,3,25),(359,176,4,43),(360,177,5,17),(361,178,1,29),(362,179,2,36),(363,180,3,14),(364,181,4,45),(365,182,5,21),(366,183,1,32),(367,184,2,10),(368,185,3,47);
 /*!40000 ALTER TABLE `product_detail` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_stock_for_products_from_product_detail` AFTER INSERT ON `product_detail` FOR EACH ROW BEGIN
-    UPDATE products
-    SET quantity_stock = quantity_stock + new.quantity_of_color
-    WHERE product_id = new.product_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_products_from_productdetail` AFTER UPDATE ON `product_detail` FOR EACH ROW BEGIN
-    UPDATE products
-    SET quantity_stock  = quantity_stock  + (NEW.quantity_of_color - OLD.quantity_of_color)
-    WHERE product_id = NEW.product_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `products`
@@ -374,7 +246,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,3,10),(2,4,11),(3,5,12),(4,6,13),(5,7,14),(6,8,15),(7,9,16),(8,10,17),(9,11,18),(10,12,19),(11,13,20),(12,14,21),(13,15,22),(14,16,23),(15,17,24),(16,18,25),(17,19,26),(18,20,27),(19,21,28),(20,22,29),(21,23,30),(22,24,31),(23,25,32),(24,26,33),(25,27,34),(26,28,35),(27,29,36),(28,30,10),(29,31,11),(30,32,12),(31,33,13),(32,34,14),(33,35,15),(34,36,16),(35,37,17),(36,38,18),(37,39,19),(38,40,20),(39,41,21),(40,42,22),(41,43,23),(42,44,24),(43,45,25),(44,46,26),(45,47,27),(46,48,28),(47,49,29),(48,50,30),(49,51,31),(50,52,32),(51,53,33),(52,54,34),(53,55,35),(54,56,36),(55,57,10),(56,58,11),(57,59,12),(58,60,13),(59,61,14),(60,62,15),(61,63,16),(62,64,17),(63,65,18),(64,66,19),(65,67,20),(66,68,21),(67,69,22),(68,70,23),(69,71,24),(70,72,25),(71,73,26),(72,74,27),(73,75,28),(74,76,29),(75,77,30),(76,78,31),(77,79,32),(78,80,33),(79,81,34),(80,82,35),(81,83,36),(82,84,10),(83,85,11),(84,86,12),(85,87,13),(86,88,14),(87,89,15),(88,90,16),(89,91,17),(90,92,18),(91,93,19),(92,94,20),(93,95,21),(94,96,22),(95,97,23),(96,98,24),(97,99,25),(98,100,26),(99,101,27),(100,102,28),(101,103,29),(102,104,30),(103,105,31),(104,106,32),(105,107,33),(106,108,34),(107,109,35),(108,110,36),(109,111,10),(110,112,11),(111,113,12),(112,114,13),(113,115,14),(114,116,15),(115,117,16),(116,118,17),(117,119,18),(118,120,19),(119,121,20),(120,122,21),(121,123,22),(122,124,23),(123,125,24),(124,126,25),(125,127,26),(126,128,27),(127,129,28),(128,130,29),(129,131,30),(130,132,31),(131,133,32),(132,134,33),(133,135,34),(134,136,35),(135,137,36),(136,138,10),(137,139,11),(138,140,12),(139,141,13),(140,142,14),(141,143,15),(142,144,16),(143,145,17),(144,146,18),(145,147,19),(146,148,20),(147,149,21),(148,150,22),(149,151,23),(150,152,24),(151,153,25),(152,154,26),(153,155,27),(154,156,28),(155,157,29),(156,158,30),(157,159,31),(158,160,32),(159,161,33),(160,162,34),(161,163,35),(162,164,36),(163,165,10),(164,166,11),(165,167,12),(166,168,13),(167,169,14),(168,170,15),(169,171,16),(170,172,17),(171,173,18),(172,174,19),(173,175,20),(174,176,21),(175,177,22),(176,178,23),(177,179,24),(178,180,25),(179,181,26),(180,182,27),(181,183,28),(182,184,29),(183,185,30);
+INSERT INTO `sales` VALUES (1,3,10),(2,4,30),(3,5,30),(4,6,30),(5,7,30),(6,8,30),(7,9,30),(8,10,30),(9,11,30),(10,12,30),(11,13,20),(12,14,20),(13,15,20),(14,16,20),(15,17,20),(16,18,20),(17,19,20),(18,20,20),(19,21,20),(20,22,20),(21,23,30),(22,24,40),(23,25,40),(24,26,40),(25,27,40),(26,28,40),(27,29,40),(28,30,10),(29,31,30),(30,32,30),(31,33,30),(32,34,30),(33,35,30),(34,36,30),(35,37,30),(36,38,30),(37,39,30),(38,40,20),(39,41,20),(40,42,20),(41,43,20),(42,44,20),(43,45,20),(44,46,20),(45,47,20),(46,48,20),(47,49,20),(48,50,30),(49,51,40),(50,52,40),(51,53,40),(52,54,40),(53,55,40),(54,56,40),(55,57,10),(56,58,30),(57,59,30),(58,60,30),(59,61,30),(60,62,30),(61,63,30),(62,64,30),(63,65,30),(64,66,30),(65,67,20),(66,68,20),(67,69,20),(68,70,20),(69,71,20),(70,72,20),(71,73,20),(72,74,20),(73,75,20),(74,76,20),(75,77,30),(76,78,40),(77,79,40),(78,80,40),(79,81,40),(80,82,40),(81,83,40),(82,84,10),(83,85,30),(84,86,30),(85,87,30),(86,88,30),(87,89,30),(88,90,30),(89,91,30),(90,92,30),(91,93,30),(92,94,20),(93,95,20),(94,96,20),(95,97,20),(96,98,20),(97,99,20),(98,100,20),(99,101,20),(100,102,20),(101,103,20),(102,104,30),(103,105,40),(104,106,40),(105,107,40),(106,108,40),(107,109,40),(108,110,40),(109,111,10),(110,112,30),(111,113,30),(112,114,30),(113,115,30),(114,116,30),(115,117,30),(116,118,30),(117,119,30),(118,120,30),(119,121,20),(120,122,20),(121,123,20),(122,124,20),(123,125,20),(124,126,20),(125,127,20),(126,128,20),(127,129,20),(128,130,20),(129,131,30),(130,132,40),(131,133,40),(132,134,40),(133,135,40),(134,136,40),(135,137,40),(136,138,10),(137,139,30),(138,140,30),(139,141,30),(140,142,30),(141,143,30),(142,144,30),(143,145,30),(144,146,30),(145,147,30),(146,148,20),(147,149,20),(148,150,20),(149,151,20),(150,152,20),(151,153,20),(152,154,20),(153,155,20),(154,156,20),(155,157,20),(156,158,30),(157,159,40),(158,160,40),(159,161,40),(160,162,40),(161,163,40),(162,164,40),(163,165,10),(164,166,30),(165,167,30),(166,168,30),(167,169,30),(168,170,30),(169,171,30),(170,172,30),(171,173,30),(172,174,30),(173,175,20),(174,176,20),(175,177,20),(176,178,20),(177,179,20),(178,180,20),(179,181,20),(180,182,20),(181,183,20),(182,184,20),(183,185,30);
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -387,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-28  0:37:10
+-- Dump completed on 2024-04-28  1:20:29
