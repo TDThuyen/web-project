@@ -38,12 +38,13 @@ export default async(req,res) =>{
             }
         }
         else {;
-            connection.query(`select id_prod from product_detail inner join products
+            connection.query(`select id_prod,product_detail.product_id from product_detail inner join products
             on product_detail.product_id = products.product_id
             where products.product_name = "${req.body.picked__product__name}" and product_detail.color=${req.body.picked__product__color}`, async (error, results, fields) =>{
                 if(results) {
                     const id_prod = results[0].id_prod;
-                    connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}")`, async (error, results, fields) =>{
+                    const product_id = results[0].product_id
+                    connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity,product_id) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) =>{
                         if (error) {
                             console.error("Error :", error);
                             return;

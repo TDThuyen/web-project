@@ -1,9 +1,10 @@
 import express from "express";
-import { checkPermisson } from "../middlewares/checkPermission.js";
+import transaction from "../controllers/transaction.js";
 
 const routerCart = express.Router()
-routerAdmin.get("/", checkPermisson, (req,res) => {
-    res.render("cart.html")
+routerCart.post("/",transaction)
+routerCart.get("/",(req,res)=>{
+    res.render("test.html")
 })
 
 export default routerCart;
