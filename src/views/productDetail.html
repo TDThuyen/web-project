@@ -56,7 +56,7 @@
                 <p class="rate__text"></p>
 
             </div>
-
+            
             <div class="price">
                 <p class="sale"></p>
                 <p class="sale__price"></p>
@@ -75,7 +75,25 @@
             <div class="product__description">
             </div>
             <img class="tuvan" src="/img/tuvan.png">
-
+            <button class="evaluate__display">Đánh giá</button>
+            <form class="evaluate hide" method="post">
+                <p>Đánh giá sản phẩm (Trên thang điểm 5):</p><br>
+                <label for="rating1">1</label>
+                <input type="radio" id="rating1" name="rating" value="1">
+                <label for="rating2">2</label>
+                <input type="radio" id="rating2" name="rating" value="2">
+                <label for="rating3">3</label>
+                <input type="radio" id="rating3" name="rating" value="3">
+                <label for="rating4">4</label>
+                <input type="radio" id="rating4" name="rating" value="4">
+                <label for="rating5">5</label>
+                <input type="radio" id="rating5" name="rating" value="5">
+                <button class="evaluate__submit evaluate__submit1" type="submit">Gửi</button>
+            </form>
+            <form class="comment hide" method="post">
+                <input type="text" placeholder="Nhận xét về sản phẩm"> 
+                <button class="evaluate__submit evaluate__submit2" type="submit">Comment</button>
+            </form>
         </div>
         <form class="form hide" method="post">
             <input class="picked__product__name" type="text" name="picked__product__name">
