@@ -393,3 +393,69 @@ header{
     color: #dae4d0;
 }
 
+.evaluate{
+    margin-left: 2px;
+    margin-bottom: 15px;
+    border: 1px solid #b9b6b6;
+    padding: 5px 10px;
+}
+.evaluate label{
+    margin-right: 3px;
+}
+.evaluate input{
+    margin-right: 10px;
+}
+.evaluate p{
+    margin-right: 10px;
+}
+
+.evaluate__submit{
+    width: 80px;
+    height: 25px;
+    transition: 0.3 ease-in-out;
+    background-color: #dae4d0;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.evaluate__submit:hover{
+    background-color: #fff;
+    border: 1px solid #dae4d0;
+}
+evaluate__submit1{
+    width: 10px;
+}
+.evaluate__display{
+    width: 100%;
+    height: 50px;
+    background-color: #dae4d0;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3 ease-in-out;
+}
+.evaluate__display:hover{
+    background-color: #fff;
+    border: 1px solid #dae4d0;
+}
+
+.comment{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    height: 25px;
+}
+
+.comment input{
+    width: 85%;
+    height: 100%;
+    outline: none;
+    border: 1px solid #dae4d0;
+    padding-left: 2px;
+}
+
+.hide{
+    display: none;
+}
