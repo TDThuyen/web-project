@@ -2,54 +2,55 @@
 <html lang="en">
 
 <head>
+    <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
     <title>MOHO ADMIN</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/img/fevicon.png" type="image/png" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
     <link rel="stylesheet" href="/css/custom.css" />
 </head>
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+<!-- <style>
+   .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+   }
 
-    th,
-    td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
+   .dropdown:hover .dropdown-menu {
+      display: block;
+   }
+</style> -->
 
-    tr:hover {
-        background-color: coral;
-    }
-</style>
-
-<body class="inner_page tables_page">
+<body class="dashboard dashboard_1">
     <div class="full_container">
         <div class="inner_container">
+            <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="/admin/"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
-                                    alt="#" /></a>
+                            <!-- <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                           alt="#" /></a> -->
                         </div>
                     </div>
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
-                                    alt="#" />
+                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
                             </div>
                             <div class="user_info">
                                 <h6>Thuyen depzai</h6>
@@ -70,12 +71,25 @@
                         <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
                                     Management</span></a>
                         </li>
-                        <li><a href="/admin/orderManagement"><i class="fa fa-table purple_color2"></i> <span>Order
-                                    Management</span></a>
+                        <li class="dropdown">
+                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
+                                    class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
+                                <li><a href="/admin/orderManagement/delivered">Đã giao</a></li>
+                                <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
+                            </ul>
                         </li>
+
                     </ul>
                 </div>
             </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
             <div id="content">
                 <div class="topbar">
                     <nav class="navbar navbar-expand-lg navbar-light">
@@ -115,84 +129,27 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>EDIT PRODUCT</h2>
+                                    <h2>HÀNG ĐÃ HỦY</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class='form'>
-                    <form action="/admin/updateProduct" method="post">
-                        <fieldset>
-                            <legend>Update New Product</legend>
-                            <div class='input gruop d-none'>
-                                <label> Id: </label>
-                                <input type="text" name="productId" value="<%= x.product_id %>">
-                            </div>
-                            <div class='input gruop d-none'>
-                                <label> Id: </label>
-                                <input type="text" name="oldColor" value="<%= details.color %>">
-                            </div>
-                            <div class="form-group row">
-                                <div class='col-sm-4'>
-                                    <label> Product_Name</label>
-                                    <input type="text" class="form-control" name="product_name"
-                                        value="<%= x.product_name%>">
-                                </div>
-                                <div class='col-sm-4'>
-                                    <label> Id port</label>
-                                    <input type="text" name='id_port' class="form-control" value="<%= x.id_port%>" />
-                                </div>
-                                <div class='col-sm-4'>
-                                    <label> Price</label>
-                                    <input type="text" name="price" class="form-control" value="<%= x.price %>" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class='col-sm-3'>
-                                    <label> Img top</label>
-                                    <input type="text" name="img_top" class="form-control" value="<%= x.img_top %>" />
-                                </div>
-                                <div class='col-sm-3'>
-                                    <label> Img Mid </label>
-                                    <input type="text" name="ing_mid" class="form-control" value="<%= x.ing_mid%>" />
-                                </div>
-                                <div class='col-sm-3'>
-                                    <label>Color</label>
-                                    <input type="text" name="color" class="form-control" value="<%= details.color%>" />
-                                </div>
-                                <div class='col-sm-3'>
-                                    <label>Quantity of color</label>
-                                    <input type="text" name="quantity_of_color" class="form-control"
-                                        value="<%= details.quantity_of_color%>" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class='col-sm-12'>
-                                    <label> Description</label>
-                                    <textarea id="motasp" name="description">
-                                            <%= x.description%>
-                                        </textarea>
-                                </div>
-                            </div>
-                            <div>
-                                <button>SAVE</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        CKEDITOR.replace('motasp');
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
     </script>
-
 
 </body>
 

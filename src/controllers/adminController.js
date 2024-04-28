@@ -1,3 +1,4 @@
+import { connect } from "mongoose";
 import connection from "../models/connectSQL.js";
 export const postCreateUser = (req, res) => {
     let name = req.body.name;
@@ -216,6 +217,8 @@ export const addProduct = (req, res) => {
     res.redirect("/admin/ProductManagement")
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////// SAN PHAM 
 // lay thong tin toan bo san pham 
 export const getProduct = (req, res) => {
     connection.query(
@@ -299,7 +302,7 @@ export const postUpdateProduct = (req, res) => {
     let color = req.body.color;
     let quantity_of_color = req.body.quantity_of_color;
     let productId = req.body.productId;
-
+    let oldColor = req.body.oldColor;
     connection.query(
         `update products 
         set product_name = ?, description = ?, id_port = ? , price = ? , img_top = ?, ing_mid = ?
@@ -314,7 +317,7 @@ export const postUpdateProduct = (req, res) => {
                 `update product_detail
                 set color = ?, quantity_of_color = ?
                 where product_id = ? and color = ?`,
-                [color, quantity_of_color, productId, color],
+                [color, quantity_of_color, productId, oldColor],
                 function (err, results1) {
                     if (err) {
                         console.log(err);
@@ -408,3 +411,202 @@ export const deleteProduct = (req, res) => {
         }
     );
 };
+
+//////////////////////////////////////////////////////////////////////// DAT HANG 
+
+//PENDING
+export const pendingProducts = (req, res) => {
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img 
+        FROM orders 
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.status = 1
+        ORDER BY orders.order_date DESC`,
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            // console.log(results);
+            res.render("pendingProducts.ejs", { listOrder: results });
+        }
+    );
+}
+
+// convert status 
+export const convertPendingStatus = (req, res) => {
+
+    let order_id = req.params.id;
+    let status = req.body.status;
+    connection.query(
+        `update orders  
+        set status = ?
+        where order_id = ?`,
+        [status, order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            // console.log("Người dùng đã được tạo thành công");
+        }
+    )
+    res.redirect("/admin/orderManagement/pending")
+}
+
+// // CONFIRM
+export const confirmedProducts = (req, res) => {
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.status = 2
+        ORDER BY orders.order_date DESC`,
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(">>>> results", results);
+            res.render("confirmedProducts.ejs", { confirmed: results });
+        }
+    );
+}
+
+export const convertConfirmedStatus = (req, res) => {
+
+    let order_id = req.params.id;
+    let status = req.body.status;
+    // console.log(">>>>cau troi", order_id, "cau troi", status)
+    connection.query(
+        `update orders  
+        set status = ?
+        where order_id = ?`,
+        [status, order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            // console.log("Người dùng đã được tạo thành công");
+        }
+    )
+    res.redirect("/admin/orderManagement/confirmed")
+}
+
+// DELIVERING
+export const deliveringProducts = (req, res) => {
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.status = 3
+        ORDER BY orders.order_date DESC`,
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(results);
+            res.render("deliveringProducts.ejs", { listOrder: results });
+        }
+    );
+}
+
+export const convertDeliveringStatus = (req, res) => {
+
+    let order_id = req.params.id;
+    let status = req.body.status;
+    connection.query(
+        `update orders
+        set status = ?
+        where order_id = ?`,
+        [status, order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            console.log("Người dùng đã được tạo thành công");
+        }
+    )
+    res.redirect("/admin/orderManagement/delivering")
+}
+
+//DELIVERED
+export const deliveredProducts = (req, res) => {
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.status = 4
+        ORDER BY orders.order_date DESC`,
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(results);
+            res.render("deliveringProducts.ejs", { listOrder: results });
+        }
+    );
+}
+
+export const convertDeliveredStatus = (req, res) => {
+
+    let order_id = req.params.id;
+    let status = req.body.status;
+    connection.query(
+        `update orders
+        set status = ?
+        where order_id = ?`,
+        [status, order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            console.log("Người dùng đã được tạo thành công");
+        }
+    )
+    res.redirect("/admin/orderManagement/delivered")
+}
+
+//CANCELLED
+export const cancelledProducts = (req, res) => {
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.status = 5
+        ORDER BY orders.order_date DESC`,
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(results);
+            res.render("deliveringProducts.ejs", { listOrder: results });
+        }
+    );
+}
+
+export const convertCancelledStatus = (req, res) => {
+
+    let order_id = req.params.id;
+    let status = req.body.status;
+    connection.query(
+        `update orders
+        set status = ?
+        where order_id = ?`,
+        [status, order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi tạo người dùng');
+            }
+            console.log("Người dùng đã được tạo thành công");
+        }
+    )
+    res.redirect("/admin/orderManagement/cancelled")
+}

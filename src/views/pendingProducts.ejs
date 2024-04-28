@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>MOHO ADMIN</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+</head>
+<!-- <style>
+   .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+   }
+
+   .dropdown:hover .dropdown-menu {
+      display: block;
+   }
+</style> -->
+
+<style>
+    .form-control {
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: row;
+        /* Thay đổi từ column thành row */
+        flex-wrap: wrap;
+        /* Thêm dòng này để wrap nếu không đủ không gian */
+        align-items: center;
+        gap: 20px;
+        justify-content: space-around;
+        /* Thêm dòng này để căn giữa các form */
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        width: 30%;
+        /* Thay đổi từ 45% thành 30% để có thể hiển thị 3 form trên cùng một hàng */
+    }
+
+
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-group input[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #007BFF;
+        cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <!-- <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                           alt="#" /></a> -->
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
+                            </div>
+                            <div class="user_info">
+                                <h6>Thuyen depzai</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
+                                    Management</span></a>
+                        </li>
+
+                        <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
+                                    Management</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
+                                    class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
+                                <li><a href="/admin/orderManagement/delivered">Đã giao</a></li>
+                                <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">ADMIN</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>HÀNG CHỜ XÁC NHẬN</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <% for (const order of listOrder) { %>
+                        <form action="/admin/orderManagement/<%=order.order_id%>" method="post" class="form-group">
+                            <img src="<%= order.user_img %>" alt="Product Image" style="width:100px;height:100px;">
+                            <label>Tên khách hàng: <%= order.name %></label>
+                            <label>Email: <%= order.email %></label>
+                            <label>Số điện thoại: <%= order.phone %></label>
+                            <label>Địa chỉ: <%= order.address %></label>
+                            <label>Tên tài khoản: <%= order.user_name %> </label>
+                            <label>Ngày đặt hàng: <%= new Date(order.order_date).toLocaleString('vi-VN') %></label>
+                            <label>Tổng giá tiền: <%= order.total_amount %> VND</label>
+                            <label>Trạng thái đơn hàng</label>
+                            <select name="status" class="form-control">
+                                <option value="1" <%=order.status==1 ? 'selected' : '' %>>1</option>
+                                <option value="2" <%=order.status==2 ? 'selected' : '' %>>2</option>
+                                <option value="3" <%=order.status==3 ? 'selected' : '' %>>3</option>
+                                <option value="4" <%=order.status==4 ? 'selected' : '' %>>4</option>
+                                <option value="5" <%=order.status==5 ? 'selected' : '' %>>5</option>
+                            </select>
+                            <input type="submit" value="Update">
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
