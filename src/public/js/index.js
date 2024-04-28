@@ -381,7 +381,23 @@ heart.addEventListener('click',function(e){
 // })
 
 
+async function updateCartItemCount() {
+    try {
+        const response = await fetch('/getNumberOfProductsOfMyCart');
+        const data = await response.json();
+        if(data){
+            const cartItemCountElement = document.getElementById('cartItemCount');
+            if (cartItemCountElement && data[0]) {
+                cartItemCountElement.textContent = data[0]?.itemCount?.toString();
+            }
+        }
+    } catch (error) {
+        console.error('Error updating cart item count:', error);
+    }
+}
 
+// Gọi hàm cập nhật số lượng sản phẩm khi trang được tải
+document.addEventListener('DOMContentLoaded', updateCartItemCount);
 
 
 

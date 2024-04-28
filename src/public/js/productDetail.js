@@ -73,7 +73,7 @@ if (idIndex !== -1) {
     var id = url.substring(idIndex + 3);
 }
 
-
+var cart__circle = document.createElement('div')
 
 async function fetchProducts(id) {
   try {
@@ -119,11 +119,10 @@ async function fetchProducts(id) {
     img__top = productDetail2[0].img_top;
     namee = productDetail2[0].product_name;
     if( document.cookie.match(/name=([^;]+)/) !== null){
-      var cart__circle = document.createElement('div')
       var cart__icon = document.createElement('i')
       cart__icon.className='bx bx-cart-alt';
       cart__circle.className='cart__circle'
-      cart__circle.innerHTML='0'
+      cart__circle.id = "cart__circle"
       var cart__circle__text = document.createElement('p')
       cart__circle__text.innerHTML = 'Giỏ hàng'
       cart.appendChild(cart__icon);
@@ -263,6 +262,28 @@ function displayProducts(productDetail) {
 };
 
 fetchProducts(id);
+
+async function updateCartItemCount() {
+  try {
+      const response = await fetch('/getNumberOfProductsOfMyCart');
+      const data = await response.json();
+      if(data){
+        if (data[0]) {
+            cart__circle.innerHTML = data[0]?.itemCount?.toString();
+            console.log(data[0]?.itemCount?.toString())
+        }
+        else {
+          cart__circle.innerHTML = "0";
+        }
+      }
+  } catch (error) {
+      console.error('Error updating cart item count:', error);
+  }
+}
+
+// Gọi hàm cập nhật số lượng sản phẩm ngay sau khi tải xong DOM
+document.addEventListener('DOMContentLoaded', updateCartItemCount);
+
 
 
 
