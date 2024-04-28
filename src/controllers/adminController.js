@@ -586,7 +586,7 @@ export const cancelledProducts = (req, res) => {
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
             console.log(results);
-            res.render("deliveringProducts.ejs", { listOrder: results });
+            res.render("cancelledProducts.ejs", { listOrder: results });
         }
     );
 }
@@ -609,4 +609,46 @@ export const convertCancelledStatus = (req, res) => {
         }
     )
     res.redirect("/admin/orderManagement/cancelled")
+}
+
+
+export const getOrderDetails = (req, res) => {
+    let order_id = req.params.id
+    connection.query(
+        `SELECT *
+        FROM orderdetail o 
+        JOIN products p ON o.product_id = p.product_id
+        JOIN product_detail pd on o.id_prod = pd.id_prod
+        WHERE o.order_id = ?`,
+        [order_id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(results);
+            res.render("getOrderDetails.ejs", { listOrderDetails: results });
+        }
+    );
+}
+
+
+// tim kiem don hang: 
+export const findOrder = (req, res) => {
+    const orderId = req.query.orderId;
+    connection.query(
+        `SELECT orders.*, customers.name, customers.email, customers.phone, customers.address, customers.birthday, customers.role, customers.user_name, customers.user_img
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        WHERE orders.order_id = ?`,
+        [orderId],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            console.log(results);
+            res.render("findOrder.ejs", { listOrder: results });
+        }
+    );
 }

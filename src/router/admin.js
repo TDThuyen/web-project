@@ -27,7 +27,9 @@ import { convertDeliveringStatus } from "../controllers/adminController.js"
 import { convertDeliveredStatus } from "../controllers/adminController.js"
 import { convertCancelledStatus } from "../controllers/adminController.js"
 
+import { getOrderDetails } from "../controllers/adminController.js"
 
+import { findOrder } from "../controllers/adminController.js"
 
 const routerAdmin = express.Router()
 routerAdmin.get("/", checkPermisson, (req, res) => {
@@ -102,7 +104,14 @@ routerAdmin.post("/orderManagement/:id", convertDeliveredStatus)
 routerAdmin.get("/orderManagement/cancelled", cancelledProducts)
 routerAdmin.post("/orderManagement/:id", convertCancelledStatus)
 
+// orderdetail 
+routerAdmin.get("/orderDetails/:id", getOrderDetails)
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//tim kiem don hang: 
+routerAdmin.get("/searchOrder", findOrder)
 
 
 export default routerAdmin;

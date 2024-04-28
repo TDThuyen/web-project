@@ -36,6 +36,25 @@
 </style> -->
 
 <style>
+    /* trang thai */
+    .status-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .status-container .status-label {
+        flex: 60%;
+        /* Chiếm 60% chiều rộng */
+    }
+
+    .status-container select {
+        flex: 40%;
+        /* Chiếm 40% chiều rộng */
+    }
+
+    /* end trang thai don hang */
+
     .form-control {
         display: block;
         width: 100%;
@@ -100,12 +119,7 @@
         background-color: #0056b3;
     }
 
-    .dropdown-menu {
-        min-width: 20rem;
-        left: 0 px;
-    }
-
-    /* xem chi tiet don hang */
+    /* button xem chi tiet don hang */
     .detail-button {
         display: inline-block;
         background-color: #007BFF;
@@ -122,26 +136,11 @@
         background-color: #0056b3;
     }
 
-
-
-    /* trang thai */
-    .status-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    /* hiển thị các thành phần status bên trái */
+    .dropdown-menu {
+        min-width: 20rem;
+        left: 0 px;
     }
-
-    .status-container .status-label {
-        flex: 60%;
-        /* Chiếm 60% chiều rộng */
-    }
-
-    .status-container select {
-        flex: 40%;
-        /* Chiếm 40% chiều rộng */
-    }
-
-    /* end trang thai don hang */
 </style>
 
 <body class="dashboard dashboard_1">
@@ -212,8 +211,9 @@
                                     <ul class="user_profile_dd">
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle" src="/img/user_img.jpg"
-                                                    alt="#" /><span class="name_user">ADMIN</span></a>
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">ADMIN</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="help.html">Help</a>
                                                 <a class="dropdown-item" href="#"><span>Log Out</span> <i
@@ -231,47 +231,44 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>HÀNG ĐÃ XÁC NHẬN</h2>
+                                    <h2>ĐƠN HÀNG BẠN ĐANG TÌM KIẾM</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form action="/admin/searchOrder" method="GET"
-                    style="margin-bottom: 20px; display: flex; justify-content: right;">
-                    <input type="text" name="orderId" placeholder="Nhập mã đơn hàng"
-                        style="margin-right: 10px; padding: 5px; width: 334px;">
-                    <input type="submit" value="Tìm kiếm"
-                        style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
-                </form>
+                <!-- <form action="/admin/searchOrder" method="GET">
+                    <input type="text" name="orderId" placeholder="Nhập ID đơn hàng">
+                    <input type="submit" value="Tìm kiếm">
+                </form> -->
+
                 <div class="form-container">
-                    <% for (let confirm of confirmed) { %>
-                        <form action="/admin/orderManagement/<%=confirm.order_id%>" method="post" class="form-group">
-                            <img src="<%= confirm.user_img %>" alt="Product Image" style="width:100px;height:100px;">
-                            <label>Tên khách hàng: <%= confirm.name %></label>
-                            <label>Email: <%= confirm.email %></label>
-                            <label>Số điện thoại: <%= confirm.phone %></label>
-                            <label>Địa chỉ: <%= confirm.address %></label>
-                            <label>Tên tài khoản: <%= confirm.user_name %> </label>
-                            <label>Ngày đặt hàng: <%= new Date(confirm.order_date).toLocaleString('vi-VN') %></label>
-                            <label>Tổng giá tiền: <%= confirm.total_amount %> VND</label>
+                    <% for (const order of listOrder) { %>
+                        <form action="/admin/orderManagement/<%=order.order_id%>" method="post" class="form-group">
+                            <img src="<%= order.user_img %>" alt="Product Image" style="width:100px;height:100px;">
+                            <label>Tên khách hàng: <%= order.name %></label>
+                            <label>Email: <%= order.email %></label>
+                            <label>Số điện thoại: <%= order.phone %></label>
+                            <label>Địa chỉ: <%= order.address %></label>
+                            <label>Tên tài khoản: <%= order.user_name %> </label>
+                            <label>Ngày đặt hàng: <%= new Date(order.order_date).toLocaleString('vi-VN') %></label>
+                            <label>Tổng giá tiền: <%= order.total_amount %> VND</label>
                             <div class="status-container">
-                                <label class="status-label">Trạng thái đơn hàng: </label>
+                                <label class="status-label">Trạng thái đơn hàng</label>
                                 <select name="status" class="form-control">
-                                    <option value="1" <%=confirm.status==1 ? 'selected' : '' %>>Chờ xác nhận</option>
-                                    <option value="2" <%=confirm.status==2 ? 'selected' : '' %>>Đã xác nhận</option>
-                                    <option value="3" <%=confirm.status==3 ? 'selected' : '' %>>Đang giao</option>
-                                    <option value="4" <%=confirm.status==4 ? 'selected' : '' %>>Đã giao</option>
-                                    <option value="5" <%=confirm.status==5 ? 'selected' : '' %>>Đã hủy</option>
+                                    <option value="1" <%=order.status==1 ? 'selected' : '' %>>1</option>
+                                    <option value="2" <%=order.status==2 ? 'selected' : '' %>>2</option>
+                                    <option value="3" <%=order.status==3 ? 'selected' : '' %>>3</option>
+                                    <option value="4" <%=order.status==4 ? 'selected' : '' %>>4</option>
+                                    <option value="5" <%=order.status==5 ? 'selected' : '' %>>5</option>
                                 </select>
                             </div>
                             <input type="submit" value="Update">
-                            <a href="/admin/orderDetails/<%=confirm.order_id%>" class="detail-button">Xem chi tiết đơn
+                            <a href="/admin/orderDetails/<%=order.order_id%>" class="detail-button">Xem chi tiết đơn
                                 hàng</a>
                         </form>
                         <% } %>
                 </div>
-
             </div>
         </div>
     </div>

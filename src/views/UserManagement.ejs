@@ -32,6 +32,11 @@
    tr:hover {
       background-color: coral;
    }
+
+   .dropdown-menunew {
+      min-width: 20rem;
+      left: 0 px;
+   }
 </style>
 
 <body class="inner_page tables_page">
@@ -48,7 +53,7 @@
                <div class="sidebar_user_info">
                   <div class="icon_setting"></div>
                   <div class="user_profle_side">
-                     <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" />
+                     <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
                      </div>
                      <div class="user_info">
                         <h6>Thuyen depzai</h6>
@@ -69,9 +74,20 @@
                   <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
                            Management</span></a>
                   </li>
-                  <li><a href="/admin/orderManagement"><i class="fa fa-table purple_color2"></i> <span>Order
-                           Management</span></a>
+                  <li class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b class="caret"></b>
+                     </a>
+                     <ul class="dropdown-menunew">
+                        <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
+                        <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
+                        <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
+                        <li><a href="/admin/orderManagement/delivered">Đã giao</a></li>
+                        <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
+                     </ul>
                   </li>
+
+
                </ul>
             </div>
          </nav>
@@ -84,16 +100,11 @@
 
                      <div class="right_topbar">
                         <div class="icon_info">
-                           <ul>
-                              <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                              <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                              <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                           </ul>
                            <ul class="user_profile_dd">
                               <li>
                                  <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                       class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg"
-                                       alt="#" /><span class="name_user">ADMIN</span></a>
+                                       class="img-responsive rounded-circle" src="/img/user_img.jpg" alt="#" /><span
+                                       class="name_user">ADMIN</span></a>
                                  <div class="dropdown-menu">
                                     <a class="dropdown-item" href="help.html">Help</a>
                                     <a class="dropdown-item" href="#"><span>Log Out</span> <i
@@ -228,12 +239,20 @@
                            <td>
                               <%= user.user_img %>
                            </td>
-                           <td>
-                              <a href="/admin/update/<%=user.customer_id%>">Edit</a>
-                              <form action="/admin/delete-user/<%=user.customer_id%>" method="POST">
-                                 <button>Delete</button>
+                           <td style="text-align: center;">
+                              <a href="/admin/update/<%=user.customer_id%>"
+                                 style="margin-right: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+                                 Edit
+                              </a>
+                              <form action="/admin/delete-user/<%=user.customer_id%>" method="POST"
+                                 style="display: inline;">
+                                 <button
+                                    style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px;">
+                                    Delete
+                                 </button>
                               </form>
                            </td>
+
                         </tr>
                         <!-- <%=cnt ++ %> -->
                         <% } %>
