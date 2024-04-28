@@ -88,16 +88,16 @@ var fullname = document.querySelector('.login__fullname')
 var birthday = document.querySelector('.login__birthday')
 var phonenumber = document.querySelector('.login__phonenumber')
 var address = document.querySelector('.login__address')
-// fullname.value=decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1]);
-// birthday.value=decodeURIComponent(document.cookie.match(/birthday=([^;]+)/)[1]).substring(3, 13);
-// phonenumber.value=decodeURIComponent(document.cookie.match(/phoneNumber=([^;]+)/)[1]);
-// let customerAddress = decodeURIComponent(document.cookie.match(/address=([^;]+)/)[1]);
-// if(customerAddress === "j:null"){
-//     address.value= ""
-// }
-// else {
-//     address.value = customerAddress
-// }
+fullname.value=decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1]);
+birthday.value=decodeURIComponent(document.cookie.match(/birthday=([^;]+)/)[1]).substring(3, 13);
+phonenumber.value=decodeURIComponent(document.cookie.match(/phoneNumber=([^;]+)/)[1]);
+let customerAddress = decodeURIComponent(document.cookie.match(/address=([^;]+)/)[1]);
+if(customerAddress === "j:null"){
+    address.value= ""
+}
+else {
+    address.value = customerAddress
+}
 
 }
   

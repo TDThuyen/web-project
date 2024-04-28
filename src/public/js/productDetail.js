@@ -1,6 +1,7 @@
 var url = window.location.href;
 // Tìm vị trí của chuỗi "id=" trong URL
 var idIndex = url.indexOf("id=");
+var urlId = url.substring(idIndex + 3);
 var diep =1
 var plus = document.querySelector('.plus')
 var mainasu = document.querySelector('.mainasu')
@@ -80,7 +81,6 @@ async function fetchProducts(id) {
     const productDetail1 = await response1.json();
     const response2 = await fetch(`/getProduct/id=${id}`);
     const productDetail2 = await response2.json();
-         console.log(productDetail2[0])
     if( document.cookie.match(/name=([^;]+)/) === null){
       productDetail1.forEach(element => {
         var color = document.createElement('div');
@@ -115,7 +115,6 @@ async function fetchProducts(id) {
     
     displayProducts(productDetail2);
     pricee =productDetail2[0].price;
-    // console.log(pricee)
     discountt = productDetail2[0].discount;
     img__top = productDetail2[0].img_top;
     namee = productDetail2[0].product_name;
@@ -178,8 +177,7 @@ async function fetchProducts(id) {
   
         product__color.appendChild(color);
       });
-       
-    //console.log((parseFloat(pricee)*(1-parseFloat(productDetail[0].discount)/100))*diep)
+      
       
       var form = document.querySelector('.form');  
       var picked__product__name = form.querySelector('.picked__product__name');
@@ -211,8 +209,6 @@ async function fetchProducts(id) {
     console.log(error)
   }
 }
-console.log(img__top)
-console.log(diep)
 
 function displayProducts(productDetail) {
      var product__name1 = document.querySelector(".product__name1");
@@ -267,6 +263,8 @@ function displayProducts(productDetail) {
 };
 
 fetchProducts(id);
+
+
 
 
 

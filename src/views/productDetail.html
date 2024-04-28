@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +8,59 @@
     <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <img class="logo"src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
-    <header> 
-        
-      <a href="/auth" class="Home">Trang chủ</a>
-      <p>>></p>
-      <p class="product__name1"></p>
-      <a class="cart" href="/cart">
-        <!-- <i class='bx bx-cart-alt hide'></i> -->
-      </a>
+    <script>
+        var a = document.cookie.match(/status=([^;]+)/)
+        if (a) {
+            var statusAlert = a[0];
+            console.log(statusAlert);
+            if (statusAlert === "status=ok") {
+                alert("thêm vào giỏ hàng thành công !")
+            }
+            else if (statusAlert === "status=notok") {
+                alert("thêm giỏ hàng thất bại !")
+            }
+            else if(statusAlert === "status=login"){
+                alert("đăng nhập thành công !")
+            }
+            fetch('/deleteStatusCookie', {
+                method: 'DELETE', // hoặc 'POST' hoặc 'GET', phụ thuộc vào cách máy chủ của bạn xử lý yêu cầu
+            })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                });
+        }
+    </script>
+    <img class="logo" src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
+    <header>
+
+        <a href="/auth" class="Home">Trang chủ</a>
+        <p>>></p>
+        <p class="product__name1"></p>
+        <a class="cart" href="/cart">
+            <!-- <i class='bx bx-cart-alt hide'></i> -->
+        </a>
     </header>
     <main>
         <div class="img__small">
             <img class="product_image1">
-        <img class="product_image2">
+            <img class="product_image2">
         </div>
         <img class="main__img">
         <div class="product__information">
             <h3 class="product__name2"></h3>
-             <p class="sold"></p> 
-          <div class="rate">
-            <img class="rate__star">
-            <p class="rate__text"></p>
-            
-          </div>  
-            
-           <div class="price"> 
-               <p class="sale"></p> 
-              <p class="sale__price"></p>
-              <p class="unsale__price"></p>
+            <p class="sold"></p>
+            <div class="rate">
+                <img class="rate__star">
+                <p class="rate__text"></p>
+
+            </div>
+
+            <div class="price">
+                <p class="sale"></p>
+                <p class="sale__price"></p>
+                <p class="unsale__price"></p>
             </div>
             <div class="product__color">
                 <p>Màu sắc: </p>
@@ -46,26 +70,26 @@
                 <div class="quantity__number"></div>
                 <div class="plus">+</div>
             </div>
-            <button class="addCart">THÊM VÀO GIỎ</button>
-            <button class="buy">MUA NGAY</button>     
+            <button class="addCart" name = "submit", value="addCart">THÊM VÀO GIỎ</button>
+            <button class="buy">MUA NGAY</button>
             <div class="product__description">
             </div>
             <img class="tuvan" src="/img/tuvan.png">
-            
+
         </div>
         <form class="form hide" method="post">
-           <input class="picked__product__name" type="text" name="picked__product__name">
-           <input class="picked__product__img" type="text" name="picked__product__img">
-           <input class="picked__product__color" type="text" name="picked__product__color">
-           <input class="total__amount" name="total__amount" type="number">
-           <input class="quantity" name="quantity" type="number">
+            <input class="picked__product__name" type="text" name="picked__product__name">
+            <input class="picked__product__img" type="text" name="picked__product__img">
+            <input class="picked__product__color" type="text" name="picked__product__color">
+            <input class="total__amount" name="total__amount" type="number">
+            <input class="quantity" name="quantity" type="number">
         </form>
         <div class="alert__login hide">
             <div class="alert__login__box">
                 <i class='bx bx-x-circle'></i>
                 <p> Bạn cần đăng nhập để thao tác thêm!</p>
                 <h5 class="alert__login__box__text">Đăng nhập</h5>
-               </div>
+            </div>
         </div>
 
         <div class="signup__display hide">
@@ -122,4 +146,5 @@
     </main>
 </body>
 <script src="/js/productDetail.js"></script>
+
 </html>
