@@ -86,10 +86,11 @@ body {
 .cart,
 .heart {
     margin-top: 3.6%;
-    margin-left: 4%;
+    margin-left: 4%; 
     position: relative;
     cursor: pointer;
     text-decoration: none;
+    color: #000;
 
 }
 .cart__alert{
@@ -213,6 +214,7 @@ body {
     margin-top: -25px;
     margin-left: 40px;
     text-decoration: none;
+
 }
 
 .signup__display,
