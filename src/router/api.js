@@ -20,6 +20,17 @@ routerAPI.get("/getNumberOfProducts/q=:q", getNumberOfProducts)
 routerAPI.get("/getNumberOfProducts/collection=:collection", getNumberOfProducts)
 routerAPI.get("/getMyCart", getCart)
 
+routerAPI.get("/getMyOrders", (req,res)=>{
+    if(req.session?.user){
+        connection.query(`select * from orders where customer_id = ${req.session.user.customer_id}`,(error, results, fields) => {
+            if(results){
+                res.json(results);
+            }
+          })
+        }
+        else res.json("")
+})
+
 routerAPI.get("/getMyComment/id=:id", async (req, res) => {
     try {
         const myComment = await Evaluate.findOne({
