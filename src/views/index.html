@@ -24,20 +24,20 @@
             <p class="user"></p>
 
             <a class="cart"><i class='bx bx-cart-alt'></i>
-                <div class="cart__circle">1</div>
+                <div class="cart__circle" id="cartItemCount">0</div>
                 <p>Giỏ hàng</p>
             </a>
-            <div class="heart"><i class='bx bxs-heart'></i>
+            <!-- <div class="heart"><i class='bx bxs-heart'></i>
                 <div  class="heart__circle">0</div>
-            </div>
+            </div> -->
             <div class="cart__alert hide">
                 <div class="narrow"></div>
                 <div class="cart__alert__text"><p>Vui lòng</p><p class="signup2">đăng nhập</p></div>
             </div>
-            <div class="heart__alert hide">
+            <!-- <div class="heart__alert hide">
                 <div class="heart__narrow"></div>
                 <div class="heart__alert__text"><p>Vui lòng</p><p class="signup3">đăng nhập</p></div>
-            </div>
+            </div> -->
             <div class="logout hide">
                 <i class='bx bx-log-out bx-flip-vertical' ></i>
                 <p>Đăng xuất</p>
@@ -117,7 +117,7 @@
             <div class="user__information">
                 <i class='bx bx-x' id="userinfor__close"></i>
                 <form method="post">
-                    <img id="avt" src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-vector-plus-icon-png-image_3996246.jpg">
+                    <img id="avt" src="https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg">
                     <input type="file" class="fileInput hide" accept="image/*"></br>
                     <script>
                         document.querySelector('.fileInput').addEventListener('change', function() {

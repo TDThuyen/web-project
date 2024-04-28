@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Contact Form</title>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHO - GIỎ HÀNG</title>
+    <link href="/css/test.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
-    <div class="container">
-        <h2 class="text-center my-4">Gửi thắc mắc cho chúng tôi</h2>
-        <form method="post">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputName">Tên của bạn</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Tên của bạn">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputEmail">Email của bạn</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email của bạn">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputPhone">Số điện thoại của bạn</label>
-                    <input type="tel" class="form-control" id="inputPhone" placeholder="Số điện thoại của bạn">
-                </div>
+    <img class="logo" src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
+    <header>
+        <a href="/auth" class="Home">Trang chủ</a>
+        <p>>></p>
+        <p>Giỏ hàng</p>
+    </header>
+    <h2>Giỏ hàng của bạn</h2>
+    <p class="product__number"></p>
+    <main>
+       
+        <div class="cart__product">
+            
+            <div class="cart__product__area">
             </div>
-            <div class="form-group">
-                <label for="inputMessage">Nội dung</label>
-                <textarea class="form-control" id="inputMessage" rows="3" placeholder="Nội dung"></textarea>
+        </div>
+        <div class="cart__text">
+            <div class="order__detail">
+                <h3>Thông tin đơn hàng</h3>
+                <div class="pay">
+                    <p>Tổng tiền:</p>
+                    <p class="total__cart"></p>
+                </div>
+                
+                <button class="order__button">Thanh toán</button>
             </div>
-            <button type="submit" class="btn btn-primary">Gửi</button>
-        </form>
-    </div>
-    <!-- Add Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
+            <div class="cart__text__child">
+                <a href ="/home">&#x2190;Tiếp tục mua hàng</a>
+                <ul>
+                    <li class="texxt">&#10003; Không rủi ro. Đặt hàng trước, thanh toán sau tại nhà. Miễn phí giao hàng & lắp đặt tại tất cả quận huyện thuộc TP.HCM, Hà Nội, Khu đô thị Ecopark, Biên Hòa và một số khu vực thuộc Bình Dương (*)</li>
+                    <li class="texxt">&#10003; Đơn hàng của quý khách sẽ được giao hàng trong vòng 3 ngày, vui lòng đợi nhân viên tư vấn xác nhận lịch giao hàng trước khi thực hiện chuyển khoản đơn hàng</li>
+                    <li class="texxt">&#10003; Miễn phí 1 đổi 1 - Bảo hành 2 năm - Bảo trì trọn đời (**)</li>
+                    <li class="texxt">&#10003; Tất cả sản phẩm được thiết kế bởi các chuyên gia thiết kế nội thất đến từ Đan Mạch và Hàn Quốc</li>
+                    <li class="texxt">&#10003; Chất lượng Quốc Tế đảm bảo theo tiêu chuẩn cho người dùng tại Việt Nam</li>
+                    <li class="texxt">&#10003; Sản xuất tại nhà máy SAVIMEX với gần 40 năm kinh nghiệm</li>
+                    <li class="texxt">(*) Không áp dụng cho danh mục Đồ Trang Trí</li>
+                     <li class="texxt">(**) Không áp dụng cho các sản phẩm Clearance. Chỉ bảo hành 01 năm cho khung ghế, mâm và cần đối với Ghế Văn Phòng</li>
+                </ul>
 
+            </div>
+        </div>
+    </main>
+    <form class="delete_product hide" method="delete">
+         <input class="delete__product__name" name="delete__product__name" value="">
+         <input class="delete__product__color" name="delete__product__color" value="">
+    </form>
+</body>
+<script src="/js/test.js"></script>
 </html>

@@ -5,6 +5,7 @@ import getProductByID from "../controllers/getProductByID.js";
 import getProductDetail from "../controllers/getProductDetail.js";
 import getProducts from "../controllers/getProducts.js";
 import Evaluate from "../models/Evaluate.js";
+import connection from "../models/connectSQL.js";
 import rateAVG from "../models/rateAVG.js";
 
 const routerAPI = express.Router()
@@ -70,6 +71,21 @@ routerAPI.get("/getRate/id=:id", async (req, res) => {
 routerAPI.delete("/deleteStatusCookie", (req,res) => {
     res.clearCookie("status")
     res.end();
+})
+routerAPI.get("/getNumberOfProductsOfMyCart", (req,res) => {
+    if(req.session?.user){
+    connection.query(`select count(*) as itemCount from cart where customer_id = ${req.session.user.customer_id}`,(error, results, fields) => {
+        if(results){
+            if(results[0]) {
+                res.json(results)
+            }
+            else {
+                res.json("")
+            }
+        }
+      })
+    }
+    else res.json("")
 })
 export default routerAPI;
 
