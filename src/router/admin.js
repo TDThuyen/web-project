@@ -14,6 +14,21 @@ import { postDeleteProduct } from "../controllers/adminController.js"
 import { deleteProduct } from "../controllers/adminController.js"
 import { getProductDetails } from "../controllers/adminController.js"
 
+// orders 
+import { pendingProducts } from "../controllers/adminController.js"
+import { confirmedProducts } from "../controllers/adminController.js"
+import { deliveringProducts } from "../controllers/adminController.js"
+import { deliveredProducts } from "../controllers/adminController.js"
+import { cancelledProducts } from "../controllers/adminController.js"
+
+import { convertPendingStatus } from "../controllers/adminController.js"
+import { convertConfirmedStatus } from "../controllers/adminController.js"
+import { convertDeliveringStatus } from "../controllers/adminController.js"
+import { convertDeliveredStatus } from "../controllers/adminController.js"
+import { convertCancelledStatus } from "../controllers/adminController.js"
+
+
+
 const routerAdmin = express.Router()
 routerAdmin.get("/", checkPermisson, (req, res) => {
     res.render("indexAdmin.html")
@@ -36,6 +51,8 @@ routerAdmin.post("/delete-user", postDestroyMessage);
 
 routerAdmin.post("/USER", checkPermisson, postCreateUser)
 
+///////////////////////////////////////////////////////////////////////////
+
 // them san pham
 routerAdmin.post("/addProduct", checkPermisson, addProduct)
 
@@ -56,6 +73,35 @@ routerAdmin.post("/updateProduct", postUpdateProduct)
 routerAdmin.post("/delete-product/:id/:color_id", postDeleteProduct)
 // delete product 
 routerAdmin.post("/delete-product", deleteProduct)
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+//order Management:
+//pending 
+routerAdmin.get("/orderManagement/pending", pendingProducts)
+// luu trang thai dang tu 1 sang 2 
+routerAdmin.post("/orderManagement/:id", convertPendingStatus)
+
+
+// //confirmed
+routerAdmin.get("/orderManagement/confirmed", confirmedProducts)
+routerAdmin.post("/orderManagement/:id", convertConfirmedStatus)
+
+
+
+// //delivering
+routerAdmin.get("/orderManagement/delivering", deliveringProducts)
+routerAdmin.post("/orderManagement/:id", convertDeliveringStatus)
+
+// //delivered
+routerAdmin.get("/orderManagement/delivered", deliveredProducts)
+routerAdmin.post("/orderManagement/:id", convertDeliveredStatus)
+
+// //cancelled
+routerAdmin.get("/orderManagement/cancelled", cancelledProducts)
+routerAdmin.post("/orderManagement/:id", convertCancelledStatus)
+
 
 
 

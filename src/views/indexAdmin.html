@@ -20,6 +20,20 @@
    <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
    <link rel="stylesheet" href="/css/custom.css" />
 </head>
+<!-- <style>
+   .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+   }
+
+   .dropdown:hover .dropdown-menu {
+      display: block;
+   }
+</style> -->
 
 <body class="dashboard dashboard_1">
    <div class="full_container">
@@ -48,7 +62,7 @@
             <div class="sidebar_blog_2">
                <h4>General</h4>
                <ul class="list-unstyled components">
-                  <li><a href=><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                  <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
                   </li>
                   <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
                            Management</span></a>
@@ -57,6 +71,19 @@
                   <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
                            Management</span></a>
                   </li>
+                  <li class="dropdown">
+                     <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b class="caret"></b>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
+                        <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
+                        <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
+                        <li><a href="/admin/orderManagement/delivered">Đã giao</a></li>
+                        <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
+                     </ul>
+                  </li>
+
                </ul>
             </div>
          </nav>
@@ -257,6 +284,15 @@
    <script src="/js/jquery.min.js"></script>
    <script src="/js/bootstrap.min.js"></script>
    <script src="/js/custom.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script>
+      $(document).ready(function () {
+         $(".dropdown-toggle").click(function () {
+            $(this).next(".dropdown-menu").toggle();
+         });
+      });
+   </script>
+
 </body>
 
 </html>
