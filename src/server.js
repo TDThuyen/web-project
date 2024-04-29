@@ -1,12 +1,18 @@
 
+import { exec } from "child_process";
 import cookieParser from "cookie-parser";
 import { config } from "dotenv";
 import express, { json } from "express";
+import fs from 'fs';
 import { connect } from "mongoose";
+import path from 'path';
+import { clearInterval } from "timers";
 import configViewEngine from "./config/viewEngine.js";
 import corMw from "./middlewares/cors.js";
 import Session from "./middlewares/session.js";
+import SQLConnection from "./models/SQLConnection.js";
 import redisClient from "./models/connectRedis.js";
+import { _dirname } from "./path.js";
 import router from "./router/index.js";
 const app = express();
 
@@ -42,64 +48,77 @@ app.use((req,res) => {
     return res.send("404 not found")
 })
 
+function backupDatabase() {
+    const timestamp = new Date().toISOString().replace(/:/g, '-'); // Tạo một timestamp độc đáo cho tên file sao lưu
+    const backupFileName = `backup-${timestamp}.sql`;
+    const backupPath = _dirname+ 'backup/' + backupFileName; // Đường dẫn tới thư mục bạn muốn lưu file sao lưu
+  
+    // Sử dụng lệnh mysqldump để sao lưu cơ sở dữ liệu
+    const command = `mysqldump -u${SQLConnection.config.user} -p${SQLConnection.config.password} ${SQLConnection.config.database} > ${backupPath}`;
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Backup failed: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`Backup failed: ${stderr}`);
+        return;
+      }
+      console.log(`Backup successful. Backup file: ${backupFileName}`);
+    });
+  }
+
+const backupDir = path.join(_dirname, 'backup');
+const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 ngày (trong milliseconds)
+
+// Kiểm tra và xóa các file sao lưu cũ
+function cleanupOldBackups() {
+    fs.readdir(backupDir, (err, files) => {
+        if (err) {
+            console.error('Không thể đọc thư mục backup:', err);
+            return;
+        }
+
+        const currentTime = Date.now();
+
+        files.forEach(file => {
+            const filePath = path.join(backupDir, file);
+            fs.stat(filePath, (err, stats) => {
+                if (err) {
+                    console.error(`Không thể kiểm tra file ${file}:`, err);
+                    return;
+                }
+
+                const fileAge = currentTime - stats.mtime.getTime();
+                if (fileAge > maxAge) {
+                    fs.unlink(filePath, err => {
+                        if (err) {
+                            console.error(`Không thể xóa file ${file}:`, err);
+                            return;
+                        }
+                        console.log(`Đã xóa file cũ: ${file}`);
+                    });
+                }
+            });
+        });
+    });
+}
+  backupDatabase();
+  // Thiết lập công việc định kỳ sao lưu
+  const backupInterval = setInterval(backupDatabase, 24 * 60 * 60 * 1000); // 3600000 milliseconds = 1 giờ
+  const cleanupOldBackupsInterval = setInterval(cleanupOldBackups, 24 * 60 * 60 * 1000);
+  
+  // Khi ứng dụng Node.js kết thúc, hủy công việc định kỳ sao lưu
+  process.on('SIGINT', () => {
+    clearInterval(backupInterval);
+    clearInterval(cleanupOldBackupsInterval)
+    console.log('Backup job stopped');
+    process.exit();
+  });
+
 app.listen(PORT, () => {
     console.log(`Server is running on post ${PORT}`);
 })
 
-
-redisClient.flushAll();
-
-
-
-// import { config } from "dotenv";
-// import express, { json } from "express";
-// import configViewEngine from "./config/viewEngine.js";
-// import connection from "./models/connectSQL.js";
-
-// const app = express();
-
-// configViewEngine(app);
-
-// app.use(express.urlencoded({extended: false}))
-
-// config();
-
-// const PORT = process.env.PORT;
-
-// app.use(json())
-
-// // do stuff
-// // await redisClient.disconnect()
-
-// // connect(URI_DB)
-// try{
-// connection.query(`CREATE TABLE customers (
-//     "customer_id" int NOT NULL AUTO_INCREMENT,
-//     "name" varchar(100) NOT NULL,
-//     "email" varchar(100) NOT NULL,
-//     "phone" varchar(20) NOT NULL,
-//     "address" varchar(255) DEFAULT NULL,
-//     "birthday" DATE NOT NULL,
-//     "role" int DEFAULT 1,
-//     "pass_word" varchar(500) NOT NULL,
-//     "user_name" varchar(50) NOT NULL,
-//     "user_img" varchar(50) DEFAULT NULL,
-//     PRIMARY KEY ("customer_id")
-//   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`, async (error, results, fields) =>{
-    
-
-// }) 
-// } catch(error) {
-// console.log(error)
-// }
-
-
-// app.use((req,res) => {
-//     return res.send("404 not found")
-// })
-
-// app.listen(PORT, () => {
-//     console.log(`Server is running on post ${PORT}`);
-// })
 
 
