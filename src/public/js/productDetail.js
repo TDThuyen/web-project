@@ -20,6 +20,9 @@ var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
 var addCard = document.querySelector('.addCart');
       var buy = document.querySelector('.buy')
+var evaluate__display = document.querySelector('.evaluate__display')
+var evaluate= document.querySelector('.evaluate')
+var comment = document.querySelector('.comment')
 quantity__number.innerHTML =diep;
 if( document.cookie.match(/name=([^;]+)/) === null){
   var alert__login = document.querySelector('.alert__login')
@@ -73,7 +76,7 @@ if (idIndex !== -1) {
     var id = url.substring(idIndex + 3);
 }
 
-
+var cart__circle = document.createElement('div')
 
 async function fetchProducts(id) {
   try {
@@ -81,6 +84,31 @@ async function fetchProducts(id) {
     const productDetail1 = await response1.json();
     const response2 = await fetch(`/getProduct/id=${id}`);
     const productDetail2 = await response2.json();
+    const response3 = await fetch(`/getRate/id=${id}`);
+    const productDetail3 = await response3.json();
+    console.log(productDetail3)
+    var rate__text = document.querySelector('.rate__text')
+    var rage__star = document.querySelector('.rate__star')
+    if(productDetail3){
+    var ratenumber = parseFloat(productDetail3)
+     rate__text.innerHTML=  `Đánh giá: ${ratenumber} / 5`;
+     if(ratenumber == 0){rage__star.src="/img/0sao.png"}
+     if(ratenumber == 1){rage__star.src="/img/1sao.png"}
+     if(ratenumber == 2){rage__star.src="/img/2sao.png"}
+     if(ratenumber == 3){rage__star.src="/img/3sao.png"}
+     if(ratenumber == 4){rage__star.src="/img/4sao.png"}
+     if(ratenumber == 5){rage__star.src="/img/5sao.png"}
+     if(ratenumber < 5 && ratenumber > 4){rage__star.src="/img/4,5sao.png"}
+     if(ratenumber <4 && ratenumber>3){rage__star.src="/img/3,5sao.png"}
+     if(ratenumber <3 && ratenumber>2){rage__star.src="/img/2,5sao.png"}
+     if(ratenumber <2 && ratenumber>1){rage__star.src="/img/1,5sao.png"}
+     if(ratenumber <1 && ratenumber>0){rage__star.src="/img/0,5sao.png"}}
+     else{
+      rage__star.style.display="none"
+      rate__text.innerHTML= `Sản phẩm chưa được đánh giá`
+     }
+
+    
     if( document.cookie.match(/name=([^;]+)/) === null){
       productDetail1.forEach(element => {
         var color = document.createElement('div');
@@ -104,11 +132,8 @@ async function fetchProducts(id) {
               otherColor.classList.remove('color__picker');
             }
           });
-  
-          // Thêm lớp 'color__picker' vào màu được chọn
           color.classList.add('color__picker');
         });
-  
         product__color.appendChild(color);
       });
     }
@@ -119,11 +144,10 @@ async function fetchProducts(id) {
     img__top = productDetail2[0].img_top;
     namee = productDetail2[0].product_name;
     if( document.cookie.match(/name=([^;]+)/) !== null){
-      var cart__circle = document.createElement('div')
       var cart__icon = document.createElement('i')
       cart__icon.className='bx bx-cart-alt';
       cart__circle.className='cart__circle'
-      cart__circle.innerHTML='0'
+      cart__circle.id = "cart__circle"
       var cart__circle__text = document.createElement('p')
       cart__circle__text.innerHTML = 'Giỏ hàng'
       cart.appendChild(cart__icon);
@@ -220,9 +244,7 @@ function displayProducts(productDetail) {
      var sold = document.querySelector('.sold')
      var sale__price = document.querySelector('.sale__price')
      var unsale__price=document.querySelector('.unsale__price')
-     var rate__text = document.querySelector('.rate__text')
-     var ratenumber = 3.4;
-     var rage__star = document.querySelector('.rate__star')
+     
      var product__description =document.querySelector('.product__description')
      product__description.innerHTML= productDetail[0].description
      product__name1.innerHTML = productDetail[0].product_name;
@@ -236,18 +258,7 @@ function displayProducts(productDetail) {
      sold.innerHTML =`Đã bán: ${productDetail[0].quantity_sold}`;
      sale__price.innerHTML = `${(parseFloat(productDetail[0].price)*(1-parseFloat(productDetail[0].discount)/100)).toLocaleString('en-US')}₫`
      unsale__price.innerHTML = `${parseFloat(productDetail[0].price).toLocaleString('en-US')}₫`
-     rate__text.innerHTML=  `Đánh giá: ${ratenumber} / 5`;
-     if(ratenumber == 0){rage__star.src="/img/0sao.png"}
-     if(ratenumber == 1){rage__star.src="/img/1sao.png"}
-     if(ratenumber == 2){rage__star.src="/img/2sao.png"}
-     if(ratenumber == 3){rage__star.src="/img/3sao.png"}
-     if(ratenumber == 4){rage__star.src="/img/4sao.png"}
-     if(ratenumber == 5){rage__star.src="/img/5sao.png"}
-     if(ratenumber < 5 && ratenumber > 4){rage__star.src="/img/4,5sao.png"}
-     if(ratenumber <4 && ratenumber>3){rage__star.src="/img/3,5sao.png"}
-     if(ratenumber <3 && ratenumber>2){rage__star.src="/img/2,5sao.png"}
-     if(ratenumber <2 && ratenumber>1){rage__star.src="/img/1,5sao.png"}
-     if(ratenumber <1 && ratenumber>0){rage__star.src="/img/0,5sao.png"}
+  
 
      product_image2.addEventListener('click',function(){
       main__img.src=productDetail[0].ing_mid;
@@ -263,6 +274,35 @@ function displayProducts(productDetail) {
 };
 
 fetchProducts(id);
+
+async function updateCartItemCount() {
+  try {
+      const response = await fetch('/getNumberOfProductsOfMyCart');
+      const data = await response.json();
+      if(data){
+        if (data[0]) {
+            cart__circle.innerHTML = data[0]?.itemCount?.toString();
+            console.log(data[0]?.itemCount?.toString())
+        }
+        else {
+          cart__circle.innerHTML = "0";
+        }
+      }
+  } catch (error) {
+      console.error('Error updating cart item count:', error);
+  }
+}
+
+// Gọi hàm cập nhật số lượng sản phẩm ngay sau khi tải xong DOM
+document.addEventListener('DOMContentLoaded', updateCartItemCount);
+if(document.cookie.match(/name=([^;]+)/)){
+evaluate__display.addEventListener('click',function(){
+  evaluate.classList.toggle('hide')
+  comment.classList.toggle('hide')
+  evaluate__display.classList.add('hide')
+})
+}
+
 
 
 

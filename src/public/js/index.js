@@ -1,7 +1,6 @@
 
 var signup = document.querySelector('.signup')
 var signup2 = document.querySelector('.signup2')
-var signup3 = document.querySelector('.signup3')
 var signup__display= document.querySelector('.signup__display')
 var signup__close = document.querySelector('.bx-x')
 var login = document.querySelector('.login')
@@ -10,8 +9,6 @@ var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
 var cart = document.querySelector('.cart');
 var cart__alert= document.querySelector('.cart__alert');
-var heart = document.querySelector('.heart');
-var heart__alert= document.querySelector('.heart__alert');
 var page_left = document.querySelectorAll('.bx-chevron-left')
 var page_right = document.querySelectorAll('.bx-chevron-right')
 var imageslide = ['/img/slideshow_1_master.webp', '/img/slideshow_3.webp', '/img/slideshow_7.webp','/img/cvn_slideshow_2.webp','/img/cvn_slideshow_5.webp', '/img/cvn_slideshow_6.webp'];
@@ -39,11 +36,12 @@ var logout__display = document.querySelector('.logout__display')
 var userinfor__close = document.querySelector('#userinfor__close')
 var capnhat = document.querySelector('.capnhat')
 cart.href="/cart";
+document.querySelector('.ordered').classList.toggle('hide')
        document.querySelector('.navbar').removeChild(signup)
        document.querySelector('.navbar').removeChild(login)
        document.querySelector('.navbar').removeChild(document.querySelector('.vachngan'))
        var user = document.querySelector('.user')
-       user.innerHTML = cookieMatch[0].name;      
+       user.innerHTML = decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1])
        logout.classList.remove('hide')
        logout.addEventListener('click', function(){
         logout__display.classList.toggle('hide')
@@ -199,8 +197,6 @@ else {
           sale__percent.className="sale__percent"
           var sale__count =document.createElement('p')
           sale__count.innerHTML=`-${product.discount}%`
-          var heartt =  document.createElement('i')
-          heartt.className="bx bx-heart bx-flip-horizontal"
           var imageElement = document.createElement('img');
           imageElement.src = product.img_top;
           productElement.addEventListener('mouseover',function(){
@@ -228,7 +224,6 @@ else {
           product__price.appendChild(product__price2);
           sale__percent.appendChild(sale__count)
           productElement.appendChild(sale__percent)
-          productElement.appendChild(heartt)
           productElement.appendChild(imageElement);
           productElement.appendChild(product__name);
           productElement.appendChild(product__price);
@@ -334,9 +329,6 @@ signup.addEventListener('click', function(e){
 signup2.addEventListener('click', function(e){
     login__display.classList.toggle('hide');
 })
-signup3.addEventListener('click', function(e){
-    login__display.classList.toggle('hide');
-})
 signup__close.addEventListener('click', function(e){
     signup__display.classList.toggle('hide');
 })
@@ -353,19 +345,9 @@ signup__option.addEventListener('click', function(e){
 })
 cart.addEventListener('click',function(e){
     setTimeout(function() {
-        heart__alert.classList.add('hide')
         cart__alert.classList.remove('hide')
         setTimeout(function(){
             cart__alert.classList.add('hide')
-        }, 3000); 
-      }, 0); 
-})
-heart.addEventListener('click',function(e){
-    setTimeout(function() {
-        cart__alert.classList.add('hide')
-        heart__alert.classList.remove('hide')
-        setTimeout(function(){
-            heart__alert.classList.add('hide')
         }, 3000); 
       }, 0); 
 })}
@@ -381,7 +363,23 @@ heart.addEventListener('click',function(e){
 // })
 
 
+async function updateCartItemCount() {
+    try {
+        const response = await fetch('/getNumberOfProductsOfMyCart');
+        const data = await response.json();
+        if(data){
+            const cartItemCountElement = document.getElementById('cartItemCount');
+            if (cartItemCountElement && data[0]) {
+                cartItemCountElement.textContent = data[0]?.itemCount?.toString();
+            }
+        }
+    } catch (error) {
+        console.error('Error updating cart item count:', error);
+    }
+}
 
+// Gọi hàm cập nhật số lượng sản phẩm khi trang được tải
+document.addEventListener('DOMContentLoaded', updateCartItemCount);
 
 
 

@@ -33,6 +33,7 @@
         background-color: coral;
     }
 
+
     .dropdown-menunew {
         min-width: 20rem;
         left: 0 px;
@@ -53,7 +54,8 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
+                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
+                                    alt="#" />
                             </div>
                             <div class="user_info">
                                 <h6>Thuyen depzai</h6>
@@ -75,7 +77,7 @@
                                     Management</span></a>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
@@ -104,8 +106,9 @@
                                     <ul class="user_profile_dd">
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle" src="/img/user_img.jpg"
-                                                    alt="#" /><span class="name_user">ADMIN</span></a>
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">ADMIN</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="help.html">Help</a>
                                                 <a class="dropdown-item" href="#"><span>Log Out</span> <i
@@ -123,104 +126,47 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>QUẢN LÍ SẢN PHẨM</h2>
+                                    <h2>CHI TIẾT ĐƠN HÀNG</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <form action="/admin/addProduct" method="post" class="form-horizontal">
-                        <fieldset>
-                            <legend class="text-center">Thêm sản phẩm</legend>
-
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label>Tên sản phẩm</label>
-                                    <input type="text" class="form-control" name="product_name">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Id_port</label>
-                                    <input type="text" class="form-control" name="id_port" pattern="\d*"
-                                        title="Ở đây chỉ được nhập số">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Giá sản phẩm</label>
-                                    <input type="text" class="form-control" name="price">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label>Ảnh sản phẩm</label>
-                                    <input type="text" class="form-control" name="img_top">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>ING MID</label>
-                                    <input type="password" class="form-control" name="ing_mid">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>COLOR</label>
-                                    <input type="text" class="form-control" name="color" required pattern="\d+">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>QUANTITY</label>
-                                    <input type="text" class="form-control" name="quantity_of_color" required
-                                        pattern="\d+">
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label>Mô tả sản phẩm</label>
-                                    <textarea id="motasp" class="form-control" name="description"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Lưu</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
                 <div class="table-container">
                     <table>
                         <tr>
-                            <th>Numerical </th>
-                            <th>Products Name</th>
-                            <th>Description</th>
-                            <th>Quantity Stock</th>
-                            <th>Id Port</th>
-                            <th>Price</th>
-                            <th>Img Top</th>
+                            <th> Thứ tự</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Màu</th>
+                            <th>Giá </th>
+                            <th>Số lượng mua</th>
+                            <th>Tổng tiền</th>
+                            <th>Hình ảnh</th>
                         </tr>
                         <% let cnt=1; %>
-                            <% for (const product of listProducts) { %>
+                            <% for (const order of listOrderDetails) { %>
                                 <tr>
                                     <td>
                                         <%= cnt ++%>
                                     </td>
                                     <td>
-                                        <%= product.product_name %>
+                                        <%= order.product_name %>
                                     </td>
                                     <td>
-                                        <%= product.description %>
+                                        <%= order.color %>
                                     </td>
                                     <td>
-                                        <%= product.quantity_stock %>
+                                        <%= order.price %>
                                     </td>
                                     <td>
-                                        <%= product.id_port %>
+                                        <%= order.quantity %>
                                     </td>
                                     <td>
-                                        <%= product.price %>
+                                        <%= order.total_amout %>
                                     </td>
                                     <td>
-                                        <img src="<%= product.img_top %>" alt="Product Image"
+                                        <img src="<%= order.img_top %>" alt="Product Image"
                                             style="width:100px;height:100px;">
-                                    </td>
-                                    <td>
-                                        <a href="/admin/getProductDetails/<%=product.product_id%>">Chi tiết</a>
                                     </td>
                                 </tr>
                                 <% } %>
@@ -230,15 +176,9 @@
             </div>
         </div>
     </div>
-    <script src=" js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('motasp');
-    </script>
-
 
 </body>
 
