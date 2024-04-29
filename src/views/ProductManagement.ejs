@@ -129,10 +129,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <form action="/admin/searchProduct" method="GET"
+                    style="margin-bottom: 20px; display: flex; justify-content: right;">
+                    <input type="text" name="ProductName" placeholder="Nhập tên sản phẩm"
+                        style="margin-right: 10px; padding: 5px; width: 334px;">
+                    <input type="submit" value="Tìm kiếm"
+                        style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+                </form>
+                <div class="container"
+                    style="border: 2px solid #007BFF; border-radius: 10px; padding: 20px; max-width : 1400px">
                     <form action="/admin/addProduct" method="post" class="form-horizontal">
                         <fieldset>
-                            <legend class="text-center">Thêm sản phẩm</legend>
+                            <legend class="text-center" style="font-weight: bold;">Thêm sản phẩm</legend>
 
                             <div class="form-group row">
                                 <div class="col-sm-4">
@@ -145,25 +153,25 @@
                                         title="Ở đây chỉ được nhập số">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label>Giá sản phẩm</label>
+                                    <label>Giá tiền</label>
                                     <input type="text" class="form-control" name="price">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label>Ảnh sản phẩm</label>
+                                    <label>Ảnh 1</label>
                                     <input type="text" class="form-control" name="img_top">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>ING MID</label>
+                                    <label>Ảnh 2</label>
                                     <input type="password" class="form-control" name="ing_mid">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>COLOR</label>
+                                    <label>Màu</label>
                                     <input type="text" class="form-control" name="color" required pattern="\d+">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>QUANTITY</label>
+                                    <label>Số lượng</label>
                                     <input type="text" class="form-control" name="quantity_of_color" required
                                         pattern="\d+">
                                 </div>
@@ -204,8 +212,9 @@
                                         <%= product.product_name %>
                                     </td>
                                     <td>
-                                        <%= product.description %>
+                                        <%- product.description %>
                                     </td>
+
                                     <td>
                                         <%= product.quantity_stock %>
                                     </td>
@@ -220,7 +229,10 @@
                                             style="width:100px;height:100px;">
                                     </td>
                                     <td>
-                                        <a href="/admin/getProductDetails/<%=product.product_id%>">Chi tiết</a>
+                                        <a href="/admin/getProductDetails/<%=product.product_id%>"
+                                            style="margin-right: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Chi
+                                            tiết</a>
+
                                     </td>
                                 </tr>
                                 <% } %>

@@ -80,7 +80,7 @@
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menunew">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -124,63 +124,51 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>DELETE USER</h2>
+                                    <h2>XÓA NGƯỜI DÙNG</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%= JSON.stringify(user) %>
-                    <div class='form'>
-                        <form action="/admin/delete-user" method="POST">
-                            <fieldset>
-                                <legend>ARE YOU SURE DELETE A USER</legend>
-                                <div class='input gruop d-none'>
-                                    <label> Id: </label>
-                                    <input type="text" name="userId" value="<%= user.customer_id %>">
-                                </div>
-                                <div class='input gruop'>
-                                    <label> Name</label>
-                                    <input type="text" name="name" value="<%= user.name %>">
-                                </div>
-                                <div class='input gruop'>
-                                    <label> Email</label>
-                                    <input type="text" name="email" value="<%= user.email %>" />
-                                </div>
-                                <!-- <div class='input gruop'>
-                                    <label>phone </label>
-                                    <input type="text" name="phone" value="<%= user.phone %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> address</label>
-                                    <input type="text" name='address' value="<%= user.address %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> birthday</label>
-                                    <input type="text" name="birthday" value="<%= user.birthday %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> role</label>
-                                    <input type="text" name="role" value="<%= user.role %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> Pass word</label>
-                                    <input type="text" name="password" value="<%= user.pass_word %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> User Name</label>
-                                    <input type="text" name="username" value="<%= user.user_name %>" />
-                                </div>
-                                <div class='input gruop'>
-                                    <label> User Image</label>
-                                    <input type="text" name="userimage" value="<%= user.user_img %>" />
-                                </div> -->
-                                <div>
-                                    <button>Confirm</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+
+                <div class='form'
+                    style="width: 50%; margin: auto; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+                    <form action="/admin/delete-user" method="POST">
+                        <fieldset>
+                            <legend style="text-align: center; font-size: 1.5em; color: #cd1111;">Bạn có chắc chắn muốn
+                                xóa người dùng:
+                            </legend>
+                            <div class='input gruop d-none'>
+                                <label> Id: </label>
+                                <input type="text" name="userId" value="<%= user.customer_id %>">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Tên</label>
+                                <input type="text" name="name" value="<%= user.name %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Email</label>
+                                <input type="text" name="email" value="<%= user.email %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Tên tài khoản</label>
+                                <input type="text" name="username" value="<%= user.user_name %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Hình ảnh</label>
+                                <input type="text" name="userimage" value="<%= user.user_img %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button
+                                    style="padding: 10px 20px; background-color: #cd1111; color: white; border: none; border-radius: 5px; cursor: pointer;">XÓA</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
