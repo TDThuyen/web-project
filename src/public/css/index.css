@@ -64,6 +64,21 @@ body {
     font-size: 17px;
     cursor: pointer;
 }
+.ordered{
+    margin-left: 1%;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    width: 120px;
+    margin-top: 3%;
+    height: auto;
+}
+
+.ordered p{
+    margin-left: 2px;
+    font-size: 15px;
+    margin-top: 17%;
+}
 
 .signup:hover,
 .login:hover {
@@ -83,8 +98,7 @@ body {
     margin-top: 3%;
 }
 
-.cart,
-.heart {
+.cart {
     margin-top: 3.6%;
     margin-left: 4%; 
     position: relative;
@@ -139,44 +153,6 @@ body {
     cursor: pointer;
 }
 
-.heart {
-    margin-left: 3%;
-    margin-top: 3.7%;
-}
-.heart__alert{
-    
-    width: 13%;    
-    background-color: #e2e7e5;
-    height: 40px;
-    position: absolute;
-    margin-top: 7%;
-    margin-left: 72%;
-    z-index: 4;
-    text-align: center;
-    align-items: center;
-    padding: 10px 22px;
-    /* transition: 0.2s ease; */
-    animation: appear2 0.2s ease;
-    
-    
-}
-.heart__narrow{
-    position: absolute;
-    margin-top: -24px;
-    border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid #e2e7e5;
-    margin-left: 50%;
-}
-.heart__alert__text{
-    display:flex;
-    justify-content: space-around;
-
-}
-.signup3{
-    color: #eb6410;
-    cursor: pointer;
-}
 
 .user {
     margin-left: 0.5%;
@@ -187,8 +163,7 @@ body {
 .user:hover{
     opacity: 0.7;
 }
-.cart__circle,
-.heart__circle {
+.cart__circle {
     background-color: rgb(239, 104, 58);
     width: 13px;
     height: 13px;
@@ -202,20 +177,13 @@ body {
     font-size: 10px;
 }
 
-.heart i {
-    color: rgb(239, 104, 58);
-}
-
-.heart__circle {
-    background-color: black;
-}
-
 .cart p {
     margin-top: -25px;
     margin-left: 40px;
     text-decoration: none;
 
 }
+
 
 .signup__display,
 .login__display {
@@ -516,7 +484,6 @@ body {
 .signup__option:hover {
     color: #dae4d0;
 }
-
 .hide {
     display: none;
     transition: 0.8s ease;

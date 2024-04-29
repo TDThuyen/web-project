@@ -26,10 +26,12 @@ import { convertConfirmedStatus } from "../controllers/adminController.js"
 import { convertDeliveringStatus } from "../controllers/adminController.js"
 import { convertDeliveredStatus } from "../controllers/adminController.js"
 import { convertCancelledStatus } from "../controllers/adminController.js"
-
 import { getOrderDetails } from "../controllers/adminController.js"
 
+//search 
 import { findOrder } from "../controllers/adminController.js"
+import { findProduct } from "../controllers/adminController.js"
+import { findCustomer } from "../controllers/adminController.js"
 
 const routerAdmin = express.Router()
 routerAdmin.get("/", checkPermisson, (req, res) => {
@@ -112,6 +114,7 @@ routerAdmin.get("/orderDetails/:id", getOrderDetails)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //tim kiem don hang: 
 routerAdmin.get("/searchOrder", findOrder)
-
+routerAdmin.get("/searchProduct", findProduct)
+routerAdmin.get("/searchCustomer", findCustomer)
 
 export default routerAdmin;

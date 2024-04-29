@@ -21,10 +21,10 @@ export const postCreateUser = (req, res) => {
                 return res.status(500).send('Lỗi khi tạo người dùng');
             }
             console.log("Người dùng đã được tạo thành công");
+            res.redirect("/admin/UserManagement")
             // Tùy chọn bạn có thể gửi phản hồi thành công tại đây
         }
     );
-    res.redirect("/admin/UserManagement")
 };
 
 // hien thi danh sach nguoi dung
@@ -114,20 +114,48 @@ export const postDeleteUser = (req, res) => {
 // delete user database 
 export const postDestroyMessage = (req, res) => {
     const id = req.body.userId // lay id trong form id cua nguoi can xoa 
+
+    // Xóa các bản ghi liên quan trong bảng orderdetail trước
     connection.query(
-        `delete from customers where customer_id = ?`,
+        `DELETE FROM orderdetail WHERE order_id IN (SELECT order_id FROM orders WHERE customer_id = ?)`,
         [id],
         function (err, results) {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Lỗi khi lấy khách hàng');
+                return res.status(500).send('Lỗi khi xóa chi tiết đơn hàng');
             }
+
+            // Sau khi xóa các bản ghi liên quan trong bảng orderdetail, tiếp tục xóa các bản ghi trong bảng orders
+            connection.query(
+                `DELETE FROM orders WHERE customer_id = ?`,
+                [id],
+                function (err, results) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('Lỗi khi xóa đơn hàng');
+                    }
+
+                    // Sau khi xóa các bản ghi liên quan trong bảng orders, tiếp tục xóa người dùng
+                    connection.query(
+                        `DELETE FROM customers WHERE customer_id = ?`,
+                        [id],
+                        function (err, results) {
+                            if (err) {
+                                console.error(err);
+                                return res.status(500).send('Lỗi khi xóa khách hàng');
+                            }
+
+                            // Chuyển hướng người dùng sau khi hoàn tất
+                            res.redirect('/admin/UserManagement')
+                        }
+                    )
+                }
+            )
         }
     )
-    // res.redirect('/admin/UserManagement')
-    res.redirect('/admin/UserManagement')
-    // console.log(userId)
 }
+
+
 
 // them san pham 
 export const addProduct = (req, res) => {
@@ -384,14 +412,24 @@ export const deleteProduct = (req, res) => {
             if (colorCount <= 1) {
                 // Neu chi con mot mau sac, xoa san pham khoi ca hai bang
                 connection.query(
-                    `DELETE FROM products WHERE product_id = ?; DELETE FROM product_detail WHERE product_id = ?`,
-                    [productId, productId],
+                    `DELETE FROM product_detail WHERE product_id = ?`,
+                    [productId],
                     function (err, results) {
                         if (err) {
                             console.error(err);
                             return res.status(500).send('Lỗi khi xóa sản phẩm');
                         }
-                        res.redirect('/admin/ProductManagement');
+                        connection.query(
+                            `DELETE FROM products WHERE product_id = ?`,
+                            [productId],
+                            function (err, results2) { // Changed variable name here
+                                if (err) {
+                                    console.error(err);
+                                    return res.status(500).send('Lỗi khi xóa sản phẩm');
+                                }
+                                res.redirect('/admin/ProductManagement');
+                            }
+                        )
                     }
                 );
             } else {
@@ -411,6 +449,8 @@ export const deleteProduct = (req, res) => {
         }
     );
 };
+
+
 
 //////////////////////////////////////////////////////////////////////// DAT HANG 
 
@@ -652,3 +692,37 @@ export const findOrder = (req, res) => {
         }
     );
 }
+
+// tim kiem san pham : 
+export const findProduct = (req, res) => {
+    const productName = req.query.ProductName;
+    connection.query(
+        `SELECT * FROM products WHERE product_name LIKE ?`,
+        [`%${productName}%`],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
+            }
+            console.log(results);
+            res.render("findProduct.ejs", { listProducts: results });
+        }
+    );
+};
+
+// tim kiem nguoi dung: 
+export const findCustomer = (req, res) => {
+    const input = req.query.customer;
+    connection.query(
+        `SELECT * FROM customers WHERE name LIKE ? or user_name like ?`,
+        [`%${input}%`, `%${input}%`],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
+            }
+            console.log(results);
+            res.render("findCustomer.ejs", { listUser: results });
+        }
+    );
+};
