@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MOHO - Ordered</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/css/ordered.css" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <a href="/auth" class="Home">Trang chủ</a>
+        <p>>></p>
+        <p class="ordered__title">Đơn hàng của bạn</p>
+        <a class="cart" href="/cart"><i class='bx bx-cart-alt'></i>
+            <div class="cart__circle" id="cartItemCount">0</div>
+            <p>Giỏ hàng</p>
+        </a>
+    </header>
+    <p class="ordered__number"></p>
+    <main>
+        <div class="ordered__product__area">
+        </div>
+        <div class="ordered__detail">
+            <h3>Chi tiết đơn hàng</h3>
+            
+        </div>
+    </main>
+    <form method="post" class="getDetail hide">
+           <input type="text" class="getOrderId" value ="">
+    </form>
 </body>
+<script src="/js/ordered.js"></script>
 </html>

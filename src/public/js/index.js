@@ -40,9 +40,14 @@ document.querySelector('.ordered').classList.toggle('hide')
        document.querySelector('.navbar').removeChild(signup)
        document.querySelector('.navbar').removeChild(login)
        document.querySelector('.navbar').removeChild(document.querySelector('.vachngan'))
+       document.querySelector('.navbar').style.marginLeft="7%"
+       cart.style.marginLeft="2%"
+       document.querySelector('.bx-list-check').style.fontSize = "45px"
        var user = document.querySelector('.user')
+       document.querySelector('.bx-user').style.marginLeft="1%"
        user.innerHTML = decodeURIComponent(document.cookie.match(/name=([^;]+)/)[1])
        logout.classList.remove('hide')
+       logout.style.marginLeft="12px"
        logout.addEventListener('click', function(){
         logout__display.classList.toggle('hide')
         })
@@ -119,7 +124,7 @@ else {
         search__text.appendChild(search__text__1)
     if(typeof q !== 'undefined'){
         search__text__1.innerHTML = `DANH MỤC TÌM KIẾM: ${q}`
-        
+        scrollToPosition();
     }
     else{
         search__text__1.innerHTML = `DANH MỤC SẢN PHẨM`
