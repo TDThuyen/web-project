@@ -1,5 +1,9 @@
 import { connect } from "mongoose";
 import connection from "../models/connectSQL.js";
+
+import bcrypt from 'bcryptjs';
+const saltRounds = 10;
+
 export const postCreateUser = (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
@@ -11,21 +15,29 @@ export const postCreateUser = (req, res) => {
     let username = req.body.username;
     let userimage = req.body.userimage;
 
-    connection.query(
-        `insert into customers(name , email, phone , address, birthday, role , pass_word , user_name, user_img)
-               VALUES(? ,? , ? , ?, ?, ? , ? , ?, ?)`,
-        [name, email, phone, address, birthday, role, password, username, userimage],
-        function (err, results) {
-            if (err) {
-                console.error(err);
-                return res.status(500).send('Lỗi khi tạo người dùng');
-            }
-            console.log("Người dùng đã được tạo thành công");
-            res.redirect("/admin/UserManagement")
-            // Tùy chọn bạn có thể gửi phản hồi thành công tại đây
+    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+    bcrypt.hash(password, saltRounds, function (err, hash) {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Lỗi khi mã hóa mật khẩu');
         }
-    );
+
+        connection.query(
+            `INSERT INTO customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [name, email, phone, address, birthday, role, hash, username, userimage],
+            function (err, results) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Lỗi khi tạo người dùng');
+                }
+                console.log("Người dùng đã được tạo thành công");
+                res.redirect("/admin/UserManagement")
+            }
+        );
+    });
 };
+
 
 // hien thi danh sach nguoi dung
 export const getUser = (req, res) => {
@@ -36,7 +48,7 @@ export const getUser = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy khách hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("UserManagement.ejs", { listUser: results });
         }
     );
@@ -92,7 +104,7 @@ export const postUpdateUser = (req, res) => {
     res.redirect('/admin/UserManagement')
 }
 
-// delete user hien thi 
+// hien thi trong form delete user 
 export const postDeleteUser = (req, res) => {
     const userId = req.params.id
     connection.query(
@@ -103,7 +115,7 @@ export const postDeleteUser = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy khách hàng');
             }
-            console.log(">>> results", results);
+            // console.log(">>> results", results);
             // Truyền vào đối tượng đầu tiên trong mảng kết quả
             res.render("delete.ejs", { user: results[0] });
             // console.log(user)
@@ -287,7 +299,7 @@ export const getProductDetails = (req, res) => {
 export const getProductUpdate = (req, res) => {
     const productId = req.params.id;
     const colorId = req.params.color_id;
-    console.log(productId, colorId)
+    // console.log(productId, colorId)
     connection.query(
         'SELECT * from products where product_id = ?',
         [productId],
@@ -362,7 +374,7 @@ export const postUpdateProduct = (req, res) => {
 export const postDeleteProduct = (req, res) => {
     const productId = req.params.id;
     const colorId = req.params.color_id;
-    console.log(productId, colorId)
+    // console.log(productId, colorId)
     connection.query(
         'SELECT * from products where product_id = ?',
         [productId],
@@ -507,7 +519,7 @@ export const confirmedProducts = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(">>>> results", results);
+            // console.log(">>>> results", results);
             res.render("confirmedProducts.ejs", { confirmed: results });
         }
     );
@@ -547,7 +559,7 @@ export const deliveringProducts = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("deliveringProducts.ejs", { listOrder: results });
         }
     );
@@ -586,7 +598,7 @@ export const deliveredProducts = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("deliveringProducts.ejs", { listOrder: results });
         }
     );
@@ -625,7 +637,7 @@ export const cancelledProducts = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("cancelledProducts.ejs", { listOrder: results });
         }
     );
@@ -666,7 +678,7 @@ export const getOrderDetails = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("getOrderDetails.ejs", { listOrderDetails: results });
         }
     );
@@ -687,7 +699,7 @@ export const findOrder = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
-            console.log(results);
+            // console.log(results);
             res.render("findOrder.ejs", { listOrder: results });
         }
     );
@@ -704,7 +716,7 @@ export const findProduct = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
             }
-            console.log(results);
+            // console.log(results);
             res.render("findProduct.ejs", { listProducts: results });
         }
     );
@@ -721,8 +733,60 @@ export const findCustomer = (req, res) => {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
             }
-            console.log(results);
+            // console.log(results);
             res.render("findCustomer.ejs", { listUser: results });
         }
     );
 };
+
+// /// xoa order:
+export const deleteOrder = (req, res) => {
+    const orderId = req.params.id
+    connection.query(
+        `delete from orderdetail 
+        WHERE order_id = ?`,
+        [orderId],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+            }
+            connection.query(
+                `delete from orders 
+                where order_id = ?`,
+                [orderId],
+                function (err, results) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+                    }
+                    res.redirect("/admin/orderManagement/cancelled")
+                }
+            )
+        }
+    );
+    console.log(orderId);
+
+
+}
+
+
+// export const getInformOrder = (req, res) => {
+//     let order_id = req.params.id
+//     connection.query(
+//         `SELECT *
+//         FROM orderdetail o
+//         JOIN products p ON o.product_id = p.product_id
+//         JOIN product_detail pd on o.id_prod = pd.id_prod
+//         WHERE o.order_id = ?`,
+//         [order_id],
+//         function (err, results) {
+//             if (err) {
+//                 console.error(err);
+//                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
+//             }
+//             // console.log(results);
+//             res.render("getOrderDetails.ejs", { listOrderDetails: results });
+//         }
+//     );
+// }

@@ -34,7 +34,7 @@
     }
 
 
-    .dropdown-menu {
+    .dropdown-menunew {
         min-width: 20rem;
         left: 0 px;
     }
@@ -76,11 +76,11 @@
                                     Management</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menunew">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -105,9 +105,8 @@
                                     <ul class="user_profile_dd">
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle"
-                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user">ADMIN</span></a>
+                                                    class="img-responsive rounded-circle" src="/img/user_img.jpg"
+                                                    alt="#" /><span class="name_user">ADMIN</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="help.html">Help</a>
                                                 <a class="dropdown-item" href="#"><span>Log Out</span> <i
@@ -125,7 +124,7 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>EDIT USER</h2>
+                                    <h2>THAY ĐỔI THÔNG TIN NGƯỜI DÙNG</h2>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +134,8 @@
                     style="width: 50%; margin: auto; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
                     <form action="/admin/updateUser" method="post">
                         <fieldset>
-                            <legend style="font-size: 1.5em; color: #4CAF50;">Update New User</legend>
+                            <legend style="font-size: 1.5em; color: #4CAF50; text-align: center;">THAY ĐỔI THÔNG TIN
+                            </legend>
                             <div class='input gruop d-none'>
                                 <label> Id: </label>
                                 <input type="text" name="userId" value="<%= user.customer_id %>">
