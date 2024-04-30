@@ -4,12 +4,12 @@ import mysql from "mysql2";
 // Tạo một pool kết nối
 const pool = mysql.createPool({
     host: 'localhost', // Địa chỉ của máy chủ cơ sở dữ liệu
-    port: 3306,
+    port: 3307,
     user: 'root', // Tên người dùng của cơ sở dữ liệu
     password: 'Ducquangk6@', // Mật khẩu của cơ sở dữ liệu
     database: 'web', // Tên của cơ sở dữ liệu
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 20,
     queueLimit: 0
 });
 

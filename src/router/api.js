@@ -98,5 +98,9 @@ routerAPI.get("/getNumberOfProductsOfMyCart", (req,res) => {
     }
     else res.json("")
 })
+
+routerAPI.get("/abc", (req,res)=> {
+    res.json("")
+})
 export default routerAPI;
 

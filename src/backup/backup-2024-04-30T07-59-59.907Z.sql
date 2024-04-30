@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.2.0, for Win64 (x86_64)
 --
 -- Host: localhost    Database: web
 -- ------------------------------------------------------
--- Server version	8.1.0
+-- Server version	8.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -389,72 +389,6 @@ LOCK TABLES `sales` WRITE;
 INSERT INTO `sales` VALUES (1,3,10),(2,4,30),(3,5,30),(4,6,30),(5,7,30),(6,8,30),(7,9,30),(8,10,30),(9,11,30),(10,12,30),(11,13,20),(12,14,20),(13,15,20),(14,16,20),(15,17,20),(16,18,20),(17,19,20),(18,20,20),(19,21,20),(20,22,20),(21,23,30),(22,24,40),(23,25,40),(24,26,40),(25,27,40),(26,28,40),(27,29,40),(28,30,10),(29,31,30),(30,32,30),(31,33,30),(32,34,30),(33,35,30),(34,36,30),(35,37,30),(36,38,30),(37,39,30),(38,40,20),(39,41,20),(40,42,20),(41,43,20),(42,44,20),(43,45,20),(44,46,20),(45,47,20),(46,48,20),(47,49,20),(48,50,30),(49,51,40),(50,52,40),(51,53,40),(52,54,40),(53,55,40),(54,56,40),(55,57,10),(56,58,30),(57,59,30),(58,60,30),(59,61,30),(60,62,30),(61,63,30),(62,64,30),(63,65,30),(64,66,30),(65,67,20),(66,68,20),(67,69,20),(68,70,20),(69,71,20),(70,72,20),(71,73,20),(72,74,20),(73,75,20),(74,76,20),(75,77,30),(76,78,40),(77,79,40),(78,80,40),(79,81,40),(80,82,40),(81,83,40),(82,84,10),(83,85,30),(84,86,30),(85,87,30),(86,88,30),(87,89,30),(88,90,30),(89,91,30),(90,92,30),(91,93,30),(92,94,20),(93,95,20),(94,96,20),(95,97,20),(96,98,20),(97,99,20),(98,100,20),(99,101,20),(100,102,20),(101,103,20),(102,104,30),(103,105,40),(104,106,40),(105,107,40),(106,108,40),(107,109,40),(108,110,40),(109,111,10),(110,112,30),(111,113,30),(112,114,30),(113,115,30),(114,116,30),(115,117,30),(116,118,30),(117,119,30),(118,120,30),(119,121,20),(120,122,20),(121,123,20),(122,124,20),(123,125,20),(124,126,20),(125,127,20),(126,128,20),(127,129,20),(128,130,20),(129,131,30),(130,132,40),(131,133,40),(132,134,40),(133,135,40),(134,136,40),(135,137,40),(136,138,10),(137,139,30),(138,140,30),(139,141,30),(140,142,30),(141,143,30),(142,144,30),(143,145,30),(144,146,30),(145,147,30),(146,148,20),(147,149,20),(148,150,20),(149,151,20),(150,152,20),(151,153,20),(152,154,20),(153,155,20),(154,156,20),(155,157,20),(156,158,30),(157,159,40),(158,160,40),(159,161,40),(160,162,40),(161,163,40),(162,164,40),(163,165,10),(164,166,30),(165,167,30),(166,168,30),(167,169,30),(168,170,30),(169,171,30),(170,172,30),(171,173,30),(172,174,30),(173,175,20),(174,176,20),(175,177,20),(176,178,20),(177,179,20),(178,180,20),(179,181,20),(180,182,20),(181,183,20),(182,184,20),(183,185,30);
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'web'
---
-/*!50003 DROP PROCEDURE IF EXISTS `process_order_from_cart` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `process_order_from_cart`(IN `x` INT)
-BEGIN
-    -- Declare variables
-    DECLARE done_cart INT DEFAULT FALSE;
-    DECLARE cart_id1, customer_id1, id_prod1, quantity1, product_id1 INT;
-    DECLARE total_amount DECIMAL(10,2);
-    DECLARE total_amount_all DECIMAL(10,2);
-    DECLARE cur_cart CURSOR FOR SELECT cart_id, customer_id, id_prod, quantity, product_id, total_amout FROM cart WHERE customer_id = x;
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done_cart = TRUE;
-
-    -- Tính tổng total_amount từ các giỏ hàng
-    SELECT SUM(total_amout) INTO total_amount_all FROM cart WHERE customer_id = x;
-
-    -- Start transaction
-    START TRANSACTION;
-
-    -- Insert vào bảng orders
-    INSERT INTO orders (customer_id, order_date, total_amount) 
-    VALUES (x, CURRENT_DATE(), total_amount_all);
-
-    -- Lấy id của order vừa được thêm vào
-    SET @last_order_id = LAST_INSERT_ID();
-
-    -- Mở cursor
-    OPEN cur_cart;
-
-    cart_loop: LOOP
-        FETCH cur_cart INTO cart_id1, customer_id1, id_prod1, quantity1, product_id1, total_amount;
-
-        IF done_cart THEN
-            LEAVE cart_loop;
-        END IF;
-
-        -- Insert vào bảng orderdetail
-        INSERT INTO orderdetail (order_id, quantity, total_amout, id_prod, product_id) 
-        VALUES (@last_order_id, quantity1, total_amount, id_prod1, product_id1);
-
-        -- Xóa cart đã được xử lý
-        DELETE FROM cart WHERE cart_id = cart_id1;
-    END LOOP;
-
-    -- Đóng cursor
-    CLOSE cur_cart;
-
-    -- Commit transaction
-    COMMIT;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -465,4 +399,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-29 23:45:30
+-- Dump completed on 2024-04-30 15:00:00
