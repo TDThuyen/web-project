@@ -122,16 +122,24 @@
                   <div class="row column_title">
                      <div class="col-md-12">
                         <div class="page_title">
-                           <h2>USER MANAGEMENT</h2>
+                           <h2>QUẢN LÍ NGƯỜI DÙNG</h2>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="container">
+            <form action="/admin/searchCustomer" method="GET"
+               style="margin-bottom: 20px; display: flex; justify-content: right;">
+               <input type="text" name="customer" placeholder="Nhập ID người dùng"
+                  style="margin-right: 10px; padding: 5px; width: 334px;">
+               <input type="submit" value="Tìm kiếm"
+                  style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+            </form>
+            <div class="container"
+               style="border: 2px solid #007BFF; border-radius: 10px; padding: 20px; max-width : 1400px">
                <form action="/admin/USER" method="post" class="form-horizontal">
                   <fieldset>
-                     <legend class="text-center">Thêm người dùng mới</legend>
+                     <legend class="text-center" style="font-weight: bold;">Thêm người dùng mới</legend>
 
                      <div class="form-group row">
                         <div class="col-sm-3">
@@ -140,7 +148,8 @@
                         </div>
                         <div class="col-sm-3">
                            <label>Email</label>
-                           <input type="email" class="form-control" name="email">
+                           <input type="email" class="form-control" name="email"
+                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         </div>
                         <div class="col-sm-3">
                            <label>Số điện thoại</label>
@@ -160,7 +169,7 @@
                         </div>
                         <div class="col-sm-3">
                            <label>Vai trò</label>
-                           <input type="text" class="form-control" name="role">
+                           <input type="text" class="form-control" name="role" pattern="\d+" required>
                         </div>
                         <div class="col-sm-3">
                            <label>Mật khẩu</label>
@@ -195,67 +204,67 @@
             </div>
 
 
-            <div class="table-container">
+            <div class="table-container" style="margin-top: 30px;">
+               <!-- <h2 style="text-align: center; color: #007BFF; font-family: Arial, sans-serif;">Danh sách người dùng</h2> -->
 
                <table>
                   <tr>
-                     <th>Numerical Order</th>
-                     <th>Name</th>
+                     <th>Id</th>
+                     <th>Tên</th>
                      <th>Email</th>
-                     <th>Phone</th>
-                     <th>Address</th>
-                     <th>Birthday</th>
-                     <th>Role</th>
-                     <th>User Name</th>
-                     <th>User Image</th>
+                     <th>Số điện thoại</th>
+                     <th>Địa chỉ</th>
+                     <th>Ngày sinh</th>
+                     <th>Vai trò</th>
+                     <th>Tài khoản</th>
+                     <th>Hình ảnh</th>
                   </tr>
-                  <% let cnt=1; %>
-                     <% for (const user of listUser) { %>
-                        <tr>
-                           <td>
-                              <%= cnt%>
-                           </td>
-                           <td>
-                              <%= user.name %>
-                           </td>
-                           <td>
-                              <%= user.email %>
-                           </td>
-                           <td>
-                              <%= user.phone %>
-                           </td>
-                           <td>
-                              <%= user.address %>
-                           </td>
-                           <td>
-                              <%= user.birthday %>
-                           </td>
-                           <td>
-                              <%= user.role %>
-                           </td>
-                           <td>
-                              <%= user.user_name %>
-                           </td>
-                           <td>
-                              <%= user.user_img %>
-                           </td>
-                           <td style="text-align: center;">
-                              <a href="/admin/update/<%=user.customer_id%>"
-                                 style="margin-right: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
-                                 Edit
-                              </a>
-                              <form action="/admin/delete-user/<%=user.customer_id%>" method="POST"
-                                 style="display: inline;">
-                                 <button
-                                    style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px;">
-                                    Delete
-                                 </button>
-                              </form>
-                           </td>
+                  <% for (const user of listUser) { %>
+                     <tr>
+                        <td>
+                           <%= user.customer_id%>
+                        </td>
+                        <td>
+                           <%= user.name %>
+                        </td>
+                        <td>
+                           <%= user.email %>
+                        </td>
+                        <td>
+                           <%= user.phone %>
+                        </td>
+                        <td>
+                           <%= user.address %>
+                        </td>
+                        <td>
+                           <% let date=new Date(user.birthday); let formattedDate=date.toLocaleDateString('vi-VN'); %>
+                              <%= formattedDate %>
+                        </td>
+                        <td>
+                           <%= user.role %>
+                        </td>
+                        <td>
+                           <%= user.user_name %>
+                        </td>
+                        <td>
+                           <%= user.user_img %>
+                        </td>
+                        <td style="text-align: center;">
+                           <a href="/admin/update/<%=user.customer_id%>"
+                              style="margin-right: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+                              Sửa
+                           </a>
+                           <form action="/admin/delete-user/<%=user.customer_id%>" method="POST"
+                              style="display: inline;">
+                              <button
+                                 style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px;">
+                                 Xóa
+                              </button>
+                           </form>
+                        </td>
 
-                        </tr>
-                        <!-- <%=cnt ++ %> -->
-                        <% } %>
+                     </tr>
+                     <% } %>
                </table>
             </div>
          </div>

@@ -73,17 +73,18 @@
 
     .form-container {
         display: flex;
-        flex-direction: row;
+
         /* Thay đổi từ column thành row */
         flex-wrap: wrap;
         /* Thêm dòng này để wrap nếu không đủ không gian */
-        align-items: center;
+
         gap: 20px;
         justify-content: space-around;
         /* Thêm dòng này để căn giữa các form */
+
     }
 
-    .form-group {
+    /* .form-group {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -91,12 +92,11 @@
         padding: 20px;
         border-radius: 5px;
         width: 30%;
+        position: relative;
         /* Thay đổi từ 45% thành 30% để có thể hiển thị 3 form trên cùng một hàng */
-    }
+    /* } */
 
-
-
-    .form-group label {
+    */ .form-group label {
         font-weight: bold;
     }
 
@@ -119,6 +119,18 @@
         background-color: #0056b3;
     }
 
+    .delete-form {
+        position: absolute;
+        /* Thêm dòng này */
+        bottom: 0;
+        /* Thêm dòng này */
+        width: 30%;
+        /* Thêm dòng này */
+
+    }
+
+    /* end form hien thi thong tin don hang */
+
     .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
@@ -140,6 +152,27 @@
     .detail-button:hover {
         background-color: #0056b3;
     }
+
+    /* 2 form  */
+    .twoform {
+        width: 30%;
+        border: 1px solid #3f4a4b;
+        border-radius: 10px;
+        /* Bán kính bo góc */
+        border-style: dashed;
+        /* Kiểu đường viền */
+        border-color: rgb(59, 61, 62);
+        /* Màu đường viền */
+        padding: 15px 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+
+    .twoform label {
+        margin-top: 10px;
+        font-weight: bold;
+    }
 </style>
 
 <body class="dashboard dashboard_1">
@@ -150,8 +183,6 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <!-- <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
-                           alt="#" /></a> -->
                         </div>
                     </div>
                     <div class="sidebar_user_info">
@@ -244,29 +275,40 @@
                 </form>
                 <div class="form-container">
                     <% for (const order of listOrder) { %>
-                        <form action="/admin/orderManagement/<%=order.order_id%>" method="post" class="form-group">
-                            <img src="<%= order.user_img %>" alt="Product Image" style="width:100px;height:100px;">
-                            <label>Tên khách hàng: <%= order.name %></label>
-                            <label>Email: <%= order.email %></label>
-                            <label>Số điện thoại: <%= order.phone %></label>
-                            <label>Địa chỉ: <%= order.address %></label>
-                            <label>Tên tài khoản: <%= order.user_name %> </label>
-                            <label>Ngày đặt hàng: <%= new Date(order.order_date).toLocaleString('vi-VN') %></label>
-                            <label>Tổng giá tiền: <%= order.total_amount %> VND</label>
-                            <div class="status-container">
-                                <label class="status-label">Trạng thái đơn hàng: </label>
-                                <select name="status" class="form-control">
-                                    <option value="1" <%=order.status==1 ? 'selected' : '' %>>Chờ xác nhận</option>
-                                    <option value="2" <%=order.status==2 ? 'selected' : '' %>>Đã xác nhận</option>
-                                    <option value="3" <%=order.status==3 ? 'selected' : '' %>>Đang giao</option>
-                                    <option value="4" <%=order.status==4 ? 'selected' : '' %>>Đã giao</option>
-                                    <option value="5" <%=order.status==5 ? 'selected' : '' %>>Đã hủy</option>
-                                </select>
-                            </div>
-                            <input type="submit" value="Update">
-                            <a href="/admin/orderDetails/<%=order.order_id%>" class="detail-button">Xem chi tiết đơn
-                                hàng</a>
-                        </form>
+                        <div class="twoform">
+                            <form action="/admin/orderManagement/<%=order.order_id%>" method="post" class="form-group">
+                                <img src="<%= order.user_img %>" alt="Product Image"
+                                    style="width:100px;height:100px;"><br>
+                                <label>Id đơn hàng: <%= order.order_id %></label> <br>
+                                <label>Tên khách hàng: <%= order.name %></label>
+                                <label>Email: <%= order.email %></label><br>
+                                <label>Số điện thoại: <%= order.phone %></label><br>
+                                <label>Địa chỉ: <%= order.address %></label><br>
+                                <label>Tên tài khoản: <%= order.user_name %> </label><br>
+                                <label>Ngày đặt hàng: <%= new Date(order.order_date).toLocaleString('vi-VN') %></label>
+                                <label>Tổng giá tiền: <%= order.total_amount %> VND</label>
+                                <div class="status-container">
+                                    <label class="status-label">Trạng thái đơn hàng: </label>
+                                    <select name="status" class="form-control">
+                                        <option value="1" <%=order.status==1 ? 'selected' : '' %>>Chờ xác nhận</option>
+                                        <option value="2" <%=order.status==2 ? 'selected' : '' %>>Đã xác nhận</option>
+                                        <option value="3" <%=order.status==3 ? 'selected' : '' %>>Đang giao</option>
+                                        <option value="4" <%=order.status==4 ? 'selected' : '' %>>Đã giao</option>
+                                        <option value="5" <%=order.status==5 ? 'selected' : '' %>>Đã hủy</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Sửa trạng thái đơn hàng"
+                                    style="width: 100%; margin-top: 10px;">
+                                <a href="/admin/orderDetails/<%=order.order_id%>" class="detail-button"
+                                    style="width: 100% ; margin-top: 10px;">Xem chi tiết đơn
+                                    hàng</a>
+
+                            </form>
+                            <form action="/admin/eraseOrder/<%=order.order_id%>" method="post" style="width: 100%;">
+                                <input type="submit" value="Xóa đơn hàng" class="detail-button"
+                                    style="background-color: red; color: white; width: 100% ; outline: none; border: none; margin-top: -4px;">
+                            </form>
+                        </div>
                         <% } %>
                 </div>
             </div>
