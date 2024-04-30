@@ -35,12 +35,14 @@ import { findCustomer } from "../controllers/adminController.js"
 
 //eraseOrder : 
 import { deleteOrder } from "../controllers/adminController.js"
-
+import { dashBoard } from "../controllers/adminController.js";
 
 const routerAdmin = express.Router()
-routerAdmin.get("/", checkPermisson, (req, res) => {
-    res.render("indexAdmin.html")
-})
+// routerAdmin.get("/", checkPermisson, (req, res) => {
+//     res.render("indexAdmin.html")
+// })
+
+routerAdmin.get("/", dashBoard)
 
 // hien thi user 
 routerAdmin.get("/UserManagement", getUser)
