@@ -31,7 +31,9 @@
                     <p class="total__cart"></p>
                 </div>
                 
-                <button class="order__button">Thanh toán</button>
+                <form method="post">
+                    <button type="submit" class="order__button">Thanh toán</button>
+                </form>
             </div>
             <div class="cart__text__child">
                 <a href ="/home">&#x2190;Tiếp tục mua hàng</a>
@@ -50,8 +52,8 @@
         </div>
     </main>
     <form class="delete_product hide" method="delete">
-         <input class="delete__product__name" name="delete__product__name" value="">
-         <input class="delete__product__color" name="delete__product__color" value="">
+         <input class="delete__product__name" type="text" name="delete__product__name" value="">
+         <input class="delete__product__color" type="text" name="delete__product__color" value="">
     </form>
 </body>
 <script src="/js/test.js"></script>

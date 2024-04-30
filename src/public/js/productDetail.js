@@ -215,12 +215,15 @@ async function fetchProducts(id) {
       var quantity = form.querySelector('.quantity')
       quantity.value = diep;
       // buy.action="/cart"
-      buy.addEventListener('click', function() {
+      buy.addEventListener('click', function(e) {
+        e.preventDefault()
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
         }
-        else{form.submit(); }//  Gửi form khi nút được nhấn
-      });
+        else{
+          form.submit();
+           //window.location.href = '/cart';
+      }});
       addCard.addEventListener('click', function() {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
