@@ -69,6 +69,7 @@ export const getUpdateUser = (req, res) => {
             // console.log(">>> results", results);
             // Truyền vào đối tượng đầu tiên trong mảng kết quả
             res.render("edit.ejs", { user: results[0] });
+            console.log(results[0].user_img)
             // console.log(user)
         }
     );
@@ -434,7 +435,7 @@ export const deleteProduct = (req, res) => {
                         connection.query(
                             `DELETE FROM products WHERE product_id = ?`,
                             [productId],
-                            function (err, results2) { // Changed variable name here
+                            function (err, results2) {
                                 if (err) {
                                     console.error(err);
                                     return res.status(500).send('Lỗi khi xóa sản phẩm');
@@ -539,11 +540,14 @@ export const convertConfirmedStatus = (req, res) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send('Lỗi khi tạo người dùng');
+
             }
+            res.redirect("/admin/orderManagement/confirmed")
             // console.log("Người dùng đã được tạo thành công");
         }
+
     )
-    res.redirect("/admin/orderManagement/confirmed")
+
 }
 
 // DELIVERING

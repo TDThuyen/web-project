@@ -180,11 +180,19 @@
                                 <input type="text" name="username" value="<%= user.user_name %>"
                                     style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
                             </div>
-                            <div class='input gruop' style="margin-bottom: 10px;">
-                                <label style="display: block; font-weight: bold;"> Hình ảnh</label>
-                                <input type="text" name="userimage" value="<%= user.user_img %>"
-                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            <div class='input group' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;">Hình ảnh</label>
+                                <img src="/public/userimg/<%= user.user_img%>" alt="User Image"
+                                    style="width: 100px; height: 100px;">
+                                <input type="file" class="form-control" name="userimage"
+                                    onchange="document.getElementById('userimage').src = window.URL.createObjectURL(this.files[0])">
                             </div>
+                            <!-- <td>
+                                <img src="/public/userimg/hinh-thien-nhien-3d-002.jpg" alt="User Image"
+                                    style="width: 50px; height: 50px;">
+                            </td> -->
+
+
                             <div style="text-align: center; margin-top: 20px;">
                                 <button
                                     style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">SAVE</button>

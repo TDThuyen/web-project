@@ -77,11 +77,11 @@
                                     Management</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -89,7 +89,6 @@
                                 <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
                             </ul>
                         </li>
-
                     </ul>
                 </div>
             </nav>
@@ -160,8 +159,8 @@
                             </div>
                             <div class='input gruop' style="margin-bottom: 10px;">
                                 <label style="display: block; font-weight: bold;"> Hình ảnh</label>
-                                <input type="text" name="userimage" value="<%= user.user_img %>"
-                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                                <img src="/public/userimg/<%= user.user_img%>" alt="User Image"
+                                    style="width: 100px; height: 100px;">
                             </div>
                             <div style="text-align: center; margin-top: 20px;">
                                 <button
@@ -176,7 +175,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
 </body>
 
 </html>

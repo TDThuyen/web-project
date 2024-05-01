@@ -29,7 +29,7 @@ app.use('/public', express.static(join(__dirname, 'public')));
 
 configViewEngine(app);
 
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 config();
 
@@ -37,11 +37,11 @@ const PORT = process.env.PORT;
 const MONGO_DB = process.env.MONGO_DB
 app.use(json())
 app.use(cookieParser())
-app.set('trust proxy',1)
+app.set('trust proxy', 1)
 
 app.use(Session)
 
-app.options('*',corMw);
+app.options('*', corMw);
 
 await redisClient.connect()
 
@@ -55,29 +55,30 @@ connect(MONGO_DB)
 
 app.use(router)
 
-app.use((req,res) => {
+app.use((req, res) => {
     return res.send("404 not found")
 })
+
 
 function backupDatabase() {
     const timestamp = new Date().toISOString().replace(/:/g, '-'); // Tạo một timestamp độc đáo cho tên file sao lưu
     const backupFileName = `backup-${timestamp}.sql`;
-    const backupPath = _dirname+ 'backup/' + backupFileName; // Đường dẫn tới thư mục bạn muốn lưu file sao lưu
-  
+    const backupPath = _dirname + 'backup/' + backupFileName; // Đường dẫn tới thư mục bạn muốn lưu file sao lưu
+
     // Sử dụng lệnh mysqldump để sao lưu cơ sở dữ liệu
     const command = `mysqldump -u${SQLConnection.config.user} -p${SQLConnection.config.password} ${SQLConnection.config.database} > ${backupPath}`;
     exec(command, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Backup failed: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Backup failed: ${stderr}`);
-        return;
-      }
-      console.log(`Backup successful. Backup file: ${backupFileName}`);
+        if (error) {
+            console.error(`Backup failed: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Backup failed: ${stderr}`);
+            return;
+        }
+        console.log(`Backup successful. Backup file: ${backupFileName}`);
     });
-  }
+}
 
 const backupDir = path.join(_dirname, 'backup');
 const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 ngày (trong milliseconds)
@@ -114,18 +115,18 @@ function cleanupOldBackups() {
         });
     });
 }
-  backupDatabase();
-  // Thiết lập công việc định kỳ sao lưu
-  const backupInterval = setInterval(backupDatabase, 24 * 60 * 60 * 1000); // 3600000 milliseconds = 1 giờ
-  const cleanupOldBackupsInterval = setInterval(cleanupOldBackups, 24 * 60 * 60 * 1000);
-  
-  // Khi ứng dụng Node.js kết thúc, hủy công việc định kỳ sao lưu
-  process.on('SIGINT', () => {
+backupDatabase();
+// Thiết lập công việc định kỳ sao lưu
+const backupInterval = setInterval(backupDatabase, 24 * 60 * 60 * 1000); // 3600000 milliseconds = 1 giờ
+const cleanupOldBackupsInterval = setInterval(cleanupOldBackups, 24 * 60 * 60 * 1000);
+
+// Khi ứng dụng Node.js kết thúc, hủy công việc định kỳ sao lưu
+process.on('SIGINT', () => {
     clearInterval(backupInterval);
     clearInterval(cleanupOldBackupsInterval)
     console.log('Backup job stopped');
     process.exit();
-  });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on post ${PORT}`);

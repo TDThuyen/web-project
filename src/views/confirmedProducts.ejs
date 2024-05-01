@@ -248,7 +248,11 @@
                 <div class="form-container">
                     <% for (let confirm of confirmed) { %>
                         <form action="/admin/orderManagement/<%=confirm.order_id%>" method="post" class="form-group">
-                            <img src="<%= confirm.user_img %>" alt="Product Image" style="width:100px;height:100px;">
+                            <center>
+                                <img src="/public/userimg/<%= confirm.user_img%>" alt="User Image"
+                                    style="width: 100px; height: 100px;">
+                            </center>
+                            <label> Id đơn hàng: <%= confirm.order_id%></label>
                             <label>Tên khách hàng: <%= confirm.name %></label>
                             <label>Email: <%= confirm.email %></label>
                             <label>Số điện thoại: <%= confirm.phone %></label>

@@ -34,7 +34,7 @@
         background-color: coral;
     }
 
-    .dropdown-menunew {
+    .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
     }
@@ -80,7 +80,7 @@
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -171,8 +171,8 @@
                                         <%= product.price %>
                                     </td>
                                     <td>
-                                        <img src="<%= product.img_top %>" alt="Product Image"
-                                            style="width:100px;height:100px;">
+                                        <img src="<%= product.img_top.startsWith('http') ? product.img_top : '/public/productimg/' + product.img_top %>"
+                                            alt="Product Image" style="width:100px;height:100px;">
                                     </td>
                                     <td>
                                         <a href="/admin/getProductDetails/<%=product.product_id%>"
@@ -196,7 +196,14 @@
     <script>
         CKEDITOR.replace('motasp');
     </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
 
 </body>
 

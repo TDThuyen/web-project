@@ -248,7 +248,11 @@
                 <div class="form-container">
                     <% for (const order of listOrder) { %>
                         <form action="/admin/orderManagement/<%=order.order_id%>" method="post" class="form-group">
-                            <img src="<%= order.user_img %>" alt="Product Image" style="width:100px;height:100px;">
+                            <center>
+                                <img src="/public/userimg/<%= order.user_img %>" alt="Product Image"
+                                    style="width:100px;height:100px;"><br>
+                            </center>
+
                             <label> Mã đơn hàng: <%= order.order_id%></label>
                             <label>Tên khách hàng: <%= order.name %></label>
                             <label>Email: <%= order.email %></label>

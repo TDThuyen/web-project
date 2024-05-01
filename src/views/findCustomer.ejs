@@ -34,7 +34,7 @@
         background-color: coral;
     }
 
-    .dropdown-menunew {
+    .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
     }
@@ -80,7 +80,7 @@
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -182,7 +182,8 @@
                                     <%= user.user_name %>
                                 </td>
                                 <td>
-                                    <%= user.user_img %>
+                                    <img src="/public/userimg/<%= user.user_img%>" alt="User Image"
+                                        style="width: 50px; height: 50px;">
                                 </td>
                                 <td style="text-align: center;">
                                     <a href="/admin/update/<%=user.customer_id%>"
@@ -208,7 +209,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
 </body>
 
 </html>

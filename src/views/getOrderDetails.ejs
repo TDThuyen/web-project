@@ -35,7 +35,7 @@
     }
 
 
-    .dropdown-menunew {
+    .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
     }
@@ -55,8 +55,7 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
-                                    alt="#" />
+                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
                             </div>
                             <div class="user_info">
                                 <h6>Thuyen depzai</h6>
@@ -78,11 +77,11 @@
                                     Management</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="/admin/orderManagement" class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -107,9 +106,8 @@
                                     <ul class="user_profile_dd">
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle"
-                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user">ADMIN</span></a>
+                                                    class="img-responsive rounded-circle" src="/img/user_img.jpg"
+                                                    alt="#" /><span class="name_user">ADMIN</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="help.html">Help</a>
                                                 <a class="dropdown-item" href="#"><span>Log Out</span> <i
@@ -166,8 +164,9 @@
                                         <%= order.total_amout %>
                                     </td>
                                     <td>
-                                        <img src="<%= order.img_top %>" alt="Product Image"
-                                            style="width:100px;height:100px;">
+
+                                        <img src="<%= order.img_top.startsWith('http') ? order.img_top : '/public/productimg/' + order.img_top %>"
+                                            alt="Product Image" style="width:100px;height:100px;">
                                     </td>
                                 </tr>
                                 <% } %>
@@ -180,7 +179,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
 </body>
 
 </html>
