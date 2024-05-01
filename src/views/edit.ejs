@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/responsive.css" />
     <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
     table {
@@ -34,7 +35,7 @@
     }
 
 
-    .dropdown-menunew {
+    .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
     }
@@ -76,11 +77,11 @@
                                     Management</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -88,7 +89,6 @@
                                 <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
                             </ul>
                         </li>
-
                     </ul>
                 </div>
             </nav>
@@ -196,10 +196,19 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
+    <!-- ejs đâu --> ejs nào cu
+    <script src="."></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+    <!-- <script src="js/custom.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
 
+    </script>
 </body>
 
 </html>

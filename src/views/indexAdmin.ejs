@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="/css/bootstrap-select.css" />
    <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
    <link rel="stylesheet" href="/css/custom.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <!-- <style>
    .dropdown-menu {
@@ -39,6 +40,10 @@
    .dropdown-menu {
       min-width: 20rem;
       left: 0 px;
+   }
+
+   .counter_no {
+      padding: 0 0px;
    }
 </style>
 
@@ -90,7 +95,8 @@
                         <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
                      </ul>
                   </li>
-
+                  <!-- demo cơ  -->
+                  <!-- có css ko  -->
                </ul>
             </div>
          </nav>
@@ -135,7 +141,7 @@
                      </div>
                   </div>
                   <div class="row column1">
-                     <div class="col-md-6 col-lg-3">
+                     <div class="col-md-6 col-lg-4">
                         <div class="full counter_section margin_bottom_30">
                            <div class="couter_icon">
                               <div>
@@ -144,13 +150,14 @@
                            </div>
                            <div class="counter_no">
                               <div>
-                                 <p class="total_no">2500</p>
-                                 <p class="head_couter">Welcome</p>
+                                 <p class="total_no">
+                                    Lượng tài khoản: <%= customerCount %>
+                                 </p>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
+                     <div class="col-md-6 col-lg-4">
                         <div class="full counter_section margin_bottom_30">
                            <div class="couter_icon">
                               <div>
@@ -159,28 +166,24 @@
                            </div>
                            <div class="counter_no">
                               <div>
-                                 <p class="total_no">123.50</p>
-                                 <p class="head_couter">Average Time</p>
+                                 <p class="total_no">Lượng sản phẩm: <%= productCount%>
+                                 </p>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
+                     <div class="col-md-6 col-lg-4">
                         <div class="full counter_section margin_bottom_30">
-                           <div class="couter_icon">
-                              <div>
-                                 <i class="fa fa-cloud-download green_color"></i>
-                              </div>
-                           </div>
+
                            <div class="counter_no">
                               <div>
-                                 <p class="total_no">1,805</p>
-                                 <p class="head_couter">Collections</p>
+                                 <p class="total_no">Doanh thu tháng :<%= totalMoney || 0%> VNĐ
+                                 </p>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
+                     <!-- <div class="col-md-6 col-lg-3">
                         <div class="full counter_section margin_bottom_30">
                            <div class="couter_icon">
                               <div>
@@ -194,82 +197,74 @@
                               </div>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
                   </div>
                   <div class="row column1 social_media_section">
-                     <div class="col-md-6 col-lg-3">
-                        <div class="full socile_icons fb margin_bottom_30">
-                           <div class="social_icon">
-                              <i class="fa fa-facebook"></i>
-                           </div>
-                           <div class="social_cont">
-                              <ul>
-                                 <li>
-                                    <span><strong>35k</strong></span>
-                                    <span>Friends</span>
-                                 </li>
-                                 <li>
-                                    <span><strong>128</strong></span>
-                                    <span>Feeds</span>
-                                 </li>
-                              </ul>
+                     <div class="col-md-6 col-lg-2">
+                        <div class="full counter_section margin_bottom_30">
+                           <div class="counter_no">
+                              <div>
+                                 <p class="total_no" style="font-size: 20px; width : 110%; text-align: center;">Chờ xác
+                                    nhận
+                                 </p>
+                                 <p class="total_no" style="text-align: center;">
+                                    <%= pendingCount || 0%>
+                                 </p>
+                              </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
-                        <div class="full socile_icons tw margin_bottom_30">
-                           <div class="social_icon">
-                              <i class="fa fa-twitter"></i>
-                           </div>
-                           <div class="social_cont">
-                              <ul>
-                                 <li>
-                                    <span><strong>584k</strong></span>
-                                    <span>Followers</span>
-                                 </li>
-                                 <li>
-                                    <span><strong>978</strong></span>
-                                    <span>Tweets</span>
-                                 </li>
-                              </ul>
+                     <div class="col-md-6 col-lg-2">
+                        <div class="full counter_section margin_bottom_30">
+                           <div class="counter_no">
+                              <div>
+                                 <p class="total_no" style="font-size: 20px; width : 110%; text-align: center;">Đã xác
+                                    nhận
+                                 </p>
+                                 <p class="total_no" style="text-align: center;">
+                                    <%= confirmedCount || 0%>
+                                 </p>
+                              </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
-                        <div class="full socile_icons linked margin_bottom_30">
-                           <div class="social_icon">
-                              <i class="fa fa-linkedin"></i>
-                           </div>
-                           <div class="social_cont">
-                              <ul>
-                                 <li>
-                                    <span><strong>758+</strong></span>
-                                    <span>Contacts</span>
-                                 </li>
-                                 <li>
-                                    <span><strong>365</strong></span>
-                                    <span>Feeds</span>
-                                 </li>
-                              </ul>
+                     <div class="col-md-6 col-lg-2">
+                        <div class="full counter_section margin_bottom_30">
+                           <div class="counter_no">
+                              <div>
+                                 <p class="total_no" style="font-size: 20px; width : 110%; text-align: center;">Đang
+                                    giao
+                                 </p>
+                                 <p class="total_no" style="text-align: center;">
+                                    <%= deliveringCount || 0%>
+                                 </p>
+                              </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-3">
-                        <div class="full socile_icons google_p margin_bottom_30">
-                           <div class="social_icon">
-                              <i class="fa fa-google-plus"></i>
+                     <div class="col-md-6 col-lg-2">
+                        <div class="full counter_section margin_bottom_30">
+                           <div class="counter_no">
+                              <div>
+                                 <p class="total_no" style="font-size: 20px; width : 110%; text-align: center;">Đã giao
+                                 </p>
+                                 <p class="total_no" style="text-align: center;">
+                                    <%= deliveredCount || 0%>
+                                 </p>
+                              </div>
                            </div>
-                           <div class="social_cont">
-                              <ul>
-                                 <li>
-                                    <span><strong>450</strong></span>
-                                    <span>Followers</span>
-                                 </li>
-                                 <li>
-                                    <span><strong>57</strong></span>
-                                    <span>Circles</span>
-                                 </li>
-                              </ul>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-2">
+                        <div class="full counter_section margin_bottom_30">
+                           <div class="counter_no">
+                              <div>
+                                 <p class="total_no" style="font-size: 20px; width : 110%; text-align: center;">Đã hủy
+                                 </p>
+                                 <p class="total_no" style="text-align: center;">
+                                    <%= cancelledCount || 0%>
+                                 </p>
+                              </div>
                            </div>
                         </div>
                      </div>

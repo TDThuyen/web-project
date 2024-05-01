@@ -72,8 +72,9 @@ function displayProducts(cart__product__list) {
             total__money -= parseFloat(element.total_amount);
             product__number.innerHTML=`Có ${total} sản phẩm trong giỏ hàng của bạn`;
              total__cart.innerHTML = `${parseFloat(total__money).toLocaleString('en-US')}₫`;
-            delete__product__name.value = cart__product__name;
-            delete__product__color=cart__product__color;
+            delete__product__name.value = element.product_name;
+            delete__product__color.value= element.color;
+            console.log(delete__product__color.value)
             delete_product.submit();
         });
     })

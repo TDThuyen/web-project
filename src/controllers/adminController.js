@@ -726,17 +726,20 @@ export const findProduct = (req, res) => {
 export const findCustomer = (req, res) => {
     const input = req.query.customer;
     connection.query(
-        `SELECT * FROM customers WHERE name LIKE ? or user_name like ?`,
-        [`%${input}%`, `%${input}%`],
+        `SELECT *
+         FROM customers 
+         WHERE customer_id = ?`,
+        [input],
         function (err, results) {
             if (err) {
                 console.error(err);
                 return res.status(500).send('Lỗi khi lấy thông tin sản phẩm');
             }
-            // console.log(results);
+            console.log(results);
             res.render("findCustomer.ejs", { listUser: results });
         }
     );
+    console.log(input)
 };
 
 // /// xoa order:
@@ -767,7 +770,7 @@ export const deleteOrder = (req, res) => {
     );
     console.log(orderId);
 
-
+    // cái của usẻ đâu
 }
 
 
@@ -790,3 +793,56 @@ export const deleteOrder = (req, res) => {
 //         }
 //     );
 // }
+
+
+//dashBoard : 
+export const dashBoard = (req, res) => {
+    let customer = 'SELECT COUNT(customer_id) AS count FROM customers';
+    let product = 'SELECT COUNT(product_id) AS count FROM products';
+    let pending = "SELECT COUNT(order_id) AS count FROM orders where status = 1";
+    let confirmed = "SELECT COUNT(order_id) AS count FROM orders where status = 2";
+    let delivering = "SELECT COUNT(order_id) AS count FROM orders where status = 3";
+    let delivered = "SELECT COUNT(order_id) AS count FROM orders where status = 4";
+    let cancelled = "SELECT COUNT(order_id) AS count FROM orders where status = 5";
+    let totalMoney = `SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())`;
+
+
+    // Tạo một hàm trợ giúp để thực hiện truy vấn và trả về Promise
+    const doQuery = (query) => {
+        return new Promise((resolve, reject) => {
+            connection.query(query, (err, result) => {
+                if (err) reject(err);
+                resolve(result[0].count);
+            });
+        });
+    };
+
+    // Sử dụng Promise.all để đảm bảo tất cả các truy vấn đều hoàn thành
+    Promise.all([
+        doQuery(customer),
+        doQuery(product),
+        doQuery(pending),
+        doQuery(confirmed),
+        doQuery(delivering),
+        doQuery(delivered),
+        doQuery(cancelled),
+        doQuery(totalMoney)
+    ]).then((results) => {
+        let [customerCount, productCount, pendingCount, confirmedCount, deliveringCount, deliveredCount, cancelledCount, totalMoney] = results;
+        console.log(customerCount, productCount, pendingCount, confirmedCount, deliveringCount, deliveredCount, cancelledCount, totalMoney)
+        res.render("indexAdmin.ejs", {
+            customerCount,
+            productCount,
+            pendingCount,
+            confirmedCount,
+            deliveringCount,
+            deliveredCount,
+            cancelledCount,
+            totalMoney
+        });
+    }).catch((err) => {
+        // Xử lý lỗi nếu có
+        console.error(err);
+        res.status(500).send('Server error');
+    });
+};
