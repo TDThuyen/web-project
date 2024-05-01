@@ -1,64 +1,36 @@
 import connection from "../models/connectSQL.js";
-
+import SQLConnect from "../models/SQLConnection.js";
 // Route để lấy các sản phẩm cho một trang cụ thể
 export default async (req, res) => {
   try {
-    await startTransaction();
-    connection.query(`select * from cart where customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
-      if (error) {
-        console.error('đặt hàng thất bại:', error);
-        await rollbackTransaction();
-        res.json("đặt hàng thất bại");
-        return;
-      }
-      let totalAmount = 0;
-      for (let i = 0; i < results.length; i++) {
-        const cartItem = results[i];
-        // Lấy thông tin sản phẩm từ cartItem
-        totalAmount += parseFloat(cartItem.total_amout);
-      }
-      connection.query(`insert into orders(customer_id,order_date,total_amount) values (${req.session.user.customer_id}, NOW(), ${totalAmount})`, async (error, results, fields) => {
-        if (error) {
-          console.error('đặt hàng thất bại:', error);
-          await rollbackTransaction();
-          res.json("đặt hàng thất bại");
-          return;
+    if(req.body.delete__cart__id){
+      connection.query(`delete from cart where cart_id = ${req.body.delete__cart__id} and customer_id = ${req.session.user.customer_id}`,async (error, results, fields) =>{
+        if(results){
+          
         }
-        const orderId = results.insertId;
-        connection.query(`insert into orderdetail(order_id,quantity,total_amout,id_prod,product_id) 
-            select ${orderId},quantity,total_amout,id_prod,product_id from cart where customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
-          if (error) {
-            console.error('đặt hàng thất bại:', error);
-            await rollbackTransaction();
-            res.json("đặt hàng thất bại");
-            return;
-          }
-        });
-
-        // Xóa giỏ hàng
-        connection.query(`DELETE FROM cart WHERE customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
-          if (error) {
-            console.error('đặt hàng thất bại:', error);
-            await rollbackTransaction();
-            res.json("đặt hàng thất bại");
-            return;
-          }
-        });
-
-        await commitTransaction();
-        res.json("đặt hàng thành công!");
-      });
-    });
-  } catch (error) {
-    console.error('đặt hàng thất bại:', error);
-    await rollbackTransaction();
-    res.json("đặt hàng thất bại");
+      })
+    }
+    else{
+      connection.query(`call process_order_from_cart(${req.session.user.customer_id})`,async (error, results, fields) =>{
+        if(!results){
+          res.cookie("status","notok")
+          res.render("test.html")
+          console.log(error)
+        }
+        else {
+          res.cookie("status","ok")
+          res.render("test.html")
+        }
+      })
+    }
+    } catch (error) {
+    console.error(error);
   }
 };
 
 async function startTransaction() {
   return new Promise((resolve, reject) => {
-    connection.beginTransaction((err) => {
+    SQLConnect.beginTransaction((err) => {
       if (err) {
         reject(err);
       } else {
@@ -71,7 +43,7 @@ async function startTransaction() {
 // Hàm xác nhận giao dịch
 async function commitTransaction() {
   return new Promise((resolve, reject) => {
-    connection.commit((err) => {
+    SQLConnect.commit((err) => {
       if (err) {
         reject(err);
       } else {
@@ -84,7 +56,7 @@ async function commitTransaction() {
 // Hàm quay lại giao dịch
 async function rollbackTransaction() {
   return new Promise((resolve, reject) => {
-    connection.rollback(() => {
+    SQLConnect.rollback(() => {
       resolve();
     });
   });

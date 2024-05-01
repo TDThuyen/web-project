@@ -66,7 +66,9 @@ CREATE TABLE `customers` (
   `pass_word` varchar(500) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `user_img` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`customer_id`)
+  PRIMARY KEY (`customer_id`),
+  FULLTEXT KEY `name` (`name`),
+  FULLTEXT KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -349,6 +351,7 @@ CREATE TABLE `products` (
   `quantity_sold` int DEFAULT '0',
   PRIMARY KEY (`product_id`),
   KEY `portfolio_fk_1` (`id_port`),
+  FULLTEXT KEY `product_name` (`product_name`),
   CONSTRAINT `portfolio_fk_1` FOREIGN KEY (`id_port`) REFERENCES `portfolio` (`id_port`)
 ) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -391,6 +394,10 @@ INSERT INTO `sales` VALUES (1,3,10),(2,4,30),(3,5,30),(4,6,30),(5,7,30),(6,8,30)
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'web'
+--
+
+--
 -- Dumping routines for database 'web'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `process_order_from_cart` */;
@@ -407,7 +414,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `process_order_from_cart`(IN `x` INT
 BEGIN
     -- Declare variables
     DECLARE done_cart INT DEFAULT FALSE;
-    DECLARE cart_id1, customer_id1, id_prod1, quantity1, product_id1 INT;
+    DECLARE cart_id1, customer_id1, id_prod1, quantity1, product_id1, quantity_of_color1 INT;
     DECLARE total_amount DECIMAL(10,2);
     DECLARE total_amount_all DECIMAL(10,2);
     DECLARE cur_cart CURSOR FOR SELECT cart_id, customer_id, id_prod, quantity, product_id, total_amout FROM cart WHERE customer_id = x;
@@ -435,7 +442,18 @@ BEGIN
         IF done_cart THEN
             LEAVE cart_loop;
         END IF;
+        
+        -- check 
+        SELECT quantity_of_color INTO quantity_of_color1 
+        FROM product_detail 
+        WHERE id_prod = id_prod1;
 
+        IF quantity1 > quantity_of_color1 THEN
+            -- Rollback và thoát vòng lặp
+            ROLLBACK;
+            LEAVE cart_loop;
+        END IF;
+        
         -- Insert vào bảng orderdetail
         INSERT INTO orderdetail (order_id, quantity, total_amout, id_prod, product_id) 
         VALUES (@last_order_id, quantity1, total_amount, id_prod1, product_id1);
@@ -465,4 +483,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-29 23:45:30
+-- Dump completed on 2024-04-30 16:34:43

@@ -70,8 +70,14 @@
                 <div class="quantity__number"></div>
                 <div class="plus">+</div>
             </div>
-            <button class="addCart" name = "submit", value="addCart">THÊM VÀO GIỎ</button>
-            <button class="buy">MUA NGAY</button>
+            <form class="form" method="post">
+                <input class="picked__productDetail__id hide" type="text" name="picked__productDetail__id">
+                <input class="total__amount hide" name="total__amount" type="number">
+                <input class="quantity hide" name="quantity" type="number">
+                <button class="addCart" value="addCart" name ="submit" type="submit">THÊM VÀO GIỎ</button>
+                <button class="buy" type="submit" name="submit" value="buy">MUA NGAY</button>
+            </form>
+            
             <div class="product__description">
             </div>
             <img class="tuvan" src="/img/tuvan.png">
@@ -95,13 +101,7 @@
                 <button class="evaluate__submit evaluate__submit2" type="submit">Comment</button>
             </form>
         </div>
-        <form class="form hide" method="post">
-            <input class="picked__product__name" type="text" name="picked__product__name">
-            <input class="picked__product__img" type="text" name="picked__product__img">
-            <input class="picked__product__color" type="text" name="picked__product__color">
-            <input class="total__amount" name="total__amount" type="number">
-            <input class="quantity" name="quantity" type="number">
-        </form>
+        
         <div class="alert__login hide">
             <div class="alert__login__box">
                 <i class='bx bx-x-circle'></i>

@@ -4,8 +4,8 @@ var product__number = document.querySelector(".product__number")
 var cart__product__area = document.querySelector('.cart__product__area')
 var total__cart = document.querySelector('.total__cart')
 var delete_product = document.querySelector('.delete_product')
-var delete__product__name = document.querySelector('.delete__product__name')
-var delete__product__color =document.querySelector('.delete__product__color')
+var delete__cart__id = document.querySelector('.delete__cart__id')
+
 // var cart__product__element = document.querySelector('.cart__product__element')
 async function fetchProducts() {
     const response = await fetch(`/getMyCart`);
@@ -72,8 +72,8 @@ function displayProducts(cart__product__list) {
             total__money -= parseFloat(element.total_amount);
             product__number.innerHTML=`Có ${total} sản phẩm trong giỏ hàng của bạn`;
              total__cart.innerHTML = `${parseFloat(total__money).toLocaleString('en-US')}₫`;
-            delete__product__name.value = cart__product__name;
-            delete__product__color=cart__product__color;
+             delete__cart__id.value = element.cart_id;
+            console.log(delete__cart__id.value)
             delete_product.submit();
         });
     })

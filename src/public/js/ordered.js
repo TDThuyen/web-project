@@ -55,7 +55,8 @@ async function fetchProducts() {
         
         getOrderDetail.addEventListener('click', (function(element_id) {
             return function() {
-             
+            //  document.querySelector('.getOrderId').value=`${element_id}`
+            //  console.log(document.querySelector('.getOrderId').value)
             };
         })(element.order_id));
         ordered__element.appendChild(getOrderDetail)

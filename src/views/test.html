@@ -8,6 +8,24 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <script>
+        var a = document.cookie.match(/status=([^;]+)/)
+        if (a) {
+            var statusAlert = a[0];
+            if (statusAlert === "status=ok") {
+                alert(" Đặt hàng thành công!")
+            }
+            else if (statusAlert === "status=notok") {
+                alert("Đặt hàng thất bại!")
+            }
+            fetch('/deleteStatusCookie', {
+                method: 'DELETE', // hoặc 'POST' hoặc 'GET', phụ thuộc vào cách máy chủ của bạn xử lý yêu cầu
+            })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                });
+        }
+    </script>
     <img class="logo" src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
     <header>
         <a href="/auth" class="Home">Trang chủ</a>
@@ -31,7 +49,9 @@
                     <p class="total__cart"></p>
                 </div>
                 
-                <button class="order__button">Thanh toán</button>
+                <form method="post">
+                    <button type="submit" class="order__button">Thanh toán</button>
+                </form>
             </div>
             <div class="cart__text__child">
                 <a href ="/home">&#x2190;Tiếp tục mua hàng</a>
@@ -49,9 +69,8 @@
             </div>
         </div>
     </main>
-    <form class="delete_product hide" method="delete">
-         <input class="delete__product__name" name="delete__product__name" value="">
-         <input class="delete__product__color" name="delete__product__color" value="">
+    <form class="delete_product hide" method="post">
+         <input class="delete__cart__id" type="text" name="delete__cart__id" value="">
     </form>
 </body>
 <script src="/js/test.js"></script>

@@ -33,6 +33,10 @@ import { findOrder } from "../controllers/adminController.js"
 import { findProduct } from "../controllers/adminController.js"
 import { findCustomer } from "../controllers/adminController.js"
 
+//eraseOrder : 
+import { deleteOrder } from "../controllers/adminController.js"
+
+
 const routerAdmin = express.Router()
 routerAdmin.get("/", checkPermisson, (req, res) => {
     res.render("indexAdmin.html")
@@ -116,5 +120,8 @@ routerAdmin.get("/orderDetails/:id", getOrderDetails)
 routerAdmin.get("/searchOrder", findOrder)
 routerAdmin.get("/searchProduct", findProduct)
 routerAdmin.get("/searchCustomer", findCustomer)
+
+// do thong tin de xac nhan xoa don :
+routerAdmin.post("/eraseOrder/:id", deleteOrder)
 
 export default routerAdmin;

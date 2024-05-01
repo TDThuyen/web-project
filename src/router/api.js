@@ -53,8 +53,13 @@ routerAPI.get("/getComment/id=:id", async (req, res) => {
             product_id: req.params.id
         })
         if (comment) {
-            const myID = req.session.user.customer_id;
-            res.json(comment.filter(obj => obj.customer_id !== myID))
+            if(req.session.user){
+                const myID = req.session.user.customer_id;
+                res.json(comment.filter(obj => obj.customer_id !== myID))
+            }
+            else {
+                res.json(comment)
+            }
         }
         else {
             res.json("")

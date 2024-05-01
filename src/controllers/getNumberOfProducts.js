@@ -11,7 +11,7 @@ export default async (req, res) => {
     if(!req.params.q&&!req.params.collection){
       const data = await redisClient.get("getNumberOfProducts");
       if(!data){
-        connection.query(`select count(*) as "ProductsNumber"  from products`, async (error, results, fields) =>{
+        connection.query(`select count(product_id) as "ProductsNumber"  from products`, async (error, results, fields) =>{
             redisClient.setEx("getNumberOfProducts",process.env.REDIS_END_TIME,JSON.stringify(results));
             res.json(results);
         })
@@ -22,7 +22,7 @@ export default async (req, res) => {
     }
     else if (req.params.q){
       const q = req.params.q
-      connection.query(`select count(*) as "ProductsNumber"  from products where products.product_name like "%${q}%"`, async (error, results, fields) =>{
+      connection.query(`select count(product_id) as "ProductsNumber"  from products WHERE MATCH(product_name) AGAINST ('từ_khóa' IN BOOLEAN MODE);`, async (error, results, fields) =>{
         res.json(results);
       })
     }
@@ -34,7 +34,7 @@ export default async (req, res) => {
       else if(collection === "phong__lam__viec") collection = 4;
       else if(collection === "tu__bep") collection = 5;
       else res.send("404 not found");
-      connection.query(`select count(*) as "ProductsNumber"  from products where id_port=${collection}`, async (error, results, fields) =>{
+      connection.query(`select count(product_id) as "ProductsNumber"  from products where id_port=${collection}`, async (error, results, fields) =>{
         res.json(results);
       })
     }

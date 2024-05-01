@@ -6,8 +6,9 @@ routerOrders.get("/", (req,res) =>{
     res.render("ordered.html")
 })
 
-routerOrders.get("/orderDetail/id=:id", (req,res) =>{
-    res.render("orderDetail.html")
+routerOrders.post("/", (req,res)=>{
+    console.log(req.body);
+    res.json("")
 })
 
 export default routerOrders;
