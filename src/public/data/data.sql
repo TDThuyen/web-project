@@ -26,7 +26,7 @@ CREATE TABLE `cart` (
   `cart_id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int DEFAULT NULL,
   `id_prod` int DEFAULT NULL,
-  `total_amout` decimal(10,2) DEFAULT NULL,
+  `total_amout` decimal(20,2) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `product_id` int DEFAULT NULL,
   PRIMARY KEY (`cart_id`),
@@ -93,7 +93,7 @@ CREATE TABLE `orderdetail` (
   `id` int NOT NULL AUTO_INCREMENT,
   `order_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
-  `total_amout` decimal(10,2) DEFAULT NULL,
+  `total_amout` decimal(20,2) DEFAULT NULL,
   `id_prod` int DEFAULT NULL,
   `product_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -202,7 +202,7 @@ CREATE TABLE `orders` (
   `order_id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int DEFAULT NULL,
   `order_date` date DEFAULT NULL,
-  `total_amount` decimal(10,2) DEFAULT NULL,
+  `total_amount` decimal(20,2) DEFAULT NULL,
   `status` int DEFAULT '1',
   PRIMARY KEY (`order_id`),
   KEY `orders_fk_1` (`customer_id`),
@@ -415,8 +415,8 @@ BEGIN
     -- Declare variables
     DECLARE done_cart INT DEFAULT FALSE;
     DECLARE cart_id1, customer_id1, id_prod1, quantity1, product_id1, quantity_of_color1 INT;
-    DECLARE total_amount DECIMAL(10,2);
-    DECLARE total_amount_all DECIMAL(10,2);
+    DECLARE total_amount DECIMAL(20,2);
+    DECLARE total_amount_all DECIMAL(20,2);
     DECLARE cur_cart CURSOR FOR SELECT cart_id, customer_id, id_prod, quantity, product_id, total_amout FROM cart WHERE customer_id = x;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done_cart = TRUE;
 
@@ -483,4 +483,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-30 16:34:43
+-- Dump completed on 2024-05-01 12:24:19
