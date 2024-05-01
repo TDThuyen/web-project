@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/responsive.css" />
     <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
     table {
@@ -33,7 +34,7 @@
         background-color: coral;
     }
 
-    .dropdown-menunew {
+    .dropdown-menu {
         min-width: 20rem;
         left: 0 px;
     }
@@ -79,7 +80,7 @@
                                 <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
                                     class="caret"></b>
                             </a>
-                            <ul class="dropdown-menunew">
+                            <ul class="dropdown-menu">
                                 <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
                                 <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
@@ -251,7 +252,13 @@
         CKEDITOR.replace('motasp');
     </script>
 
-
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
 </body>
 
 </html>

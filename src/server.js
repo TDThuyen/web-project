@@ -14,7 +14,18 @@ import SQLConnection from "./models/SQLConnection.js";
 import redisClient from "./models/connectRedis.js";
 import { _dirname } from "./path.js";
 import router from "./router/index.js";
+
+// import them de load anh tu duong dan 
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
+
+app.use('/public', express.static(join(__dirname, 'public')));
+
 
 configViewEngine(app);
 

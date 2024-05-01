@@ -20,7 +20,10 @@ var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
 var addCard = document.querySelector('.addCart');
 var buy = document.querySelector('.buy')
+<<<<<<< HEAD
 var evaluate__display = document.querySelector('.evaluate__display')
+=======
+>>>>>>> dd94425c2355023f1001db7370f9518a7768a908
 var evaluate= document.querySelector('.evaluate')
 var comment = document.querySelector('.comment')
 quantity__number.innerHTML =diep;
@@ -87,8 +90,36 @@ async function fetchProducts(id) {
     const productDetail2 = await response2.json();
     const response3 = await fetch(`/getRate/id=${id}`);
     const productDetail3 = await response3.json();
+<<<<<<< HEAD
     console.log(productDetail2[0])
     console.log(productDetail1)
+=======
+    if(document.cookie.match(/name=([^;]+)/)){
+       const response4 = await fetch(`/getMyComment/id=${id}`)
+       const getMyComment = await response4.json();
+         if(typeof(getMyComment) === 'string'){
+      evaluate.classList.remove('hide')
+    }
+    const response5 = await fetch(`/getComment/id=${id}`)
+    const getComment = await response5.json();
+    if(getComment.length != 0){
+      getComment.forEach(element => {
+        var comment__text = document.createElement('p')
+        comment__text.className="comment__text"
+        comment__text.innerHTML=element.comment
+        var comment__rate = document.createElement('p')
+        comment__rate.className="comment__rate"
+        comment__rate.innerHTML=`${element.rate}/5`
+        document.querySelector('.getComment__text1').classList.remove('hide')
+        document.querySelector('.getComment').appendChild(comment__rate)
+        document.querySelector('.getComment').appendChild(comment__text)
+      })
+    }
+  else{
+    document.querySelector('.getComment__text2').classList.remove('hide')
+  }} 
+   
+>>>>>>> dd94425c2355023f1001db7370f9518a7768a908
     var rate__text = document.querySelector('.rate__text')
     var rage__star = document.querySelector('.rate__star')
     if(productDetail3){
@@ -215,7 +246,6 @@ async function fetchProducts(id) {
       total__amount.value = (parseFloat(pricee)*(1-parseFloat(discountt)/100))*diep
       var quantity = formm.querySelector('.quantity')
       quantity.value = diep;
-      // buy.action="/cart"
       buy.addEventListener('click', function(e) {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
@@ -224,7 +254,10 @@ async function fetchProducts(id) {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
         }
+<<<<<<< HEAD
         //  Gửi form khi nút được nhấn
+=======
+>>>>>>> dd94425c2355023f1001db7370f9518a7768a908
       });
       
     }
@@ -243,7 +276,7 @@ function displayProducts(productDetail) {
      var sold = document.querySelector('.sold')
      var sale__price = document.querySelector('.sale__price')
      var unsale__price=document.querySelector('.unsale__price')
-     
+     var quantity__stock = document.querySelector('.quantity__stock')
      var product__description =document.querySelector('.product__description')
      product__description.innerHTML= productDetail[0].description
      product__name1.innerHTML = productDetail[0].product_name;
@@ -255,6 +288,7 @@ function displayProducts(productDetail) {
      sale.innerHTML = `-${productDetail[0].discount}%`
      sale.style.backgroundColor="#EDEDED"
      sold.innerHTML =`Đã bán: ${productDetail[0].quantity_sold}`;
+     quantity__stock.innerHTML=`Số lượng: ${productDetail[0].quantity_stock}`
      sale__price.innerHTML = `${(parseFloat(productDetail[0].price)*(1-parseFloat(productDetail[0].discount)/100)).toLocaleString('en-US')}₫`
      unsale__price.innerHTML = `${parseFloat(productDetail[0].price).toLocaleString('en-US')}₫`
   
@@ -294,13 +328,6 @@ async function updateCartItemCount() {
 
 // Gọi hàm cập nhật số lượng sản phẩm ngay sau khi tải xong DOM
 document.addEventListener('DOMContentLoaded', updateCartItemCount);
-if(document.cookie.match(/name=([^;]+)/)){
-evaluate__display.addEventListener('click',function(){
-  evaluate.classList.toggle('hide')
-  comment.classList.toggle('hide')
-  evaluate__display.classList.add('hide')
-})
-}
 
 
 

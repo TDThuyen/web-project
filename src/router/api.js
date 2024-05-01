@@ -104,8 +104,16 @@ routerAPI.get("/getNumberOfProductsOfMyCart", (req,res) => {
     else res.json("")
 })
 
-routerAPI.get("/abc", (req,res)=> {
-    res.json("")
-})
+routerAPI.get("/ordered/orderDetail/id=:id",(req,res)=>{
+    connection.query(`select * from orderDetail where order_id = ${req.params.id}`,(error, results, fields) => {
+        if(results){
+            res.json(results);
+        }
+        else {
+            res.json("")
+        }
+      })
+    })
+
 export default routerAPI;
 

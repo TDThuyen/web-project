@@ -77,7 +77,14 @@ function displayProducts(cart__product__list) {
             delete_product.submit();
         });
     })
-    product__number.innerHTML=`Có ${total} sản phẩm trong giỏ hàng của bạn`;
+    
+    if(total == 0){
+        var empty__image = document.createElement('img')
+        empty__image.className="empty__image"
+        empty__image.src="/img/empty.png"
+        cart__product__area.appendChild(empty__image)
+    }
+    else{product__number.innerHTML=`Có ${total} sản phẩm trong giỏ hàng của bạn`;}
     total__cart.innerHTML = `${parseFloat(total__money).toLocaleString('en-US')}₫`;
 }
 fetchProducts()
