@@ -105,7 +105,9 @@ routerAPI.get("/getNumberOfProductsOfMyCart", (req,res) => {
 })
 
 routerAPI.get("/ordered/orderDetail/id=:id",(req,res)=>{
-    connection.query(`select * from orderDetail where order_id = ${req.params.id}`,(error, results, fields) => {
+    connection.query(`select orderDetail.total_amout, orderDetail.quantity, products.product_name, product_detail.color from orderDetail inner join products on orderDetail.product_id = products.product_id
+    inner join product_detail on orderDetail.id_prod = product_detail.id_prod
+    where order_id = ${req.params.id}`,(error, results, fields) => {
         if(results){
             res.json(results);
         }
