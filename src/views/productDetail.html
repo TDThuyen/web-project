@@ -51,6 +51,7 @@
         <div class="product__information">
             <h3 class="product__name2"></h3>
             <p class="sold"></p>
+            <p class="quantity__stock"></p>
             <div class="rate">
                 <img class="rate__star">
                 <p class="rate__text"></p>
@@ -70,12 +71,21 @@
                 <div class="quantity__number"></div>
                 <div class="plus">+</div>
             </div>
-            <button class="addCart" name = "submit", value="addCart">THÊM VÀO GIỎ</button>
-            <button class="buy">MUA NGAY</button>
+            <form class="form" method="post">
+                <input class="picked__productDetail__id hide" type="text" name="picked__productDetail__id">
+                <input class="total__amount hide" name="total__amount" type="number">
+                <input class="quantity hide" name="quantity" type="number">
+                <button class="addCart" value="addCart" name ="submit" type="submit">THÊM VÀO GIỎ</button>
+                <button class="buy" type="submit" name="submit__buy">MUA NGAY</button>
+            </form>
+            
             <div class="product__description">
             </div>
             <img class="tuvan" src="/img/tuvan.png">
-            <button class="evaluate__display">Đánh giá</button>
+            <div class="getComment">
+                  <p class="getComment__text1 hide">Một số nhận xét về sản phẩm:</p>
+                  <p class="getComment__text2 hide">Chưa có nhận xét nào về sản phẩm</p>
+            </div>
             <form class="evaluate hide" method="post">
                 <p>Đánh giá sản phẩm (Trên thang điểm 5):</p><br>
                 <label for="rating1">1</label>
@@ -88,20 +98,11 @@
                 <input type="radio" id="rating4" name="rating" value="4">
                 <label for="rating5">5</label>
                 <input type="radio" id="rating5" name="rating" value="5">
-                <button class="evaluate__submit evaluate__submit1" type="submit">Gửi</button>
-            </form>
-            <form class="comment hide" method="post">
-                <input type="text" placeholder="Nhận xét về sản phẩm"> 
-                <button class="evaluate__submit evaluate__submit2" type="submit">Comment</button>
+                <input type="text" class="comment__text" placeholder="Nhận xét về sản phẩm"> 
+                <button class="evaluate__submit evaluate__submit2" type="submit" value="Comment">Comment</button>
             </form>
         </div>
-        <form class="form hide" method="post">
-            <input class="picked__product__name" type="text" name="picked__product__name">
-            <input class="picked__product__img" type="text" name="picked__product__img">
-            <input class="picked__product__color" type="text" name="picked__product__color">
-            <input class="total__amount" name="total__amount" type="number">
-            <input class="quantity" name="quantity" type="number">
-        </form>
+        
         <div class="alert__login hide">
             <div class="alert__login__box">
                 <i class='bx bx-x-circle'></i>

@@ -394,10 +394,11 @@ header{
 }
 
 .evaluate{
-    margin-left: 2px;
+    /* margin-left: 2px; */
     margin-bottom: 15px;
     border: 1px solid #b9b6b6;
     padding: 5px 10px;
+    margin-top: 15px;
 }
 .evaluate label{
     margin-right: 3px;
@@ -423,9 +424,6 @@ header{
     background-color: #fff;
     border: 1px solid #dae4d0;
 }
-evaluate__submit1{
-    width: 10px;
-}
 .evaluate__display{
     width: 100%;
     height: 50px;
@@ -440,22 +438,22 @@ evaluate__submit1{
     background-color: #fff;
     border: 1px solid #dae4d0;
 }
-
-.comment{
-    margin-top: 10px;
+.comment__text{
     width: 100%;
-    display: flex;
-    height: 25px;
-}
-
-.comment input{
-    width: 85%;
-    height: 100%;
+    height:30px;
+    margin-bottom: 10px;
     outline: none;
-    border: 1px solid #dae4d0;
-    padding-left: 2px;
+    border: none;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
 .hide{
     display: none;
+}
+.quantity__stock{
+    text-align: end;
+    margin-top: 7px;
+    margin-right: 15px;
+    
 }
