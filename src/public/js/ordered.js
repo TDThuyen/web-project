@@ -52,11 +52,18 @@ async function fetchProducts() {
         var getOrderDetail = document.createElement('p')
         getOrderDetail.innerHTML ="Xem chi tiết"
         getOrderDetail.className="getOrderDetail"
-        
         getOrderDetail.addEventListener('click', (function(element_id) {
             return function() {
-            //  document.querySelector('.getOrderId').value=`${element_id}`
-            //  console.log(document.querySelector('.getOrderId').value)
+                async function fetchDetail(element_id) {
+                    const response2 = await fetch(`/ordered/orderDetail/id=${element_id}`);
+                    const detail = await response2.json();
+                    displayDetail(detail);
+                }
+                function displayDetail(detail){
+                       console.log(detail)
+                }
+                fetchDetail(element_id)
+                
             };
         })(element.order_id));
         ordered__element.appendChild(getOrderDetail)

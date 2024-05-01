@@ -25,6 +25,7 @@ body {
 
 .logo {
     width: 10%;
+    height:130px;
 
 }
 .search__form{
@@ -223,7 +224,11 @@ body {
     justify-content: space-between;
     align-items: end;
 }
-
+.quantity__stock{
+    margin-top: -8%;
+    margin-left: 3%;
+    color: #4B505E;
+}
 .signup__form__header h1,
 .login__form__header h1 {
     margin-left: 40%;
@@ -814,12 +819,14 @@ body {
 .sale__price{
     color: red;
     text-decoration: none;
+    font-size: 18px;
 }
 .unsale__price{
     margin-left:18%;
     text-decoration: line-through;
     text-decoration-thickness:1px;
     color: #4b505e;
+    margin-top: 2%;
 }
 .product__name{
     font-size: 15px;

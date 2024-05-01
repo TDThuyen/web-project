@@ -157,6 +157,7 @@ else {
         var NumberOfPage=parseInt(numberPage[0].ProductsNumber);
         const page_total = Math.ceil(NumberOfPage/16);
         const products = await response.json();
+        console.log(products)
         displayProducts(products);
         page_right[0].addEventListener('click',function(){
             if(currentPage < page_total){
@@ -225,6 +226,9 @@ else {
           product__price.className="product__price";
           product__price1.className="sale__price";
           product__price2.className="unsale__price";
+          var quantity__stock = document.createElement('p')
+          quantity__stock.className="quantity__stock"
+          quantity__stock.innerHTML=`Số lượng: ${product.quantity_stock}`
           product__price.appendChild(product__price1);
           product__price.appendChild(product__price2);
           sale__percent.appendChild(sale__count)
@@ -233,6 +237,7 @@ else {
           productElement.appendChild(product__name);
           productElement.appendChild(product__price);
           productElement.appendChild(sold);
+          productElement.appendChild(quantity__stock)
           productsContainer.appendChild(productElement);
           productElement.href=`/products/id=${product.product_id}`;
         });

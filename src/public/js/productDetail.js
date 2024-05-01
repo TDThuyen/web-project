@@ -19,8 +19,7 @@ var login__display= document.querySelector('.login__display')
 var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
 var addCard = document.querySelector('.addCart');
-      var buy = document.querySelector('.buy')
-var evaluate__display = document.querySelector('.evaluate__display')
+var buy = document.querySelector('.buy')
 var evaluate= document.querySelector('.evaluate')
 var comment = document.querySelector('.comment')
 quantity__number.innerHTML =diep;
@@ -86,7 +85,31 @@ async function fetchProducts(id) {
     const productDetail2 = await response2.json();
     const response3 = await fetch(`/getRate/id=${id}`);
     const productDetail3 = await response3.json();
-    console.log(productDetail3)
+    if(document.cookie.match(/name=([^;]+)/)){
+       const response4 = await fetch(`/getMyComment/id=${id}`)
+       const getMyComment = await response4.json();
+         if(typeof(getMyComment) === 'string'){
+      evaluate.classList.remove('hide')
+    }
+    const response5 = await fetch(`/getComment/id=${id}`)
+    const getComment = await response5.json();
+    if(getComment.length != 0){
+      getComment.forEach(element => {
+        var comment__text = document.createElement('p')
+        comment__text.className="comment__text"
+        comment__text.innerHTML=element.comment
+        var comment__rate = document.createElement('p')
+        comment__rate.className="comment__rate"
+        comment__rate.innerHTML=`${element.rate}/5`
+        document.querySelector('.getComment__text1').classList.remove('hide')
+        document.querySelector('.getComment').appendChild(comment__rate)
+        document.querySelector('.getComment').appendChild(comment__text)
+      })
+    }
+  else{
+    document.querySelector('.getComment__text2').classList.remove('hide')
+  }} 
+   
     var rate__text = document.querySelector('.rate__text')
     var rage__star = document.querySelector('.rate__star')
     if(productDetail3){
@@ -142,7 +165,7 @@ async function fetchProducts(id) {
     pricee =productDetail2[0].price;
     discountt = productDetail2[0].discount;
     img__top = productDetail2[0].img_top;
-    namee = productDetail2[0].product_name;
+    // namee = productDetail2[0].product_name;
     if( document.cookie.match(/name=([^;]+)/) !== null){
       var cart__icon = document.createElement('i')
       cart__icon.className='bx bx-cart-alt';
@@ -186,8 +209,11 @@ async function fetchProducts(id) {
   
         color.addEventListener('click', function() {
           picked__color = element.color;
-          
-          picked__product__color.value = picked__color;
+          namee = element.id_prod;
+          picked__productDetail__id.value= namee;
+          console.log(picked__productDetail__id.value)
+      
+          // picked__product__color.value = picked__color;
           const otherColors = document.querySelectorAll('.productDetail__color');
           otherColors.forEach(otherColor => {
             if (otherColor !== color && otherColor.classList.contains('color__picker')) {
@@ -203,32 +229,21 @@ async function fetchProducts(id) {
       });
       
       
-      var form = document.querySelector('.form');  
-      var picked__product__name = form.querySelector('.picked__product__name');
-      picked__product__name.value = namee
-      var picked__product__img = form.querySelector('.picked__product__img');
-      picked__product__img.value = img__top
-      var picked__product__color = form.querySelector('.picked__product__color');
-      picked__product__color.value = picked__color
-      var total__amount = form.querySelector('.total__amount');
+      var formm = document.querySelector('.form');  
+      var picked__productDetail__id = formm.querySelector('.picked__productDetail__id');
+      picked__productDetail__id.value= namee;
+      var total__amount = formm.querySelector('.total__amount');
       total__amount.value = (parseFloat(pricee)*(1-parseFloat(discountt)/100))*diep
-      var quantity = form.querySelector('.quantity')
+      var quantity = formm.querySelector('.quantity')
       quantity.value = diep;
-      // buy.action="/cart"
       buy.addEventListener('click', function(e) {
-        e.preventDefault()
+        if(typeof picked__color === 'undefined'){
+          alert("Vui long chon mau")
+        }});
+      addCard.addEventListener('click', function(e) {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
         }
-        else{
-          form.submit();
-           //window.location.href = '/cart';
-      }});
-      addCard.addEventListener('click', function() {
-        if(typeof picked__color === 'undefined'){
-          alert("Vui long chon mau")
-        }
-        else{form.submit(); }//  Gửi form khi nút được nhấn
       });
       
     }
@@ -247,7 +262,7 @@ function displayProducts(productDetail) {
      var sold = document.querySelector('.sold')
      var sale__price = document.querySelector('.sale__price')
      var unsale__price=document.querySelector('.unsale__price')
-     
+     var quantity__stock = document.querySelector('.quantity__stock')
      var product__description =document.querySelector('.product__description')
      product__description.innerHTML= productDetail[0].description
      product__name1.innerHTML = productDetail[0].product_name;
@@ -259,6 +274,7 @@ function displayProducts(productDetail) {
      sale.innerHTML = `-${productDetail[0].discount}%`
      sale.style.backgroundColor="#EDEDED"
      sold.innerHTML =`Đã bán: ${productDetail[0].quantity_sold}`;
+     quantity__stock.innerHTML=`Số lượng: ${productDetail[0].quantity_stock}`
      sale__price.innerHTML = `${(parseFloat(productDetail[0].price)*(1-parseFloat(productDetail[0].discount)/100)).toLocaleString('en-US')}₫`
      unsale__price.innerHTML = `${parseFloat(productDetail[0].price).toLocaleString('en-US')}₫`
   
@@ -298,13 +314,6 @@ async function updateCartItemCount() {
 
 // Gọi hàm cập nhật số lượng sản phẩm ngay sau khi tải xong DOM
 document.addEventListener('DOMContentLoaded', updateCartItemCount);
-if(document.cookie.match(/name=([^;]+)/)){
-evaluate__display.addEventListener('click',function(){
-  evaluate.classList.toggle('hide')
-  comment.classList.toggle('hide')
-  evaluate__display.classList.add('hide')
-})
-}
 
 
 
