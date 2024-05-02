@@ -20,10 +20,6 @@ var login__close =document.querySelector('#login__close')
 var signup__option = document.querySelector('.signup__option')
 var addCard = document.querySelector('.addCart');
 var buy = document.querySelector('.buy')
-<<<<<<< HEAD
-var evaluate__display = document.querySelector('.evaluate__display')
-=======
->>>>>>> dd94425c2355023f1001db7370f9518a7768a908
 var evaluate= document.querySelector('.evaluate')
 var comment = document.querySelector('.comment')
 quantity__number.innerHTML =diep;
@@ -85,41 +81,85 @@ async function fetchProducts(id) {
   try {
     const response1 = await fetch(`/getProductDetail/id=${id}`);
     const productDetail1 = await response1.json();
-    
     const response2 = await fetch(`/getProduct/id=${id}`);
     const productDetail2 = await response2.json();
     const response3 = await fetch(`/getRate/id=${id}`);
     const productDetail3 = await response3.json();
-<<<<<<< HEAD
-    console.log(productDetail2[0])
-    console.log(productDetail1)
-=======
     if(document.cookie.match(/name=([^;]+)/)){
        const response4 = await fetch(`/getMyComment/id=${id}`)
        const getMyComment = await response4.json();
          if(typeof(getMyComment) === 'string'){
       evaluate.classList.remove('hide')
+      
     }
+  else{
+    var user__comment = document.createElement('div')
+      user__comment.className="user__comment"
+      var comment__text = document.createElement('p')
+        comment__text.className="comment__text"
+        comment__text.innerHTML=getMyComment.comment
+        comment__text.style.color="red"
+        var comment__rate = document.createElement('p')
+        comment__rate.className="comment__rate"
+        comment__rate.innerHTML=`(${getMyComment.rate}/5)`
+        var comment__rate__star = document.createElement('img')
+        comment__rate__star.className="comment__rate__star"
+        if(getMyComment.rate == 0){comment__rate__star.src="/img/0sao.png"}
+        if(getMyComment.rate == 1){comment__rate__star.src="/img/1sao.png"}
+        if(getMyComment.rate == 2){comment__rate__star.src="/img/2sao.png"}
+        if(getMyComment.rate == 3){comment__rate__star.src="/img/3sao.png"}
+        if(getMyComment.rate == 4){comment__rate__star.src="/img/4sao.png"}
+        if(getMyComment.rate == 5){comment__rate__star.src="/img/5sao.png"}
+        if(getMyComment.rate < 5 && getMyComment.rate > 4){comment__rate__star.src="/img/4,5sao.png"}
+        if(getMyComment.rate <4 && getMyComment.rate>3){comment__rate__star.src="/img/3,5sao.png"}
+        if(getMyComment.rate <3 && getMyComment.rate>2){comment__rate__star.src="/img/2,5sao.png"}
+        if(getMyComment.rate <2 && getMyComment.rate>1){comment__rate__star.src="/img/1,5sao.png"}
+        if(getMyComment.rate <1 && getMyComment.rate>0){comment__rate__star.src="/img/0,5sao.png"}
+        document.querySelector('.getComment__text1').classList.remove('hide')
+        user__comment.appendChild(comment__text)
+        user__comment.appendChild(comment__rate__star)
+        user__comment.appendChild(comment__rate)
+
+        document.querySelector('.getComment2').appendChild(user__comment);
+
+  }}
     const response5 = await fetch(`/getComment/id=${id}`)
     const getComment = await response5.json();
     if(getComment.length != 0){
       getComment.forEach(element => {
+        var user__comment = document.createElement('div')
+        user__comment.className="user__comment"
         var comment__text = document.createElement('p')
         comment__text.className="comment__text"
         comment__text.innerHTML=element.comment
         var comment__rate = document.createElement('p')
         comment__rate.className="comment__rate"
-        comment__rate.innerHTML=`${element.rate}/5`
+        comment__rate.innerHTML=`(${element.rate}/5)`
+        var comment__rate__star = document.createElement('img')
+        comment__rate__star.className="comment__rate__star"
+        if(element.rate == 0){comment__rate__star.src="/img/0sao.png"}
+        if(element.rate == 1){comment__rate__star.src="/img/1sao.png"}
+        if(element.rate == 2){comment__rate__star.src="/img/2sao.png"}
+        if(element.rate == 3){comment__rate__star.src="/img/3sao.png"}
+        if(element.rate == 4){comment__rate__star.src="/img/4sao.png"}
+        if(element.rate == 5){comment__rate__star.src="/img/5sao.png"}
+        if(element.rate < 5 && element.rate > 4){comment__rate__star.src="/img/4,5sao.png"}
+        if(element.rate <4 && element.rate>3){comment__rate__star.src="/img/3,5sao.png"}
+        if(element.rate <3 && element.rate>2){comment__rate__star.src="/img/2,5sao.png"}
+        if(element.rate <2 && element.rate>1){comment__rate__star.src="/img/1,5sao.png"}
+        if(element.rate <1 && element.rate>0){comment__rate__star.src="/img/0,5sao.png"}
         document.querySelector('.getComment__text1').classList.remove('hide')
-        document.querySelector('.getComment').appendChild(comment__rate)
-        document.querySelector('.getComment').appendChild(comment__text)
+        user__comment.appendChild(comment__text)
+        user__comment.appendChild(comment__rate__star)
+        user__comment.appendChild(comment__rate)
+
+        document.querySelector('.getComment2').appendChild(user__comment);
       })
     }
   else{
     document.querySelector('.getComment__text2').classList.remove('hide')
-  }} 
+  } 
    
->>>>>>> dd94425c2355023f1001db7370f9518a7768a908
     var rate__text = document.querySelector('.rate__text')
     var rage__star = document.querySelector('.rate__star')
     if(productDetail3){
@@ -254,10 +294,6 @@ async function fetchProducts(id) {
         if(typeof picked__color === 'undefined'){
           alert("Vui long chon mau")
         }
-<<<<<<< HEAD
-        //  Gửi form khi nút được nhấn
-=======
->>>>>>> dd94425c2355023f1001db7370f9518a7768a908
       });
       
     }
@@ -283,7 +319,7 @@ function displayProducts(productDetail) {
      product__name2.innerHTML = productDetail[0].product_name;
      product_image1.src = productDetail[0].img_top
      product_image1.classList.add('click')
-     product_image2.src = productDetail[0].ing_mid
+     product_image2.src = productDetail[0].img_mid
      main__img.src =  productDetail[0].img_top;
      sale.innerHTML = `-${productDetail[0].discount}%`
      sale.style.backgroundColor="#EDEDED"
@@ -294,7 +330,7 @@ function displayProducts(productDetail) {
   
 
      product_image2.addEventListener('click',function(){
-      main__img.src=productDetail[0].ing_mid;
+      main__img.src=productDetail[0].img_mid;
       product_image2.classList.add('click');
       product_image1.classList.remove('click');
      })

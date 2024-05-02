@@ -401,10 +401,11 @@ header{
     margin-top: 15px;
 }
 .evaluate label{
-    margin-right: 3px;
+    margin-left: 3px;
 }
 .evaluate input{
-    margin-right: 10px;
+    /* margin-right: 10px; */
+    text-align: start;
 }
 .evaluate p{
     margin-right: 10px;
@@ -424,21 +425,9 @@ header{
     background-color: #fff;
     border: 1px solid #dae4d0;
 }
-.evaluate__display{
-    width: 100%;
-    height: 50px;
-    background-color: #dae4d0;
-    outline: none;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3 ease-in-out;
-}
-.evaluate__display:hover{
-    background-color: #fff;
-    border: 1px solid #dae4d0;
-}
-.comment__text{
+
+
+.comment__textt{
     width: 100%;
     height:30px;
     margin-bottom: 10px;
@@ -447,7 +436,33 @@ header{
     margin-top: 10px;
     font-size: 14px;
 }
+.user__comment{
+    display: flex;
+}
+.comment__text,
+.comment__rate{
+font-size: 14px;
+margin-top: 7px;
 
+}
+.comment__text{
+    margin-left: 100px;
+}
+.comment__rate{
+margin-right: 10px;
+margin-top: 12px;
+}
+.comment__rate__star{
+    width: 60px;
+    height: 30px;
+    margin-left: 200px;
+    margin-top: 5px;
+}
+.getComment__text1,
+.getComment__text2{
+    font-size: 18px;
+    margin-top: 10px;
+}
 .hide{
     display: none;
 }

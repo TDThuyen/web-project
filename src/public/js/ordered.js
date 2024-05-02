@@ -58,9 +58,55 @@ async function fetchProducts() {
                     const response2 = await fetch(`/ordered/orderDetail/id=${element_id}`);
                     const detail = await response2.json();
                     displayDetail(detail);
+                    console.log(detail);
                 }
                 function displayDetail(detail){
-                       console.log(detail)
+                    document.querySelector('.product__element').innerHTML=''
+                    detail.forEach(element =>{
+                        var product__elementChild = document.createElement('div')
+                        var product__name = document.createElement('p')
+                        product__elementChild.className="product__elementChild"
+                        product__name.className="product__name"
+                        product__name.innerHTML=element.product_name
+                        var product__image = document.createElement('img')
+                        product__image.className="product__image"
+                        product__image.src=element.img_top
+                        var product__quantity = document.createElement('p')
+                        product__quantity.className="product__quantity"
+                        product__quantity.innerHTML=`Số lượng: ${element.quantity}`
+                        var product__color = document.createElement('p')
+                        product__color.className="product__color"
+                        if(element.color == '1'){
+                            product__color.innerHTML="Màu: Trắng";
+                        }
+                        if(element.color == '2'){
+                            product__color.innerHTML="Màu: Xám";
+                        }
+                        if(element.color == '3'){
+                            product__color.innerHTML="Màu: Hồng";
+                        }
+                        if(element.color == '4'){
+                            product__color.innerHTML="Màu: Nâu";
+                        }
+                        if(element.color == '5'){
+                            product__color.innerHTML="Màu: Đen";
+                        }
+                        console.log(product__color.innerHTML)
+                        var product__price =document.createElement('p')
+                        product__price.className="product__price"
+                        product__price.innerHTML = `Giá: ${(parseFloat(element.total_amout)/parseFloat(element.quantity)).toLocaleString('en-US')}₫`
+                        var product__total = document.createElement('p')
+                        product__total.className="product__total"
+                        product__total.innerHTML=`Thành tiền: ${parseFloat(element.total_amout).toLocaleString('en-US')}₫`
+                        //console.log(product__total.innerHTML)
+                        product__elementChild.appendChild(product__image)
+                        product__elementChild.appendChild(product__name)
+                        product__elementChild.appendChild(product__color)
+                        product__elementChild.appendChild(product__price)
+                        product__elementChild.appendChild(product__quantity)
+                        product__elementChild.appendChild(product__total)
+                        document.querySelector('.product__element').appendChild(product__elementChild)
+                    })   
                 }
                 fetchDetail(element_id)
                 
