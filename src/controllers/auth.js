@@ -100,7 +100,7 @@ export const auth = async(req,res) => {
                 };
                 res.cookie("jwt",token,{maxAge: 1000*60*30}).cookie("name",user.name,{maxAge: 1000*60*30}).cookie("birthday",user.birthday,{maxAge: 1000*60*30}).cookie("phoneNumber",user.phone,{maxAge: 1000*60*30}).cookie("address",user.address,{maxAge: 1000*60*30});
                 if(user.role === 1){
-                    res.redirect("/home")
+                    res.render("index.html")
                 }
                 else {
                     res.redirect("/admin")

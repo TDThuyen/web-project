@@ -7,21 +7,16 @@ dotenv.config();
 export default async (req, res) => {
   try {
     const page = parseInt(req.params.page);
-    const perPage = 16; // Số sản phẩm mỗi trang
-    const start = (page - 1) * perPage;
-    const end = start + perPage;
     if (!req.params.q && !req.params.collection) {
         const data = await redisClient.get(`getProducts/${page}`);
         if(data) res.json(JSON.parse(data)); 
         else {
           connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.img_mid,products.quantity_sold,sales.discount 
           from products left join sales
-          on products.product_id = sales.product_id limit ${16*(page-1)},16}`, async (error, results, fields) => {
-            const products = JSON.stringify(results);
-            if(products){
-              products.replace(/\s/g, "");
-              redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
-              res.json(products);
+          on products.product_id = sales.product_id limit ${16*(page-1)},16`, async (error, results, fields) => {
+            if(results){
+              redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(results));
+              res.json(results);
             }
             else{
               res.json("")
@@ -31,20 +26,17 @@ export default async (req, res) => {
       }
     if (req.params.q) {
       const q = req.params.q;
-      connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.ing_mid,products.quantity_sold,sales.discount 
+      connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.img_mid,products.quantity_sold,sales.discount 
       from products left join sales
       on products.product_id = sales.product_id
-          where products.product_name like "%${q}%"`, async (error, results, fields) => {
-        const products = JSON.stringify(results);
-        if(products){
-          products.replace(/\s/g, "");
-          const paginatedProducts = JSON.parse(products).slice(start, end);
-          redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
-          res.json(paginatedProducts);
-        }
-        else{
-          res.json("")
-        }
+          where products.product_name like "%${q}% limit ${16*(page-1)},16`, async (error, results, fields) => {
+            if(results){
+              redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(results));
+              res.json(results);
+            }
+            else{
+              res.json("")
+            }
       })
     }
     if (req.params.collection) {
@@ -57,16 +49,14 @@ export default async (req, res) => {
       else res.send("404 not found");
       const data = await redisClient.get(`getProducts/collection=${collection}/${page}`);
       if (!data) {
-        connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.ing_mid,products.quantity_sold,sales.discount 
+        connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.img_mid,products.quantity_sold,sales.discount 
         from products left join sales
         on products.product_id = sales.product_id
-        where products.id_port = ${collection}`, async (error, results, fields) => {
+        where products.id_port = ${collection} limit ${16*(page-1)},16`, async (error, results, fields) => {
           const products = JSON.stringify(results);
-          if(products){
-            products.replace(/\s/g, "");
-            const paginatedProducts = JSON.parse(products).slice(start, end);
-            redisClient.setEx(`getProducts/collection=${collection}/${page}`, process.env.REDIS_END_TIME, JSON.stringify(paginatedProducts));
-            res.json(paginatedProducts);
+          if(results){
+            redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(results));
+            res.json(results);
           }
           else{
             res.json("")

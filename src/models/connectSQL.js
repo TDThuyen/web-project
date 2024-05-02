@@ -9,7 +9,7 @@ const pool = mysql.createPool({
     password: 'Ducquangk6@', // Mật khẩu của cơ sở dữ liệu
     database: 'web', // Tên của cơ sở dữ liệu
     waitForConnections: true,
-    connectionLimit: 30,
+    connectionLimit: 20,
     queueLimit: 0
 });
 
