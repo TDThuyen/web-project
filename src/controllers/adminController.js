@@ -178,7 +178,7 @@ export const addProduct = (req, res) => {
     let id_port = req.body.id_port;
     let price = req.body.price;
     let img_top = req.body.img_top;
-    let ing_mid = req.body.ing_mid;
+    let img_mid = req.body.img_mid;
     let color = req.body.color;
     let quantity_of_color = req.body.quantity_of_color;
 
@@ -225,9 +225,9 @@ export const addProduct = (req, res) => {
                 quantity_stock = 0
                 // Sản phẩm chưa tồn tại, thêm sản phẩm và chi tiết sản phẩm
                 connection.query(
-                    `INSERT INTO products(product_name ,description , quantity_stock , id_port, price, img_top , ing_mid)
+                    `INSERT INTO products(product_name ,description , quantity_stock , id_port, price, img_top , img_mid)
                        VALUES(? ,? , ? , ?, ?, ? , ?)`,
-                    [product_name, description, quantity_stock, id_port, price, img_top, ing_mid],
+                    [product_name, description, quantity_stock, id_port, price, img_top, img_mid],
                     function (err, results) {
                         if (err) {
                             console.error(err);
@@ -339,16 +339,16 @@ export const postUpdateProduct = (req, res) => {
     let id_port = req.body.id_port;
     let price = req.body.price;
     let img_top = req.body.img_top;
-    let ing_mid = req.body.ing_mid;
+    let img_mid = req.body.img_mid;
     let color = req.body.color;
     let quantity_of_color = req.body.quantity_of_color;
     let productId = req.body.productId;
     let oldColor = req.body.oldColor;
     connection.query(
         `update products 
-        set product_name = ?, description = ?, id_port = ? , price = ? , img_top = ?, ing_mid = ?
+        set product_name = ?, description = ?, id_port = ? , price = ? , img_top = ?, img_mid = ?
         where product_id = ?`,
-        [product_name, description, id_port, price, img_top, ing_mid, productId],
+        [product_name, description, id_port, price, img_top, img_mid, productId],
         function (err, results) {
             if (err) {
                 console.error(err);

@@ -54,11 +54,10 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
-                                    alt="#" />
+                            <div class="user_img"><img class="img-responsive" src="/img/user_img.jpg" alt="#" />
                             </div>
                             <div class="user_info">
-                                <h6>Thuyen depzai</h6>
+                                <h6>admin</h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -110,8 +109,8 @@
                                                     alt="#" /><span class="name_user">ADMIN</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
-                                                        class="fa fa-sign-out"></i></a>
+                                                <a class="dropdown-item" href="http://localhost:7888/home"><span>Log
+                                                        Out</span> <i class="fa fa-sign-out"></i></a>
                                             </div>
                                         </li>
                                     </ul>
@@ -125,7 +124,7 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>DELETE PRODUCT</h2>
+                                    <h2>XÓA SẢN PHẨM</h2>
                                 </div>
                             </div>
                         </div>
@@ -134,14 +133,14 @@
                 <div class='form' style="border: 3px solid #098b80; padding: 10px;">
                     <form action="/admin/delete-product" method="POST">
                         <fieldset>
-                            <legend>DELETE PRODUCT</legend>
+                            <legend style="text-align:center;">XÓA SẢN PHẨM </legend>
                             <div class='input gruop d-none'>
                                 <label> Id: </label>
                                 <input type="text" name="productId" value="<%= x.product_id %>">
                             </div>
                             <div class="form-group row">
                                 <div class='col-sm-4'>
-                                    <label> Product_Name</label>
+                                    <label>Tên sản phẩm </label>
                                     <input type="text" class="form-control" name="product_name"
                                         value="<%= x.product_name%>">
                                 </div>
@@ -150,28 +149,40 @@
                                     <input type="text" name='id_port' class="form-control" value="<%= x.id_port%>" />
                                 </div>
                                 <div class='col-sm-4'>
-                                    <label> Price</label>
+                                    <label> Giá</label>
                                     <input type="text" name="price" class="form-control" value="<%= x.price %>" />
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class='col-sm-3'>
-                                    <label> Img top</label>
-                                    <input type="text" name="img_top" class="form-control" value="<%= x.img_top %>" />
-                                </div>
-                                <div class='col-sm-3'>
-                                    <label> Img Mid </label>
-                                    <input type="text" name="ing_mid" class="form-control" value="<%= x.ing_mid%>" />
-                                </div>
-                                <div class='col-sm-3'>
-                                    <label>Color</label>
+                                <div class='col-sm-6'>
+                                    <label>Màu</label>
                                     <input type="text" name="color" class="form-control" value="<%= details.color%>" />
                                 </div>
-                                <div class='col-sm-3'>
-                                    <label>Quantity of color</label>
+                                <div class='col-sm-6'>
+                                    <label>Số lượng màu</label>
                                     <input type="text" name="quantity_of_color" class="form-control"
                                         value="<%= details.quantity_of_color%>" />
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class='col-sm-6'>
+                                    <label> Ảnh 1 </label> <br>
+                                    <img src="<%= x.img_top.startsWith('http') ? x.img_top : '/public/productimg/' + x.img_top %>"
+                                        alt="Product Image" style="width: 100px; height: 100px;">
+                                    <input type="file" class="form-control" name="img_top"
+                                        onchange="document.getElementById('img_top').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class='col-sm-6'>
+                                    <label> Ảnh 2</label> <br>
+                                    <img src="<%= x.img_mid.startsWith('http') ? x.img_mid : '/public/productimg/' + x.img_mid%>"
+                                        alt="Product Image" style="width: 100px; height: 100px;">
+                                    <input type="file" class="form-control" name="img_mid"
+                                        onchange="document.getElementById('img_mid').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+
+
+
+
                             </div>
                             <div class="form-group row">
                                 <div class='col-sm-12'>
