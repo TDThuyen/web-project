@@ -8,6 +8,9 @@ const evaluateSchema = new mongoose.Schema({
     customer_id: {
         type: Number,
     },
+    customer_name: {
+        type: String,
+    },
     rate: {
         type: Number,
     },

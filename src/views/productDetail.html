@@ -8,7 +8,7 @@
     <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
+ 
 <body>
     <script>
         var a = document.cookie.match(/status=([^;]+)/)
@@ -76,11 +76,7 @@
                 <input class="total__amount hide" name="total__amount" type="number">
                 <input class="quantity hide" name="quantity" type="number">
                 <button class="addCart" value="addCart" name ="submit" type="submit">THÊM VÀO GIỎ</button>
-<<<<<<< HEAD
-                <button class="buy" type="submit" name="submit" value="buy">MUA NGAY</button>
-=======
                 <button class="buy" type="submit" name="submit__buy">MUA NGAY</button>
->>>>>>> dd94425c2355023f1001db7370f9518a7768a908
             </form>
             
             <div class="product__description">
@@ -89,6 +85,7 @@
             <div class="getComment">
                   <p class="getComment__text1 hide">Một số nhận xét về sản phẩm:</p>
                   <p class="getComment__text2 hide">Chưa có nhận xét nào về sản phẩm</p>
+                  <div class="getComment2"></div>
             </div>
             <form class="evaluate hide" method="post">
                 <p>Đánh giá sản phẩm (Trên thang điểm 5):</p><br>
@@ -102,7 +99,7 @@
                 <input type="radio" id="rating4" name="rating" value="4">
                 <label for="rating5">5</label>
                 <input type="radio" id="rating5" name="rating" value="5">
-                <input type="text" class="comment__text" placeholder="Nhận xét về sản phẩm"> 
+                <input type="text" class="comment__textt" name="comment__textt" value="" placeholder="Nhận xét về sản phẩm">  
                 <button class="evaluate__submit evaluate__submit2" type="submit" value="Comment">Comment</button>
             </form>
         </div>

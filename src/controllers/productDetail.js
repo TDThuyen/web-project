@@ -1,14 +1,15 @@
 import bcryptjs from "bcryptjs";
 import dotenv from "dotenv";
 import { createJWT } from "../middlewares/JWT.js";
-import Evaluate from "../models/Evaluate.js";
+import evaluate from "../models/Evaluate.js";
 import connection from "../models/SQLConnection.js";
-import redisClient from "../models/connectRedis.js";
+import rateAVG from "../models/rateAVG.js";
 import { signInValidator } from "../validation/user.js";
 dotenv.config()
 const SECRET_CODE = process.env.SECRET_CODE
 
 export default async (req, res) => {
+    console.log(req.body)
     try {
         // comment
         if (req.body.submit === "Login") {
@@ -54,17 +55,18 @@ export default async (req, res) => {
                 }
             })
         }
-        if (req.body.submit === "comment") {
-            const commented = await Evaluate.findOne({
-                customer_id: await getUserID(req),
-                product_id: req.body.product_id
+        else if (req.body.comment__textt) {
+            const commented = await evaluate.findOne({
+                customer_id: parseInt(req.session.user.customer_id),
+                product_id: parseInt(req.params.id)
             })
             if (!commented) {
-                const comment = await Evaluate.create({
-                    product_id: req.body.product_id,
-                    customer_id: await getUserID(req),
-                    rate: req.body.rate,
-                    comment: req.body.comment,
+                const comment = await evaluate.create({
+                    product_id: parseInt(req.params.id),
+                    customer_name: req.cookies.name,
+                    customer_id: parseInt(req.session.user.customer_id),
+                    rate: parseInt(req.body.rating),
+                    comment: req.body.comment__textt,
                     date_posted: new Date()
                 });
                 if (!comment) {
@@ -74,32 +76,65 @@ export default async (req, res) => {
                 }
             }
             else {
-                evaluate.updateOne({
-                    customer_id: req.body.customer_id,
-                    product_id: req.body.product_id
+                evaluate.findOneAndUpdate({
+                    customer_id: parseInt(req.session.user.customer_id),
+                    product_id: parseInt(req.params.id)
                 }, {
-                    $set: {
-                        product_id: req.body.product_id,
-                        customer_id: JSON.parse(await redisClient.get("sess:" + req.sessionID)).customer_id,
-                        rate: req.body.rate,
-                        comment: req.body.comment,
+                        rate: parseInt(req.body.rating),
+                        comment: req.body.comment__textt,
                         date_posted: new Date()
+                }, { new: true }).then(updatedProduct => {
+                    if (!updatedProduct) {
+                        console.log("Không tìm thấy sản phẩm để cập nhật");
+                        // Xử lý trường hợp không tìm thấy sản phẩm
+                    } else {
+                        console.log("Sản phẩm đã được cập nhật:", updatedProduct);
+                        // Xử lý kết quả sau khi cập nhật thành công
                     }
-                }, function (err, res) {
-                    if (err) throw err;
-                    console.log('update success: ' + res.result.nModified + ' record');
                 });
             }
+            const avgRate = await rateAVG.findOne({
+                product_id: parseInt(req.params.id)
+            })
+            if (!avgRate) {
+                rateAVG.create({
+                    product_id: parseInt(req.params.id),
+                    rate_sum: parseInt(req.body.rating),
+                    user_sum: parseInt(1)
+                })
+            }
+            else {
+                const updateData = {
+                    product_id: parseInt(avgRate.product_id),
+                    rate_sum: parseInt(parseInt(avgRate.rate_sum) + parseInt(req.body.rating)),
+                    user_sum: parseInt(parseInt(avgRate.user_sum) + parseInt(1))
+                }
+                rateAVG.findOneAndUpdate(
+                    { product_id: parseInt(req.params.id) },
+                    updateData, // Dữ liệu mới cần cập nhật
+                    { new: true } // Tùy chọn để trả về bản ghi đã cập nhật thay vì bản ghi gốc
+                )
+                    .then(updatedProduct => {
+                        if (!updatedProduct) {
+                            console.log("Không tìm thấy sản phẩm để cập nhật");
+                            // Xử lý trường hợp không tìm thấy sản phẩm
+                        } else {
+                            console.log("Sản phẩm đã được cập nhật:", updatedProduct);
+                            // Xử lý kết quả sau khi cập nhật thành công
+                        }
+                    });
+            }
+            res.render("productDetail.html")
         }
-        else if (req.body.submit === "addCart" && req.body.picked__productDetail__id!=='undefined') {
-            connection.query(`update cart set total_amout = total_amout + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
+        else if (req.body.submit === "addCart" && req.body.picked__productDetail__id !== 'undefined') {
+            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
                 if (results?.affectedRows === 0) {
                     connection.query(`select id_prod,product_detail.product_id from product_detail inner join products
                     on product_detail.product_id = products.product_id
                     where product_detail.id_prod = ${req.body.picked__productDetail__id}`, async (error, results, fields) => {
                         if (results) {
                             const product_id = results[0].product_id
-                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity,product_id) value("${req.session.user.customer_id}","${req.body.picked__productDetail__id}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
+                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${req.body.picked__productDetail__id}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
                                 if (error) {
                                     console.error("Error :", error);
                                     res.cookie("status", "notok")
@@ -117,8 +152,8 @@ export default async (req, res) => {
                 res.render("productDetail.html")
             })
         }
-        else if (req.body.submit === "buy" && req.body.picked__productDetail__id!=='undefined') {
-            connection.query(`update cart set total_amout = total_amout + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
+        else if (req.body.submit === "buy" && req.body.picked__productDetail__id !== 'undefined') {
+            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
                 if (results?.affectedRows === 0) {
                     connection.query(`select id_prod,product_detail.product_id from product_detail inner join products
                     on product_detail.product_id = products.product_id
@@ -126,7 +161,7 @@ export default async (req, res) => {
                         if (results) {
                             const id_prod = results[0].id_prod;
                             const product_id = results[0].product_id
-                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amout,quantity,product_id) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
+                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
                                 if (error) {
                                     console.error("Error :", error);
                                     res.cookie("status", "notok")
@@ -136,7 +171,7 @@ export default async (req, res) => {
                         }
                         if (error) {
                             res.cookie("status", "notok")
-                            res.cookie("status","notok")
+                            res.cookie("status", "notok")
                             return
                         }
                     })
@@ -144,7 +179,7 @@ export default async (req, res) => {
                 res.redirect("/cart")
             })
         }
-        else{
+        else {
             res.render("productDetail.html")
         }
     } catch (error) {

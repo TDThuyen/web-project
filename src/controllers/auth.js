@@ -50,7 +50,9 @@ export const auth = async(req,res) => {
             connection.query(`Insert into customers(name,phone,email,birthday,pass_word,user_name) value("${req.body.fullname}","${req.body.phoneNumber}","${req.body.email}","${req.body.birthday}","${hashedPassword}","${req.body.userName}")`, (error, results, fields) => {
                 if (error) {
                         console.error('Lỗi truy vấn: ' + error.stack);
-                        return;
+                        return res.status(404).json({
+                            message: "loi"
+                        })
                         }
             })
             // buoc 5 thong bao dang ki thanh cong

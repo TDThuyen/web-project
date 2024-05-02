@@ -206,7 +206,7 @@ else {
           var imageElement = document.createElement('img');
           imageElement.src = product.img_top;
           productElement.addEventListener('mouseover',function(){
-            imageElement.src = product.ing_mid;
+            imageElement.src = product.img_mid;
             productElement.addEventListener('mouseout',function(){
                 imageElement.src = product.img_top;
                 behavior='smooth'; 

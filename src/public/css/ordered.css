@@ -125,10 +125,35 @@ main{
     width: 38%;
     height: 500px;
     margin-left: 10px;
+    overflow: auto;
+}
+.ordered__detail h3{
+    text-align: center;
+    margin-top: 15px;
 }
 
-
-
+.product__elementChild{
+    margin-top: 40px;
+    border-top: 1px solid #b5b1b1;
+    padding-top: 20px;
+    margin-left: 5%;
+    width: 90%;
+}
+.product__image{
+    width: 70px;
+    height:70px;
+    position: absolute;
+}
+.product__name, 
+.product__quantity,
+.product__color,
+.product__price {
+    margin-left: 100px;
+    /* margin-top: -70px; */
+}
+.product__total{
+    text-align: end;
+}
 
 
 
