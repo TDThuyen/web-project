@@ -127,17 +127,21 @@ export default async (req, res) => {
             res.render("productDetail.html")
         }
         else if (req.body.submit === "addCart" && req.body.picked__productDetail__id !== 'undefined') {
-            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where product_detail_id = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
-                if (results) {
-                    res.cookie("status", "ok")
-                    return res.render("productDetail.html")
-                }
-            })
+            // connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where product_detail_id = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
+            //     if (results.affectedRows > 0) {
+            //         res.cookie("status", "ok")
+            //         return res.render("productDetail.html")
+            //     }
+            // })
             connection.query(`INSERT INTO cart(customer_id,product_detail_id,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${req.body.picked__productDetail__id}","${req.body.total__amount}","${req.body.quantity}",${req.params.id})`, async (error, results, fields) => {
                 if (error) {
                     console.error("Error :", error);
                     res.cookie("status", "notok")
-                    return
+                    res.render("productDetail.html")
+                }
+                else {
+                    res.cookie("status", "ok")
+                    res.render("productDetail.html")
                 }
             })
         }

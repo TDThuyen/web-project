@@ -36,6 +36,16 @@ export const checkPermisson = (req,res,next) => {
         // //         }
         // //     })
         // }
+        // if(!req.session||!req.session.user){
+        //     res.clearCookie("jwt");
+        //     res.clearCookie("user_name");
+        //     res.clearCookie("name");
+        //     res.clearCookie("phoneNumber");
+        //     res.clearCookie("address");
+        //     res.clearCookie("birthday");
+        //     res.clearCookie("sessionId")
+        //     res.render("index.html")
+        // }
         next();
     } catch (error) {
         console.log(error)

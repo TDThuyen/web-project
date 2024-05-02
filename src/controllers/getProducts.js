@@ -26,10 +26,25 @@ export default async (req, res) => {
       }
     if (req.params.q) {
       const q = req.params.q;
+      if(q.length <= 4){
+        connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.img_mid,products.quantity_sold,sales.discount 
+        from products left join sales
+        on products.product_id = sales.product_id
+            where products.product_name like "%${q}%" limit ${16*(page-1)},16`, async (error, results, fields) => {
+              if(results){
+                redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(results));
+                res.json(results);
+              }
+              else{
+                res.json("")
+              }
+        })
+      }
+      else{
       connection.query(`select products.product_id,products.product_name,products.quantity_stock,products.id_port,products.price,products.img_top,products.img_mid,products.quantity_sold,sales.discount 
       from products left join sales
       on products.product_id = sales.product_id
-          where products.product_name like "%${q}% limit ${16*(page-1)},16`, async (error, results, fields) => {
+          where match(product_name) AGAINST ('${q}' IN BOOLEAN MODE) limit ${16*(page-1)},16`, async (error, results, fields) => {
             if(results){
               redisClient.setEx(`getProducts/${page}`, process.env.REDIS_END_TIME, JSON.stringify(results));
               res.json(results);
@@ -38,6 +53,7 @@ export default async (req, res) => {
               res.json("")
             }
       })
+      }
     }
     if (req.params.collection) {
       let collection = req.params.collection;
