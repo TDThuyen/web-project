@@ -58,7 +58,7 @@ export const home = async(req,res) => {
             // buoc 5 thong bao dang ki thanh cong
             // xoa mat khau di
             req.body.password = undefined
-            res.render("/index.html")
+            res.render("index.html")
         } catch(error) {
             console.log(error.message)
         }
