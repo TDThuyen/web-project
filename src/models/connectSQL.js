@@ -1,8 +1,8 @@
-import mysql from "mysql2";
+import mysql2 from "mysql2";
 
 
 // Tạo một pool kết nối
-const pool = mysql.createPool({
+const pool = mysql2.createPool({
     host: 'localhost', // Địa chỉ của máy chủ cơ sở dữ liệu
     port: 3306,
     user: 'root', // Tên người dùng của cơ sở dữ liệu

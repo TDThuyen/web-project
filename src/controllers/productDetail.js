@@ -2,7 +2,7 @@ import bcryptjs from "bcryptjs";
 import dotenv from "dotenv";
 import { createJWT } from "../middlewares/JWT.js";
 import evaluate from "../models/Evaluate.js";
-import connection from "../models/SQLConnection.js";
+import { default as connection } from "../models/SQLConnection.js";
 import rateAVG from "../models/rateAVG.js";
 import { signInValidator } from "../validation/user.js";
 dotenv.config()
@@ -80,9 +80,9 @@ export default async (req, res) => {
                     customer_id: parseInt(req.session.user.customer_id),
                     product_id: parseInt(req.params.id)
                 }, {
-                        rate: parseInt(req.body.rating),
-                        comment: req.body.comment__textt,
-                        date_posted: new Date()
+                    rate: parseInt(req.body.rating),
+                    comment: req.body.comment__textt,
+                    date_posted: new Date()
                 }, { new: true }).then(updatedProduct => {
                     if (!updatedProduct) {
                         console.log("Không tìm thấy sản phẩm để cập nhật");
@@ -127,41 +127,30 @@ export default async (req, res) => {
             res.render("productDetail.html")
         }
         else if (req.body.submit === "addCart" && req.body.picked__productDetail__id !== 'undefined') {
-            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
-                if (results?.affectedRows === 0) {
-                    connection.query(`select id_prod,product_detail.product_id from product_detail inner join products
-                    on product_detail.product_id = products.product_id
-                    where product_detail.id_prod = ${req.body.picked__productDetail__id}`, async (error, results, fields) => {
-                        if (results) {
-                            const product_id = results[0].product_id
-                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${req.body.picked__productDetail__id}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
-                                if (error) {
-                                    console.error("Error :", error);
-                                    res.cookie("status", "notok")
-                                    return
-                                }
-                            })
-                        }
-                        if (error) {
-                            res.cookie("status", "notok")
-                            return
-                        }
-                    })
+            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where product_detail_id = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
+                if (results) {
+                    res.cookie("status", "ok")
+                    return res.render("productDetail.html")
                 }
-                res.cookie("status", "ok")
-                res.render("productDetail.html")
+            })
+            connection.query(`INSERT INTO cart(customer_id,product_detail_id,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${req.body.picked__productDetail__id}","${req.body.total__amount}","${req.body.quantity}",${req.params.id})`, async (error, results, fields) => {
+                if (error) {
+                    console.error("Error :", error);
+                    res.cookie("status", "notok")
+                    return
+                }
             })
         }
         else if (req.body.submit === "buy" && req.body.picked__productDetail__id !== 'undefined') {
-            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where id_prod = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
+            connection.query(`update cart set total_amount = total_amount + ${req.body.total__amount}, quantity = quantity + ${req.body.quantity} where product_detail_id = ${req.body.picked__productDetail__id} and customer_id = ${req.session.user.customer_id}`, async (error, results, fields) => {
                 if (results?.affectedRows === 0) {
-                    connection.query(`select id_prod,product_detail.product_id from product_detail inner join products
+                    connection.query(`select product_detail_id,product_detail.product_id from product_detail inner join products
                     on product_detail.product_id = products.product_id
-                    where product_detail.id_prod = ${req.body.picked__productDetail__id}`, async (error, results, fields) => {
+                    where product_detail.product_detail_id = ${eq.body.picked__productDetail__id}`, async (error, results, fields) => {
                         if (results) {
-                            const id_prod = results[0].id_prod;
+                            const product_detail_id = results[0].product_detail_id;
                             const product_id = results[0].product_id
-                            connection.query(`INSERT INTO cart(customer_id,id_prod,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${id_prod}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
+                            connection.query(`INSERT INTO cart(customer_id,product_detail_id,total_amount,quantity,product_id) value("${req.session.user.customer_id}","${product_detail_id}","${req.body.total__amount}","${req.body.quantity}",${product_id})`, async (error, results, fields) => {
                                 if (error) {
                                     console.error("Error :", error);
                                     res.cookie("status", "notok")

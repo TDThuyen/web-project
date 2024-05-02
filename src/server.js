@@ -134,6 +134,6 @@ app.listen(PORT, () => {
 })
 
 // pool.end()
-SQLConnection.end()
+
 
 

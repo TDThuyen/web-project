@@ -95,10 +95,6 @@ async function fetchProducts(id) {
   else{
     var user__comment = document.createElement('div')
       user__comment.className="user__comment"
-      var comment__user = document.createElement('p')
-      comment__user.className="comment__user"
-      comment__user.innerHTML="Đánh giá của bạn: "
-      comment__user.style.color="green"
       var comment__text = document.createElement('p')
         comment__text.className="comment__text"
         comment__text.innerHTML=getMyComment.comment
@@ -120,7 +116,6 @@ async function fetchProducts(id) {
         if(getMyComment.rate <2 && getMyComment.rate>1){comment__rate__star.src="/img/1,5sao.png"}
         if(getMyComment.rate <1 && getMyComment.rate>0){comment__rate__star.src="/img/0,5sao.png"}
         document.querySelector('.getComment__text1').classList.remove('hide')
-        user__comment.appendChild(comment__user)
         user__comment.appendChild(comment__text)
         user__comment.appendChild(comment__rate__star)
         user__comment.appendChild(comment__rate)
@@ -134,10 +129,6 @@ async function fetchProducts(id) {
       getComment.forEach(element => {
         var user__comment = document.createElement('div')
         user__comment.className="user__comment"
-        var comment__user = document.createElement('p')
-      comment__user.className="comment__user"
-      comment__user.innerHTML=`${element.customer_name}: `
-      // comment__user.style.color="yellow"
         var comment__text = document.createElement('p')
         comment__text.className="comment__text"
         comment__text.innerHTML=element.comment
@@ -158,7 +149,6 @@ async function fetchProducts(id) {
         if(element.rate <2 && element.rate>1){comment__rate__star.src="/img/1,5sao.png"}
         if(element.rate <1 && element.rate>0){comment__rate__star.src="/img/0,5sao.png"}
         document.querySelector('.getComment__text1').classList.remove('hide')
-        user__comment.appendChild(comment__user)
         user__comment.appendChild(comment__text)
         user__comment.appendChild(comment__rate__star)
         user__comment.appendChild(comment__rate)
