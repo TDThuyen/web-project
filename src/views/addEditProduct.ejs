@@ -170,18 +170,18 @@
                             </div>
                             <div class="form-group row">
                                 <div class='col-sm-6'>
-                                    <label> Ảnh 1 </label>
+                                    <label> Ảnh 1 </label> <br>
                                     <img src="<%= x.img_top.startsWith('http') ? x.img_top : '/public/productimg/' + x.img_top %>"
                                         alt="Product Image" style="width: 100px; height: 100px;">
                                     <input type="file" class="form-control" name="img_top"
                                         onchange="document.getElementById('img_top').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
                                 <div class='col-sm-6'>
-                                    <label> Ảnh 2</label>
-                                    <img src="<%= x.ing_mid.startsWith('http') ? x.ing_mid : '/public/productimg/' + x.ing_mid%>"
+                                    <label> Ảnh 2</label><br>
+                                    <img src="<%= x.img_mid.startsWith('http') ? x.img_mid : '/public/productimg/' + x.img_mid%>"
                                         alt="Product Image" style="width: 100px; height: 100px;">
-                                    <input type="file" class="form-control" name="ing_mid"
-                                        onchange="document.getElementById('ing_mid').src = window.URL.createObjectURL(this.files[0])">
+                                    <input type="file" class="form-control" name="img_mid"
+                                        onchange="document.getElementById('img_mid').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
 
 

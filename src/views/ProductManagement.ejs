@@ -207,13 +207,14 @@
                 <div class="table-container">
                     <table>
                         <tr>
-                            <th>Numerical </th>
-                            <th>Products Name</th>
-                            <th>Description</th>
-                            <th>Quantity Stock</th>
+                            <th>Thứ tự </th>
+                            <th>Tên sản phẩm</th>
+                            <th>Miêu tả</th>
+                            <th>Số lượng</th>
                             <th>Id Port</th>
-                            <th>Price</th>
-                            <th>Img Top</th>
+                            <th>Giá</th>
+                            <th>Ảnh </th>
+                            <th>Chi tiết </th>
                         </tr>
                         <% let cnt=1; %>
                             <% for (const product of listProducts) { %>
@@ -244,8 +245,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="/admin/getProductDetails/<%=product.product_id%>"
-                                            style="margin-right: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Chi
+                                        <a href="/admin/getProductDetails/<%=product.product_id%>">Chi
                                             tiết</a>
 
                                     </td>

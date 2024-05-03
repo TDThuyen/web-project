@@ -603,7 +603,7 @@ export const deliveredProducts = (req, res) => {
                 return res.status(500).send('Lỗi thông tin khi lấy đơn hàng');
             }
             // console.log(results);
-            res.render("deliveringProducts.ejs", { listOrder: results });
+            res.render("deliveredProducts.ejs", { listOrder: results });
         }
     );
 }
@@ -674,7 +674,7 @@ export const getOrderDetails = (req, res) => {
         `SELECT *
         FROM orderdetail o 
         JOIN products p ON o.product_id = p.product_id
-        JOIN product_detail pd on o.id_prod = pd.id_prod
+        JOIN product_detail pd on o.product_detail_id = pd.product_detail_id
         WHERE o.order_id = ?`,
         [order_id],
         function (err, results) {
@@ -784,7 +784,7 @@ export const deleteOrder = (req, res) => {
 //         `SELECT *
 //         FROM orderdetail o
 //         JOIN products p ON o.product_id = p.product_id
-//         JOIN product_detail pd on o.id_prod = pd.id_prod
+//         JOIN product_detail pd on o.img_mid = pd.product_detail_id
 //         WHERE o.order_id = ?`,
 //         [order_id],
 //         function (err, results) {
