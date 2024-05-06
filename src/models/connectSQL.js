@@ -6,8 +6,8 @@ const pool = mysql2.createPool({
     host: 'localhost', // Địa chỉ của máy chủ cơ sở dữ liệu
     port: 3306,
     user: 'root', // Tên người dùng của cơ sở dữ liệu
-    password: 'taduythuyendaibangxanh2771162004', // Mật khẩu của cơ sở dữ liệu
-    database: 'tdt', // Tên của cơ sở dữ liệu
+    password: 'quang', // Mật khẩu của cơ sở dữ liệu
+    database: 'log', // Tên của cơ sở dữ liệu
     waitForConnections: true,
     connectionLimit: 20,
     queueLimit: 0

@@ -1,0 +1,9 @@
+SET GLOBAL general_log = 'ON';
+SET GLOBAL slow_query_log = 'ON';
+SET GLOBAL long_query_time = 2;
+SET GLOBAL general_log_file = '/path/to/your/logfile.log';// đường dẫn vào file log của mình 
+SET GLOBAL slow_query_log_file = '/path/to/your/logfile.log';đường dẫn vào file log của mình 
+SET GLOBAL log_output = 'FILE';
+
+
+

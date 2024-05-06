@@ -1,0 +1,432 @@
+C:\Program Files\MySQL\MySQL Server 8.3\bin\mysqld.exe, Version: 8.3.0 (MySQL Community Server - GPL). started with:
+TCP Port: 3306, Named Pipe: MySQL
+Time                 Id Command    Argument
+C:\Program Files\MySQL\MySQL Server 8.3\bin\mysqld.exe, Version: 8.3.0 (MySQL Community Server - GPL). started with:
+TCP Port: 3306, Named Pipe: MySQL
+Time                 Id Command    Argument
+2024-05-06T11:00:41.975284Z	  519 Query	use log
+2024-05-06T11:00:41.975691Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:41.977105Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:42.152689Z	  519 Query	use log
+2024-05-06T11:00:42.153030Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:42.154433Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:42.387329Z	  519 Query	use log
+2024-05-06T11:00:42.387688Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:42.389342Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:42.527619Z	  519 Query	use log
+2024-05-06T11:00:42.528036Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:42.529721Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:42.667614Z	  519 Query	use log
+2024-05-06T11:00:42.668103Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:42.669372Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:42.836879Z	  519 Query	use log
+2024-05-06T11:00:42.837253Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:42.838405Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:43.016906Z	  519 Query	use log
+2024-05-06T11:00:43.017240Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:43.018734Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:43.145648Z	  519 Query	use log
+2024-05-06T11:00:43.146005Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:43.147425Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:43.300491Z	  519 Query	use log
+2024-05-06T11:00:43.300843Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:43.302050Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:43.461877Z	  519 Query	use log
+2024-05-06T11:00:43.462234Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:43.463559Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:43.595941Z	  519 Query	use log
+2024-05-06T11:00:43.596296Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:43.597612Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:47.893586Z	  519 Query	use log
+2024-05-06T11:00:47.894302Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:47.895722Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:48.069220Z	  519 Query	use log
+2024-05-06T11:00:48.069579Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:48.070878Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:48.275982Z	  519 Query	use log
+2024-05-06T11:00:48.276324Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:48.277695Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:48.422516Z	  519 Query	use log
+2024-05-06T11:00:48.422835Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:48.424167Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:48.636819Z	  519 Query	use log
+2024-05-06T11:00:48.637203Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:48.638912Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:00:48.917046Z	  519 Query	use log
+2024-05-06T11:00:48.917404Z	  519 Query	SELECT DATABASE()
+2024-05-06T11:00:48.918785Z	  519 Query	insert into customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+values ('qua', 'qa@gmail.com', '123','hanoi',  '2004-01-01' , 1, 12345, 'diepu', 'anh1')
+2024-05-06T11:05:47.499981Z	  539 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.499981Z	  540 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.502092Z	  539 Query	SELECT COUNT(product_id) AS count FROM products
+2024-05-06T11:05:47.502629Z	  540 Query	SELECT COUNT(customer_id) AS count FROM customers
+2024-05-06T11:05:47.502652Z	  541 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.504044Z	  542 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.505010Z	  541 Query	SELECT COUNT(order_id) AS count FROM orders where status = 1
+2024-05-06T11:05:47.505010Z	  543 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.506731Z	  542 Query	SELECT COUNT(order_id) AS count FROM orders where status = 2
+2024-05-06T11:05:47.510851Z	  543 Query	SELECT COUNT(order_id) AS count FROM orders where status = 3
+2024-05-06T11:05:47.511015Z	  544 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.511710Z	  545 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.512368Z	  546 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:05:47.513019Z	  544 Query	SELECT COUNT(order_id) AS count FROM orders where status = 4
+2024-05-06T11:05:47.513688Z	  545 Query	SELECT COUNT(order_id) AS count FROM orders where status = 5
+2024-05-06T11:05:47.514436Z	  546 Query	SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())
+2024-05-06T11:05:48.248763Z	  546 Query	SELECT COUNT(customer_id) AS count FROM customers
+2024-05-06T11:05:48.249318Z	  544 Query	SELECT COUNT(order_id) AS count FROM orders where status = 1
+2024-05-06T11:05:48.249324Z	  545 Query	SELECT COUNT(product_id) AS count FROM products
+2024-05-06T11:05:48.249609Z	  540 Query	SELECT COUNT(order_id) AS count FROM orders where status = 4
+2024-05-06T11:05:48.249679Z	  541 Query	SELECT COUNT(order_id) AS count FROM orders where status = 5
+2024-05-06T11:05:48.249855Z	  539 Query	SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())
+2024-05-06T11:05:48.249925Z	  543 Query	SELECT COUNT(order_id) AS count FROM orders where status = 2
+2024-05-06T11:05:48.249985Z	  542 Query	SELECT COUNT(order_id) AS count FROM orders where status = 3
+2024-05-06T11:05:48.414883Z	  546 Query	SELECT COUNT(customer_id) AS count FROM customers
+2024-05-06T11:05:48.414927Z	  545 Query	SELECT COUNT(product_id) AS count FROM products
+2024-05-06T11:05:48.415051Z	  539 Query	SELECT COUNT(order_id) AS count FROM orders where status = 1
+2024-05-06T11:05:48.415193Z	  542 Query	SELECT COUNT(order_id) AS count FROM orders where status = 2
+2024-05-06T11:05:48.415376Z	  543 Query	SELECT COUNT(order_id) AS count FROM orders where status = 3
+2024-05-06T11:05:48.415609Z	  541 Query	SELECT COUNT(order_id) AS count FROM orders where status = 5
+2024-05-06T11:05:48.415635Z	  540 Query	SELECT COUNT(order_id) AS count FROM orders where status = 4
+2024-05-06T11:05:48.415737Z	  544 Query	SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())
+2024-05-06T11:05:48.565853Z	  545 Query	SELECT COUNT(customer_id) AS count FROM customers
+2024-05-06T11:05:48.565915Z	  546 Query	SELECT COUNT(product_id) AS count FROM products
+2024-05-06T11:05:48.566030Z	  544 Query	SELECT COUNT(order_id) AS count FROM orders where status = 1
+2024-05-06T11:05:48.566108Z	  540 Query	SELECT COUNT(order_id) AS count FROM orders where status = 2
+2024-05-06T11:05:48.566208Z	  541 Query	SELECT COUNT(order_id) AS count FROM orders where status = 3
+2024-05-06T11:05:48.566297Z	  539 Query	SELECT COUNT(order_id) AS count FROM orders where status = 4
+2024-05-06T11:05:48.566412Z	  543 Query	SELECT COUNT(order_id) AS count FROM orders where status = 5
+2024-05-06T11:05:48.566471Z	  542 Query	SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())
+2024-05-06T11:05:48.711111Z	  546 Query	SELECT COUNT(customer_id) AS count FROM customers
+2024-05-06T11:05:48.711136Z	  545 Query	SELECT COUNT(product_id) AS count FROM products
+2024-05-06T11:05:48.711203Z	  542 Query	SELECT COUNT(order_id) AS count FROM orders where status = 1
+2024-05-06T11:05:48.711245Z	  543 Query	SELECT COUNT(order_id) AS count FROM orders where status = 2
+2024-05-06T11:05:48.711323Z	  539 Query	SELECT COUNT(order_id) AS count FROM orders where status = 3
+2024-05-06T11:05:48.711429Z	  541 Query	SELECT COUNT(order_id) AS count FROM orders where status = 4
+2024-05-06T11:05:48.711515Z	  540 Query	SELECT COUNT(order_id) AS count FROM orders where status = 5
+2024-05-06T11:05:48.711614Z	  544 Query	SELECT SUM(total_amount) AS count FROM orders WHERE status = 4 AND YEAR(order_date) = YEAR(CURRENT_DATE()) AND MONTH(order_date) = MONTH(CURRENT_DATE())
+2024-05-06T11:05:49.685294Z	  545 Query	SELECT * FROM customers
+2024-05-06T11:05:49.794211Z	  545 Query	SELECT * FROM customers
+2024-05-06T11:06:42.197362Z	  545 Query	INSERT INTO customers(name, email, phone, address, birthday, role, pass_word, user_name, user_img)
+            VALUES('nguyễn văn A', 'a@gmail.com', '123', 'ha noi ', '2024-05-01', '1', '$2a$10$hd21kVlOmadbr6Ej/kSvM.f5X8B9l.a4hzDYQUHUlEuoNNQxD6.S2', 'A', 'images.jpg')
+2024-05-06T11:06:42.246999Z	  545 Query	SELECT * FROM customers
+2024-05-06T11:06:42.317177Z	  545 Query	SELECT * FROM customers
+2024-05-06T11:09:34.592759Z	  547 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:09:34.680443Z	  548 Connect	root@localhost on  using SSL/TLS
+2024-05-06T11:09:34.681037Z	  548 Query	/*!40100 SET @@SQL_MODE='' */
+2024-05-06T11:09:34.681392Z	  548 Query	/*!40103 SET TIME_ZONE='+00:00' */
+2024-05-06T11:09:34.681697Z	  548 Query	/*!80000 SET SESSION information_schema_stats_expiry=0 */
+2024-05-06T11:09:34.681941Z	  548 Query	SET SESSION NET_READ_TIMEOUT= 86400, SESSION NET_WRITE_TIMEOUT= 86400
+2024-05-06T11:09:34.682241Z	  548 Query	SHOW VARIABLES LIKE 'gtid_mode'
+2024-05-06T11:09:34.691079Z	  548 Query	SELECT LOGFILE_GROUP_NAME, FILE_NAME, TOTAL_EXTENTS, INITIAL_SIZE, ENGINE, EXTRA FROM INFORMATION_SCHEMA.FILES WHERE ENGINE = 'ndbcluster' AND FILE_TYPE = 'UNDO LOG' AND FILE_NAME IS NOT NULL AND LOGFILE_GROUP_NAME IS NOT NULL AND LOGFILE_GROUP_NAME IN (SELECT DISTINCT LOGFILE_GROUP_NAME FROM INFORMATION_SCHEMA.FILES WHERE ENGINE = 'ndbcluster' AND FILE_TYPE = 'DATAFILE' AND TABLESPACE_NAME IN (SELECT DISTINCT TABLESPACE_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_SCHEMA IN ('log'))) GROUP BY LOGFILE_GROUP_NAME, FILE_NAME, ENGINE, TOTAL_EXTENTS, INITIAL_SIZE ORDER BY LOGFILE_GROUP_NAME
+2024-05-06T11:09:34.697056Z	  548 Query	SELECT DISTINCT TABLESPACE_NAME, FILE_NAME, LOGFILE_GROUP_NAME, EXTENT_SIZE, INITIAL_SIZE, ENGINE FROM INFORMATION_SCHEMA.FILES WHERE FILE_TYPE = 'DATAFILE' AND TABLESPACE_NAME IN (SELECT DISTINCT TABLESPACE_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_SCHEMA IN ('log')) ORDER BY TABLESPACE_NAME, LOGFILE_GROUP_NAME
+2024-05-06T11:09:34.699349Z	  548 Query	SHOW VARIABLES LIKE 'ndbinfo\_version'
+2024-05-06T11:09:34.701142Z	  548 Init DB	log
+2024-05-06T11:09:34.701396Z	  548 Query	show tables
+2024-05-06T11:09:34.703132Z	  548 Query	LOCK TABLES `cart` READ /*!32311 LOCAL */,`customers` READ /*!32311 LOCAL */,`orderdetail` READ /*!32311 LOCAL */,`orders` READ /*!32311 LOCAL */,`portfolio` READ /*!32311 LOCAL */,`product_detail` READ /*!32311 LOCAL */,`products` READ /*!32311 LOCAL */,`sales` READ /*!32311 LOCAL */
+2024-05-06T11:09:34.705616Z	  548 Query	show table status like 'cart'
+2024-05-06T11:09:34.707440Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.707840Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.708152Z	  548 Query	show create table `cart`
+2024-05-06T11:09:34.708889Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.709248Z	  548 Query	show fields from `cart`
+2024-05-06T11:09:34.711356Z	  548 Query	show fields from `cart`
+2024-05-06T11:09:34.713088Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `cart`
+2024-05-06T11:09:34.713739Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.713959Z	  548 Query	use `log`
+2024-05-06T11:09:34.714299Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.714608Z	  548 Query	SHOW TRIGGERS LIKE 'cart'
+2024-05-06T11:09:34.716275Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.716513Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.716836Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'cart'
+2024-05-06T11:09:34.717469Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.717810Z	  548 Query	show table status like 'customers'
+2024-05-06T11:09:34.719267Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.719567Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.719775Z	  548 Query	show create table `customers`
+2024-05-06T11:09:34.720364Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.720758Z	  548 Query	show fields from `customers`
+2024-05-06T11:09:34.722001Z	  548 Query	show fields from `customers`
+2024-05-06T11:09:34.723377Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `customers`
+2024-05-06T11:09:34.724010Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.724233Z	  548 Query	use `log`
+2024-05-06T11:09:34.724574Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.724994Z	  548 Query	SHOW TRIGGERS LIKE 'customers'
+2024-05-06T11:09:34.726216Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.726514Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.727830Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'customers'
+2024-05-06T11:09:34.728335Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.728685Z	  548 Query	show table status like 'orderdetail'
+2024-05-06T11:09:34.730233Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.730444Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.730655Z	  548 Query	show create table `orderdetail`
+2024-05-06T11:09:34.731165Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.731415Z	  548 Query	show fields from `orderdetail`
+2024-05-06T11:09:34.732567Z	  548 Query	show fields from `orderdetail`
+2024-05-06T11:09:34.733802Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `orderdetail`
+2024-05-06T11:09:34.734202Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.734490Z	  548 Query	use `log`
+2024-05-06T11:09:34.734751Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.735004Z	  548 Query	SHOW TRIGGERS LIKE 'orderdetail'
+2024-05-06T11:09:34.736423Z	  548 Query	SHOW CREATE TRIGGER `update_sold_trigger_for_products`
+2024-05-06T11:09:34.737970Z	  548 Query	SHOW CREATE TRIGGER `update_stock_trigger_for_productdetail`
+2024-05-06T11:09:34.738811Z	  548 Query	SHOW CREATE TRIGGER `restore_sold_trigger_for_products`
+2024-05-06T11:09:34.739568Z	  548 Query	SHOW CREATE TRIGGER `restore_stock_trigger_for_productdetail`
+2024-05-06T11:09:34.740725Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.740954Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.741277Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'orderdetail'
+2024-05-06T11:09:34.741735Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.742040Z	  548 Query	show table status like 'orders'
+2024-05-06T11:09:34.743421Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.743662Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.743897Z	  548 Query	show create table `orders`
+2024-05-06T11:09:34.744459Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.744717Z	  548 Query	show fields from `orders`
+2024-05-06T11:09:34.745970Z	  548 Query	show fields from `orders`
+2024-05-06T11:09:34.747082Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `orders`
+2024-05-06T11:09:34.747520Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.747769Z	  548 Query	use `log`
+2024-05-06T11:09:34.748055Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.748351Z	  548 Query	SHOW TRIGGERS LIKE 'orders'
+2024-05-06T11:09:34.749420Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.749660Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.749968Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'orders'
+2024-05-06T11:09:34.750418Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.750683Z	  548 Query	show table status like 'portfolio'
+2024-05-06T11:09:34.751963Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.752165Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.752396Z	  548 Query	show create table `portfolio`
+2024-05-06T11:09:34.752930Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.753242Z	  548 Query	show fields from `portfolio`
+2024-05-06T11:09:34.754484Z	  548 Query	show fields from `portfolio`
+2024-05-06T11:09:34.755633Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `portfolio`
+2024-05-06T11:09:34.755953Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.756178Z	  548 Query	use `log`
+2024-05-06T11:09:34.756516Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.756800Z	  548 Query	SHOW TRIGGERS LIKE 'portfolio'
+2024-05-06T11:09:34.757979Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.758282Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.758634Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'portfolio'
+2024-05-06T11:09:34.759099Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.759414Z	  548 Query	show table status like 'product\_detail'
+2024-05-06T11:09:34.760981Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.761196Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.761464Z	  548 Query	show create table `product_detail`
+2024-05-06T11:09:34.761899Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.762137Z	  548 Query	show fields from `product_detail`
+2024-05-06T11:09:34.763343Z	  548 Query	show fields from `product_detail`
+2024-05-06T11:09:34.764482Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `product_detail`
+2024-05-06T11:09:34.765304Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.765531Z	  548 Query	use `log`
+2024-05-06T11:09:34.765823Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.766140Z	  548 Query	SHOW TRIGGERS LIKE 'product\_detail'
+2024-05-06T11:09:34.767392Z	  548 Query	SHOW CREATE TRIGGER `update_stock_for_products_from_product_detail`
+2024-05-06T11:09:34.768384Z	  548 Query	SHOW CREATE TRIGGER `update_products_from_productdetail`
+2024-05-06T11:09:34.769272Z	  548 Query	SHOW CREATE TRIGGER `restore_stock_for_products_from_product_detail`
+2024-05-06T11:09:34.770162Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.770462Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.770819Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'product_detail'
+2024-05-06T11:09:34.771239Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.771541Z	  548 Query	show table status like 'products'
+2024-05-06T11:09:34.772964Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.773227Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.773480Z	  548 Query	show create table `products`
+2024-05-06T11:09:34.774112Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.774498Z	  548 Query	show fields from `products`
+2024-05-06T11:09:34.775820Z	  548 Query	show fields from `products`
+2024-05-06T11:09:34.777146Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `products`
+2024-05-06T11:09:34.780527Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.780786Z	  548 Query	use `log`
+2024-05-06T11:09:34.781096Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.781477Z	  548 Query	SHOW TRIGGERS LIKE 'products'
+2024-05-06T11:09:34.782562Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.782815Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.783141Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'products'
+2024-05-06T11:09:34.783549Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.783826Z	  548 Query	show table status like 'sales'
+2024-05-06T11:09:34.785105Z	  548 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:09:34.785320Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.785569Z	  548 Query	show create table `sales`
+2024-05-06T11:09:34.785996Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.786239Z	  548 Query	show fields from `sales`
+2024-05-06T11:09:34.787439Z	  548 Query	show fields from `sales`
+2024-05-06T11:09:34.788579Z	  548 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `sales`
+2024-05-06T11:09:34.789125Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.789433Z	  548 Query	use `log`
+2024-05-06T11:09:34.789746Z	  548 Query	select @@collation_database
+2024-05-06T11:09:34.790058Z	  548 Query	SHOW TRIGGERS LIKE 'sales'
+2024-05-06T11:09:34.791871Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.792184Z	  548 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:09:34.792566Z	  548 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'sales'
+2024-05-06T11:09:34.793057Z	  548 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:09:34.793396Z	  548 Query	UNLOCK TABLES
+2024-05-06T11:09:34.805655Z	  548 Quit	
+2024-05-06T11:10:02.457750Z	  549 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:10:02.496743Z	  550 Connect	root@localhost on  using SSL/TLS
+2024-05-06T11:10:02.497123Z	  550 Query	/*!40100 SET @@SQL_MODE='' */
+2024-05-06T11:10:02.497358Z	  550 Query	/*!40103 SET TIME_ZONE='+00:00' */
+2024-05-06T11:10:02.497541Z	  550 Query	/*!80000 SET SESSION information_schema_stats_expiry=0 */
+2024-05-06T11:10:02.497689Z	  550 Query	SET SESSION NET_READ_TIMEOUT= 86400, SESSION NET_WRITE_TIMEOUT= 86400
+2024-05-06T11:10:02.497967Z	  550 Query	SHOW VARIABLES LIKE 'gtid_mode'
+2024-05-06T11:10:02.500673Z	  550 Query	SELECT LOGFILE_GROUP_NAME, FILE_NAME, TOTAL_EXTENTS, INITIAL_SIZE, ENGINE, EXTRA FROM INFORMATION_SCHEMA.FILES WHERE ENGINE = 'ndbcluster' AND FILE_TYPE = 'UNDO LOG' AND FILE_NAME IS NOT NULL AND LOGFILE_GROUP_NAME IS NOT NULL AND LOGFILE_GROUP_NAME IN (SELECT DISTINCT LOGFILE_GROUP_NAME FROM INFORMATION_SCHEMA.FILES WHERE ENGINE = 'ndbcluster' AND FILE_TYPE = 'DATAFILE' AND TABLESPACE_NAME IN (SELECT DISTINCT TABLESPACE_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_SCHEMA IN ('log'))) GROUP BY LOGFILE_GROUP_NAME, FILE_NAME, ENGINE, TOTAL_EXTENTS, INITIAL_SIZE ORDER BY LOGFILE_GROUP_NAME
+2024-05-06T11:10:02.506791Z	  550 Query	SELECT DISTINCT TABLESPACE_NAME, FILE_NAME, LOGFILE_GROUP_NAME, EXTENT_SIZE, INITIAL_SIZE, ENGINE FROM INFORMATION_SCHEMA.FILES WHERE FILE_TYPE = 'DATAFILE' AND TABLESPACE_NAME IN (SELECT DISTINCT TABLESPACE_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_SCHEMA IN ('log')) ORDER BY TABLESPACE_NAME, LOGFILE_GROUP_NAME
+2024-05-06T11:10:02.508712Z	  550 Query	SHOW VARIABLES LIKE 'ndbinfo\_version'
+2024-05-06T11:10:02.510959Z	  550 Init DB	log
+2024-05-06T11:10:02.511262Z	  550 Query	show tables
+2024-05-06T11:10:02.512632Z	  550 Query	LOCK TABLES `cart` READ /*!32311 LOCAL */,`customers` READ /*!32311 LOCAL */,`orderdetail` READ /*!32311 LOCAL */,`orders` READ /*!32311 LOCAL */,`portfolio` READ /*!32311 LOCAL */,`product_detail` READ /*!32311 LOCAL */,`products` READ /*!32311 LOCAL */,`sales` READ /*!32311 LOCAL */
+2024-05-06T11:10:02.514538Z	  550 Query	show table status like 'cart'
+2024-05-06T11:10:02.515873Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.516160Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.516450Z	  550 Query	show create table `cart`
+2024-05-06T11:10:02.517018Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.517354Z	  550 Query	show fields from `cart`
+2024-05-06T11:10:02.518634Z	  550 Query	show fields from `cart`
+2024-05-06T11:10:02.520188Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `cart`
+2024-05-06T11:10:02.520690Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.520917Z	  550 Query	use `log`
+2024-05-06T11:10:02.521213Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.521523Z	  550 Query	SHOW TRIGGERS LIKE 'cart'
+2024-05-06T11:10:02.522671Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.522943Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.523301Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'cart'
+2024-05-06T11:10:02.523771Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.524082Z	  550 Query	show table status like 'customers'
+2024-05-06T11:10:02.525214Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.525447Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.525680Z	  550 Query	show create table `customers`
+2024-05-06T11:10:02.526169Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.526421Z	  550 Query	show fields from `customers`
+2024-05-06T11:10:02.527707Z	  550 Query	show fields from `customers`
+2024-05-06T11:10:02.529083Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `customers`
+2024-05-06T11:10:02.529673Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.529899Z	  550 Query	use `log`
+2024-05-06T11:10:02.530161Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.530472Z	  550 Query	SHOW TRIGGERS LIKE 'customers'
+2024-05-06T11:10:02.531487Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.531709Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.532048Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'customers'
+2024-05-06T11:10:02.532442Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.532701Z	  550 Query	show table status like 'orderdetail'
+2024-05-06T11:10:02.533906Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.534110Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.534350Z	  550 Query	show create table `orderdetail`
+2024-05-06T11:10:02.534892Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.535202Z	  550 Query	show fields from `orderdetail`
+2024-05-06T11:10:02.536479Z	  550 Query	show fields from `orderdetail`
+2024-05-06T11:10:02.537636Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `orderdetail`
+2024-05-06T11:10:02.538080Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.538315Z	  550 Query	use `log`
+2024-05-06T11:10:02.538818Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.539169Z	  550 Query	SHOW TRIGGERS LIKE 'orderdetail'
+2024-05-06T11:10:02.540362Z	  550 Query	SHOW CREATE TRIGGER `update_sold_trigger_for_products`
+2024-05-06T11:10:02.541766Z	  550 Query	SHOW CREATE TRIGGER `update_stock_trigger_for_productdetail`
+2024-05-06T11:10:02.542860Z	  550 Query	SHOW CREATE TRIGGER `restore_sold_trigger_for_products`
+2024-05-06T11:10:02.543816Z	  550 Query	SHOW CREATE TRIGGER `restore_stock_trigger_for_productdetail`
+2024-05-06T11:10:02.544676Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.544919Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.545271Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'orderdetail'
+2024-05-06T11:10:02.545735Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.546081Z	  550 Query	show table status like 'orders'
+2024-05-06T11:10:02.547529Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.547829Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.548109Z	  550 Query	show create table `orders`
+2024-05-06T11:10:02.548629Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.549058Z	  550 Query	show fields from `orders`
+2024-05-06T11:10:02.550180Z	  550 Query	show fields from `orders`
+2024-05-06T11:10:02.551467Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `orders`
+2024-05-06T11:10:02.551877Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.552118Z	  550 Query	use `log`
+2024-05-06T11:10:02.552401Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.552673Z	  550 Query	SHOW TRIGGERS LIKE 'orders'
+2024-05-06T11:10:02.553784Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.554081Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.554403Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'orders'
+2024-05-06T11:10:02.554852Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.555152Z	  550 Query	show table status like 'portfolio'
+2024-05-06T11:10:02.556322Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.556608Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.556818Z	  550 Query	show create table `portfolio`
+2024-05-06T11:10:02.557296Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.557619Z	  550 Query	show fields from `portfolio`
+2024-05-06T11:10:02.558894Z	  550 Query	show fields from `portfolio`
+2024-05-06T11:10:02.560195Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `portfolio`
+2024-05-06T11:10:02.560602Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.560855Z	  550 Query	use `log`
+2024-05-06T11:10:02.561141Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.561480Z	  550 Query	SHOW TRIGGERS LIKE 'portfolio'
+2024-05-06T11:10:02.562463Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.562709Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.563023Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'portfolio'
+2024-05-06T11:10:02.563417Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.563688Z	  550 Query	show table status like 'product\_detail'
+2024-05-06T11:10:02.564855Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.565076Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.565355Z	  550 Query	show create table `product_detail`
+2024-05-06T11:10:02.565835Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.566159Z	  550 Query	show fields from `product_detail`
+2024-05-06T11:10:02.567482Z	  550 Query	show fields from `product_detail`
+2024-05-06T11:10:02.568989Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `product_detail`
+2024-05-06T11:10:02.569772Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.569995Z	  550 Query	use `log`
+2024-05-06T11:10:02.570338Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.570592Z	  550 Query	SHOW TRIGGERS LIKE 'product\_detail'
+2024-05-06T11:10:02.571710Z	  550 Query	SHOW CREATE TRIGGER `update_stock_for_products_from_product_detail`
+2024-05-06T11:10:02.572681Z	  550 Query	SHOW CREATE TRIGGER `update_products_from_productdetail`
+2024-05-06T11:10:02.573424Z	  550 Query	SHOW CREATE TRIGGER `restore_stock_for_products_from_product_detail`
+2024-05-06T11:10:02.574178Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.574438Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.574750Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'product_detail'
+2024-05-06T11:10:02.575240Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.575560Z	  550 Query	show table status like 'products'
+2024-05-06T11:10:02.576911Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.577102Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.577282Z	  550 Query	show create table `products`
+2024-05-06T11:10:02.577725Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.577992Z	  550 Query	show fields from `products`
+2024-05-06T11:10:02.579171Z	  550 Query	show fields from `products`
+2024-05-06T11:10:02.580333Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `products`
+2024-05-06T11:10:02.583463Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.583690Z	  550 Query	use `log`
+2024-05-06T11:10:02.583953Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.584257Z	  550 Query	SHOW TRIGGERS LIKE 'products'
+2024-05-06T11:10:02.585420Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.585611Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.585881Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'products'
+2024-05-06T11:10:02.586336Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.586651Z	  550 Query	show table status like 'sales'
+2024-05-06T11:10:02.587922Z	  550 Query	SET SQL_QUOTE_SHOW_CREATE=1
+2024-05-06T11:10:02.588243Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.588471Z	  550 Query	show create table `sales`
+2024-05-06T11:10:02.588996Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.589320Z	  550 Query	show fields from `sales`
+2024-05-06T11:10:02.590396Z	  550 Query	show fields from `sales`
+2024-05-06T11:10:02.591462Z	  550 Query	SELECT /*!40001 SQL_NO_CACHE */ * FROM `sales`
+2024-05-06T11:10:02.591989Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.592218Z	  550 Query	use `log`
+2024-05-06T11:10:02.592475Z	  550 Query	select @@collation_database
+2024-05-06T11:10:02.592759Z	  550 Query	SHOW TRIGGERS LIKE 'sales'
+2024-05-06T11:10:02.593789Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.594084Z	  550 Query	SET SESSION character_set_results = 'binary'
+2024-05-06T11:10:02.594397Z	  550 Query	SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'log' AND TABLE_NAME = 'sales'
+2024-05-06T11:10:02.594814Z	  550 Query	SET SESSION character_set_results = 'utf8mb4'
+2024-05-06T11:10:02.595078Z	  550 Query	UNLOCK TABLES
+2024-05-06T11:10:02.596775Z	  550 Quit	
+2024-05-06T11:10:12.430581Z	  551 Connect	root@localhost on log using TCP/IP
+2024-05-06T11:10:12.430769Z	  551 Connect	Access denied for user 'root'@'localhost' (using password: YES)
+2024-05-06T11:10:12.510144Z	  552 Connect	root@localhost on  using SSL/TLS
+2024-05-06T11:10:12.510303Z	  552 Connect	Access denied for user 'root'@'localhost' (using password: YES)
