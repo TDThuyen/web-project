@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIYACHI SHOP</title>
+    <title>MOHO SHOP</title>
     <link href="/css/index.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -670,6 +670,317 @@
             </div>
         </div>
     </footer>
+<div id="chatbot-icon" class="chatbot-icon"> 
+    <i class='bx bx-message-rounded-dots'></i>
+  </div>
+  
+  <div id="chatbot-container" class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>MOHO AI Assistant</h3>
+      <button id="close-chatbot" class="close-button">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+    <div class="chatbot-input">
+      <input type="text" id="user-input" placeholder="Nhập câu hỏi của bạn...">
+      <button id="send-button">Gửi</button>
+    </div>
+  </div>
+  
+  <style>
+  .chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  .chatbot-icon i {
+    font-size: 30px;
+    color: white;
+  }
+  
+  .chatbot-container {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    overflow: hidden;
+    flex-direction: column;
+  }
+  
+  .chatbot-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .chatbot-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .chatbot-input {
+    display: flex;
+    padding: 10px;
+  }
+  
+  #user-input {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  #send-button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+</style> 
+<script>
+// Dữ liệu sản phẩm
+    const productData = {
+        'ban-sofa-ban-cafe-ban-tra-go-moho-vline-501': {
+            tenSanPham: "Bàn Sofa - Bàn Cafe - Bàn Trà Gỗ MOHO VLINE 501",
+            gia: 2490000.00,
+            kichthuoc: "Kích thước: Dài 100cm x  Rộng 50cm x Cao 40cm",
+            chatlieu:"Mặt bàn: Gỗ công nghiệp PB chuẩn CARB-P2 (*), Veneer gỗ sồi tự nhiên. Chân và khung bàn: gỗ cao su tự nhiên"
+        },
+        'ban-sofa-ban-cafe-ban-tra-go-cao-su-moho-milan-601-xam': {
+            tenSanPham: "Bàn Sofa – Bàn Cafe – Bàn Trà Gỗ Cao Su MOHO MILAN 601 Xám",
+            gia: 649000.00,
+            kichthuoc: "Kích thước: Dài 70cm x Rộng 60cm x Cao 38cm",
+            chatlieu: "Mặt bàn: Gỗ công nghiệp MDF chuẩn CARB-P2 (*), Sơn phủ UV. Chân bàn: Gỗ cao su tự nhiên"
+        },
+        'tu-ke-tivi-go-moho-vline-301': {
+            tenSanPham: "Tủ Kệ Tivi Gỗ MOHO VLINE 301",
+            gia: 4990000.00,
+            kichthuoc: "Kích thước: Dài 160cm x Rộng 41cm x Cao 51cm",
+            chatlieu:"Mặt kệ: Gỗ công nghiệp PB chuẩn CARB-P2 (*), Veneer gỗ sồ tự nhiên. Cửa tủ: Mây tre tự nhiên. Chân tủ: Gỗ cao su tự nhiên"
+        },
+        'ghe-sofa-go-tram-tu-nhien-moho-vline-601': {
+            tenSanPham: "Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601",
+            gia: 11490000.00,
+            mieuta: "Kích thước: Dài: 180cm x Rộng 85cm x Cao 69cm",
+            chatlieu: "Thân ghế: Gỗ tràm tự nhiên. Chân ghế: Gỗ cao su tự nhiên. Vải sợi tổng hợp kháng khuẩn, chống nhăn, kháng bụi bẩn và nấm mốc. Tấm phản: Gỗ công nghiệp Plywood chuẩn CARB-P2 (*) "
+        },
+        'ban-sofa-ban-cafe-ban-tra-go-moho-oslo-901': {
+            tenSanPham: "Bàn Sofa – Bàn Cafe – Bàn Trà Gỗ MOHO OSLO 901",
+            gia: 2190000.00,
+            kichthuoc: "Kích thước: Dài 95cm x Rộng 50cm x Cao 42cm", 
+            chatlieu: "Mặt bàn màu nâu: Gỗ thông tự nhiên. Mặt bàn màu tự nhiên: Gỗ công nghiệp MDF chuẩn CARB-P2 (*), Veneer gỗ sồi. Chân bàn màu nâu: Gỗ thông tự nhiên. Chân bàn màu tự nhiên: Gỗ cao su tự nhiên"
+        },
+        'ke-go-ke-sach-moho-oslo-901': {
+            tenSanPham: "Kệ Gỗ – Kệ Sách MOHO OSLO 901",
+            gia: 2490000.00,
+            kichthuoc: "Kích thước: Dài 80cm x Rộng 30cm x Cao 160cm", 
+            chatlieu: "Gỗ công nghiệp PB chuẩn CARB-P2(*), Sơn phủ UV"
+        },
+        'ghe-sofa-go-cao-su-tu-nhien-moho-vline-601': {
+            tenSanPham: "Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601",
+            gia: 11490000.00,
+            kichthuoc: "Kích thước: Dài 180cm x Rộng 85cm x Cao 69cm", 
+            chatlieu: "Gỗ cao su tự nhiên. Vải sợi tổng hợp có khả năng chống thấm nước và dầu. Tấm phản: Gỗ công nghiệp Plywood chuẩn CARB-P2 (*) "
+        },
+        'ban-sofa-ban-cafe-ban-tra-tron-cao-go-moho-oslo-901': {
+            tenSanPham: "Bàn Sofa – Bàn Cafe – Bàn Trà Tròn Cao Gỗ MOHO OSLO 901",
+            gia: 990000.00,
+            kichthuoc: "Kích thước: Đường kính 49cm x Cao 51cm", 
+            chatlieu: "Mặt bàn: Gỗ công nghiệp PB chuẩn CARB-P2 (*), Veneer gỗ sồi tự nhiên (Màu tự nhiên)/ Veneer gỗ tràm tự nhiên (Màu nâu). Chân bàn: Gỗ cao su tự nhiên (màu tự nhiên), Gỗ tràm tự nhiên (màu nâu)"
+        },
+    };
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbot = document.getElementById('close-chatbot');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    chatbotIcon.addEventListener('click', () => {
+        chatbotContainer.style.display = 'flex';
+    });
+
+    closeChatbot.addEventListener('click', () => {
+        chatbotContainer.style.display = 'none';
+    });
+
+    function addMessage(message, isUser = false) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messageElement.style.marginBottom = '10px';
+        messageElement.style.padding = '5px';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.maxWidth = '70%';
+        
+        if (isUser) {
+            messageElement.style.backgroundColor = '#e0f2f1';
+            messageElement.style.alignSelf = 'flex-end';
+        } else {
+            messageElement.style.backgroundColor = '#f1f0f0';
+            messageElement.style.alignSelf = 'flex-start';
+        }
+        
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Xử lý input từ người dùng
+    function processInput(input) {
+        const tokens = input.toLowerCase().split(' ');
+        const filteredTokens = tokens.filter(token => !['xin', 'chào', 'bạn', 'hãy', 'cho', 'tôi', 'thông', 'tin', 'về'].includes(token));
+        return filteredTokens.join(' ');
+    }
+
+    // Phát hiện ý định
+    function detectIntent(input) {
+        if (input.includes('xin chào') || input === 'chào') {
+            return 'greeting';
+        }
+        return 'product_search';
+    }
+
+    async function searchProducts(query) {
+        const prompt = `
+    Bạn là một trợ lý AI cho cửa hàng nội thất MOHO. Nhiệm vụ của bạn là hiểu yêu cầu của khách hàng và tìm sản phẩm phù hợp nhất từ danh sách sản phẩm sau:
+
+    ${JSON.stringify(productData, null, 2)}
+
+    Dựa vào câu hỏi của khách hàng: "${query}", hãy phân tích và tìm sản phẩm phù hợp nhất. Xem xét các yếu tố như loại sản phẩm, chất liệu, mục đích sử dụng, và các đặc điểm khác được đề cập trong câu hỏi.
+
+    Nếu có sản phẩm phù hợp, hãy trả lời với định dạng JSON như sau:
+    {
+    "found": true,
+    "productKey": "khóa-sản-phẩm",
+    "reason": "Giải thích chi tiết tại sao sản phẩm này phù hợp với yêu cầu của khách hàng, đề cập đến các đặc điểm cụ thể của sản phẩm và cách nó đáp ứng nhu cầu của khách hàng"
+    }
+
+    Nếu không tìm thấy sản phẩm phù hợp, hãy trả lời:
+    {
+    "found": false,
+    "reason": "Giải thích chi tiết tại sao không tìm thấy sản phẩm phù hợp, đề cập đến các yêu cầu cụ thể của khách hàng và tại sao các sản phẩm hiện có không đáp ứng được"
+    }
+
+    Chỉ trả lời bằng JSON, không cần thêm bất kỳ giải thích nào khác.`;
+
+        try {
+            console.log("Sending request to Gemini API with prompt:", prompt);
+            const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("Received response from Gemini API:", data);
+            const aiResponse = data.candidates[0].content.parts[0].text;
+            console.log("Parsed AI response:", aiResponse);
+
+            return JSON.parse(aiResponse);
+        } catch (error) {
+            console.error('Error in searchProducts:', error);
+            return { found: false, reason: "Đã xảy ra lỗi khi tìm kiếm sản phẩm. Chi tiết lỗi: " + error.message };
+        }
+    }
+
+    function formatProductInfo(product) {
+        return `Tên sản phẩm: ${product.tenSanPham}
+    Giá: ${product.gia.toLocaleString('vi-VN')} VNĐ
+    Kích thước: ${product.kichthuoc}
+    Chất Liệu Sản Phẩm: ${product.chatlieu}`;
+    }
+
+    async function handleUserMessage(message) {
+        const processedInput = processInput(message);
+        const intent = detectIntent(message);
+
+        if (intent === 'greeting') {
+            addMessage("Cửa hàng MoHo xin kính chào quý khách! Chúng tôi rất hân hạnh được phục vụ quý khách");
+        } else {
+            addMessage("Đang tìm kiếm sản phẩm phù hợp...");
+            const searchResult = await searchProducts(processedInput);
+            console.log("Search result:", searchResult);
+
+            if (searchResult.found) {
+                const product = productData[searchResult.productKey];
+                if (product) {
+                    const response = `Tôi đã tìm thấy sản phẩm phù hợp với yêu cầu của bạn:
+
+    ${formatProductInfo(product)}
+
+    Lý do: ${searchResult.reason}
+
+    Bạn có muốn biết thêm thông tin gì về sản phẩm này không?`;
+                    addMessage(response);
+                } else {
+                    addMessage("Xin lỗi, có lỗi xảy ra khi tìm thông tin sản phẩm. Vui lòng thử lại sau.");
+                }
+            } else {
+                const response = `Xin lỗi, tôi không tìm thấy sản phẩm phù hợp với yêu cầu của bạn. 
+
+    ${searchResult.reason} 
+
+    Bạn có thể mô tả chi tiết hơn về sản phẩm bạn đang tìm kiếm không? Ví dụ như loại sản phẩm, chất liệu, kích thước, hoặc mục đích sử dụng?`;
+                addMessage(response);
+            }
+        }
+    }
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (message) {
+            addMessage(message, true);
+            userInput.value = '';
+            await handleUserMessage(message);
+        }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    </script>
     <script src="/js/index.js"></script>
 </body>
 
