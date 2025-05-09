@@ -1,13 +1,21 @@
 import { Router } from "express";
-import { create, getAll, getById, getDetail, remove, update } from "../controllers/product.js";
+import { home } from "../controllers/home.js";
+import productDetail from "../controllers/productDetail.js";
 
 const routerProduct = Router();
 
-routerProduct.get('/', getAll)
-routerProduct.get('/getDetail/get',getDetail)
-routerProduct.get('/:id', getById)
-routerProduct.post('/create', create)
-routerProduct.put('/update', update)
-routerProduct.delete('/remove', remove)
+routerProduct.get("/id=:id",(req,res)=>{
+    res.render("productDetail.html")
+})
+routerProduct.post("/id=:id",productDetail)
+routerProduct.get("/q=:q",(req,res)=>{
+    res.render("index.html")
+})
+routerProduct.post("/q=:q",home)
+routerProduct.get("/collection=:collection",(req,res)=>{
+    res.render("index.html")
+})
+routerProduct.post("/collection=:collection",home)
+
 
 export default routerProduct;

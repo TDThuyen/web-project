@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>MOHO ADMIN</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/img/fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: coral;
+    }
+
+    .dropdown-menu {
+        min-width: 20rem;
+        left: 0 px;
+    }
+</style>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                                    alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg"
+                                    alt="#" />
+                            </div>
+                            <div class="user_info">
+                                <h6>admin</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li><a href="/admin/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/UserManagement"><i class="fa fa-table purple_color2"></i> <span>User
+                                    Management</span></a>
+                        </li>
+
+                        <li><a href="/admin/ProductManagement"><i class="fa fa-briefcase blue1_color"></i> <span>Product
+                                    Management</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-table purple_color2"></i> <span>Order Management</span> <b
+                                    class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/orderManagement/pending">Chờ xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/confirmed">Đã xác nhận</a></li>
+                                <li><a href="/admin/orderManagement/delivering">Đang giao</a></li>
+                                <li><a href="/admin/orderManagement/delivered">Đã giao</a></li>
+                                <li><a href="/admin/orderManagement/cancelled">Đã hủy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="content">
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+
+                            <div class="right_topbar">
+                                <div class="icon_info">
+
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle" src="/img/user_img.jpg"
+                                                    alt="#" /><span class="name_user">ADMIN</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="http://localhost:7888/home"><span>Log
+                                                        Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>XÓA NGƯỜI DÙNG</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form'
+                    style="width: 50%; margin: auto; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+                    <form action="/admin/delete-user" method="POST">
+                        <fieldset>
+                            <legend style="text-align: center; font-size: 1.5em; color: #cd1111;">Bạn có chắc chắn muốn
+                                xóa người dùng:
+                            </legend>
+                            <div class='input gruop d-none'>
+                                <label> Id: </label>
+                                <input type="text" name="userId" value="<%= user.customer_id %>">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Tên</label>
+                                <input type="text" name="name" value="<%= user.name %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Email</label>
+                                <input type="text" name="email" value="<%= user.email %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Tên tài khoản</label>
+                                <input type="text" name="username" value="<%= user.user_name %>"
+                                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            </div>
+                            <div class='input gruop' style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: bold;"> Hình ảnh</label>
+                                <img src="/public/userimg/<%= user.user_img%>" alt="User Image"
+                                    style="width: 100px; height: 100px;">
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button
+                                    style="padding: 10px 20px; background-color: #cd1111; color: white; border: none; border-radius: 5px; cursor: pointer;">XÓA</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").click(function () {
+                $(this).next(".dropdown-menu").toggle();
+            });
+        });
+    </script>
+</body>
+
+</html>

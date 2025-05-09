@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/productDetail.css" rel="stylesheet">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+ 
+<body>
+    <script>
+        var a = document.cookie.match(/status=([^;]+)/)
+        if (a) {
+            var statusAlert = a[0];
+            console.log(statusAlert);
+            if (statusAlert === "status=ok") {
+                alert("thêm vào giỏ hàng thành công !")
+            }
+            else if (statusAlert === "status=notok") {
+                alert("thêm giỏ hàng thất bại !")
+            }
+            else if(statusAlert === "status=login"){
+                alert("đăng nhập thành công !")
+            }
+            fetch('/deleteStatusCookie', {
+                method: 'DELETE', // hoặc 'POST' hoặc 'GET', phụ thuộc vào cách máy chủ của bạn xử lý yêu cầu
+            })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                });
+        }
+    </script>
+    <img class="logo" src="https://theme.hstatic.net/200000065946/1001187274/14/logo.png?v=377">
+    <header>
+
+        <a href="/home" class="Home">Trang chủ</a>
+        <p>>></p>
+        <p class="product__name1"></p>
+        <a class="cart" href="/cart">
+            <!-- <i class='bx bx-cart-alt hide'></i> -->
+        </a>
+    </header>
+    <main>
+        <div class="img__small">
+            <img class="product_image1">
+            <img class="product_image2">
+        </div>
+        <img class="main__img">
+        <div class="product__information">
+            <h3 class="product__name2"></h3>
+            <p class="sold"></p>
+            <p class="quantity__stock"></p>
+            <div class="rate">
+                <img class="rate__star">
+                <p class="rate__text"></p>
+
+            </div>
+            
+            <div class="price">
+                <p class="sale"></p>
+                <p class="sale__price"></p>
+                <p class="unsale__price"></p>
+            </div>
+            <div class="product__color">
+                <p>Màu sắc: </p>
+            </div>
+            <div class="quantity">
+                <div class="mainasu">-</div>
+                <div class="quantity__number"></div>
+                <div class="plus">+</div>
+            </div>
+            <form class="form" method="post">
+                <input class="picked__productDetail__id hide" type="text" name="picked__productDetail__id">
+                <input class="total__amount hide" name="total__amount" type="number">
+                <input class="quantity hide" name="quantity" type="number">
+                <button class="addCart" value="addCart" name ="submit" type="submit">THÊM VÀO GIỎ</button>
+                <button class="buy" type="submit" name="submit__buy">MUA NGAY</button>
+            </form>
+            
+            <div class="product__description">
+            </div>
+            <img class="tuvan" src="/img/tuvan.png">
+            <div class="getComment">
+                  <p class="getComment__text1 hide">Một số nhận xét về sản phẩm:</p>
+                  <p class="getComment__text2 hide">Chưa có nhận xét nào về sản phẩm</p>
+                  <div class="getComment2"></div>
+            </div>
+            <form class="evaluate hide" method="post">
+                <p>Đánh giá sản phẩm (Trên thang điểm 5):</p><br>
+                <label for="rating1">1</label>
+                <input type="radio" id="rating1" name="rating" value="1">
+                <label for="rating2">2</label>
+                <input type="radio" id="rating2" name="rating" value="2">
+                <label for="rating3">3</label>
+                <input type="radio" id="rating3" name="rating" value="3">
+                <label for="rating4">4</label>
+                <input type="radio" id="rating4" name="rating" value="4">
+                <label for="rating5">5</label>
+                <input type="radio" id="rating5" name="rating" value="5">
+                <input type="text" class="comment__textt" name="comment__textt" value="" placeholder="Nhận xét về sản phẩm">  
+                <button class="evaluate__submit evaluate__submit2" type="submit" value="Comment">Comment</button>
+            </form>
+        </div>
+        
+        <div class="alert__login hide">
+            <div class="alert__login__box">
+                <i class='bx bx-x-circle'></i>
+                <p> Bạn cần đăng nhập để thao tác thêm!</p>
+                <h5 class="alert__login__box__text">Đăng nhập</h5>
+            </div>
+        </div>
+
+        <div class="signup__display hide">
+            <div class="signup__form">
+                <form method="post">
+                    <div class="signup__form__header">
+                        <h1>Đăng kí</h1>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    <label for="fullname">Họ và tên:</label>
+                    <input class="fullname" name="fullname" type="text" placeholder="Họ và tên" required> <br>
+                    <label for="birthday">Ngày sinh:</label>
+                    <input class="birthday" name="birthday" type="date" placeholder="birthday" required> <br>
+                    <label for="username">Tên đăng nhập:</label>
+                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input class="phonenumber" name="phoneNumber" type="text" required placeholder="Phone number"> <br>
+                    <label for="email">Email</label>
+                    <input class="email" name="email" type="text" placeholder="Email" required> <br>
+                    <label for="password">Mật khẩu:</label>
+                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
+                    <label for="password__confirm">Xác nhận mật khẩu:</label>
+                    <input class="password__confirm" min=8 name="confirmPassword" type="password" required
+                        placeholder="Confirm Password">
+                    <input type="submit" name="submit" value="Sign up" id="submit1">
+                </form>
+
+            </div>
+        </div>
+        <!-- dang nhap -->
+        <div class="login__display hide">
+            <div class="login__form">
+                <form method="post">
+                    <div class="login__form__header">
+                        <h1>Đăng nhập</h1>
+                        <i class='bx bx-x' id="login__close"></i>
+                    </div>
+
+                    <label for="username">Tên đăng nhập:</label>
+
+                    <input class="username" name="userName" type="text" required placeholder="Username"> <br>
+                    <label for="password">Mật khẩu:</label>
+                    <input class="password" min=8 name="password" type="password" required placeholder="Password"> <br>
+                    <input type="submit" name="submit" value="Login" id="submit2">
+
+                </form>
+                <div class="footer">
+                    <p>Nếu chưa có tài khoản hãy</p>
+                    <p class="signup__option">Đăng ký</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+<script src="/js/productDetail.js"></script>
+
+</html>
